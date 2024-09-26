@@ -17,7 +17,6 @@ If you want to access the old framework, feel free to check out the old websites
 <h3 id="features">Features</h3>
 
 ------
-- PRUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 - Better Interface for the framework
 - Faster framework
 - Using the original mario art
