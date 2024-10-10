@@ -11,6 +11,10 @@ public class Agent implements MarioAgent {
         Si en el array la accion es true hara ese movimiento
     */
     private boolean[] actions = null;
+    
+    /*
+     Array con los objetos que hay en la escena
+     */
     int [][] escena;
 
     @Override
@@ -33,7 +37,10 @@ public class Agent implements MarioAgent {
         
         // si ve una interrogacion va a la izquierda
         boolean vista = false;
-        escena = model.getMarioSceneObservation(0);
+        escena = model.getMarioSceneObservation(0); // guardo la escena
+        
+        
+        // compruebo si en la escena hay una interrogacion
         for (int i = 0; i < model.obsGridWidth && !vista; i++) {
         	for (int j = 0; j < model.obsGridHeight && !vista; j++) {
         		if (escena[i][j] == model.OBS_QUESTION_BLOCK) {
