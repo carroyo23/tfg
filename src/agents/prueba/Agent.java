@@ -24,7 +24,9 @@ public class Agent implements MarioAgent {
     @Override
     public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
         
-        // si puede saltar y esta en el suelo saltara
+        // hago que Mario salte siempre que pueda
+    	// tambien hago que mientras este en el aire mantenga el boton de saltar
+    	// para que los saltos sean mayores
         actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
 
         return actions;
