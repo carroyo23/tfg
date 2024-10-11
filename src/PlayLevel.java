@@ -35,6 +35,6 @@ public class PlayLevel {
         //printResults(game.playGame(getLevel("./levels/original/lvl-1.txt"), 200, 0));
         //printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
 
-        printResults(game.runGame(new agents.busqueda.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
+        printResults(game.runGame(new agents.prueba.Agent(), getLevel("./levels/original/lvl-5.txt"), 20, 0, true));
     }
 }
