@@ -10,14 +10,36 @@ import engine.helper.MarioActions;
 
 public class Agent extends KeyAdapter implements MarioAgent {
     private boolean[] actions = null;
+    
+    int[][] escena;
+    
+    int ancho;
 
     @Override
     public void initialize(MarioForwardModel model, MarioTimer timer) {
         actions = new boolean[MarioActions.numberOfActions()];
+        escena = new int[model.obsGridWidth][model.obsGridHeight];
+        ancho = model.obsGridWidth;
     }
 
     @Override
     public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
+    	
+    	
+    	
+    	//escena = model.getMarioCompleteObservation(0,0);
+    	
+    	/*
+    	for (int i = 0; i < model.obsGridWidth; i++) {
+			for (int j = 0; j < model.obsGridHeight; j++) {
+				System.out.print(escena[j][i]);
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+    	System.out.println("***************************");
+    	*/
+    	
         return actions;
     }
 
@@ -49,6 +71,7 @@ public class Agent extends KeyAdapter implements MarioAgent {
                 break;
             case KeyEvent.VK_DOWN:
                 this.actions[MarioActions.DOWN.getValue()] = isPressed;
+            	//System.out.println("AAAAAAAAAAA"+escena[15][5]+"AAAAAAAAAAAAAAAAAAA");
                 break;
             case KeyEvent.VK_S:
                 this.actions[MarioActions.JUMP.getValue()] = isPressed;

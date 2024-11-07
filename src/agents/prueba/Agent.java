@@ -72,6 +72,7 @@ public class Agent implements MarioAgent {
     	}
     	else {
     		System.out.print("Coordenadas iniciales: ");
+    		System.out.println(max_altura);
     	}
 
         return actions;
