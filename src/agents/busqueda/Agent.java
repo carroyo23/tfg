@@ -17,6 +17,12 @@ public class Agent implements MarioAgent {
 	 */
 	int[][] escena;
 
+	
+	/*
+	 * Array con los enemigos que hay en la escena
+	 */
+	int[][] escena_enemigos;
+	
 	private final float MAX_SALTO_VERT = (float) 66.5;
 	
 	private boolean modo_debug;
@@ -25,6 +31,7 @@ public class Agent implements MarioAgent {
 	public void initialize(MarioForwardModel model, MarioTimer timer) {
 		actions = new boolean[MarioActions.numberOfActions()];
 		escena = new int[model.obsGridWidth][model.obsGridHeight];
+		escena_enemigos = new int[model.obsGridWidth][model.obsGridHeight];
 
 		// inicializo que siempre vaya hacia delante saltando
 		actions[MarioActions.RIGHT.getValue()] = true;
@@ -45,6 +52,7 @@ public class Agent implements MarioAgent {
 		boolean vista = false;
 		//escena = model.getScreenCompleteObservation(); // guardo la escena
 		escena = model.getMarioCompleteObservation(0,0);
+		escena_enemigos = model.getScreenCompleteObservation(2,2);
 		//actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
 		actions[MarioActions.JUMP.getValue()] = false;
 		
@@ -70,7 +78,7 @@ public class Agent implements MarioAgent {
 		for (int i = 0; i < model.obsGridWidth && !vista; i++) {
 			// empiezo a mirar en 4 porque por encima no me importa
 			for (int j = 4; j < model.obsGridHeight && !vista; j++) {
-				if (escena[i][j] == model.OBS_QUESTION_BLOCK) {
+				if (escena[i][j] == model.OBS_QUESTION_BLOCK){
 					vista = true;
 					casilla_pregunta = i;
 
@@ -78,14 +86,14 @@ public class Agent implements MarioAgent {
 					if (j >= 4) {
 						
 						// si esta justo debajo que salte y deje de moverse hacia delante
-						if (i == 9) {
+						if (i == 8) {
 							actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
 							actions[MarioActions.RIGHT.getValue()] = false;
 							actions[MarioActions.LEFT.getValue()] = false;
 							
 						}
 						// si no que siga moviendose hacia delante sin saltar
-						else if (i > 9){
+						else if (i > 8){
 							actions[MarioActions.JUMP.getValue()] = false;
 							actions[MarioActions.RIGHT.getValue()] = true;
 							actions[MarioActions.LEFT.getValue()] = false;
@@ -108,16 +116,29 @@ public class Agent implements MarioAgent {
 			actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
 		}
 		
-		if(!model.isMarioOnGround()) {
-			for (int i = 0; i < model.obsGridWidth; i++) {
-				for (int j = 0; j < model.obsGridHeight; j++) {
-					System.out.print(escena[j][i]);
-					System.out.print(" ");
-				}
-				System.out.println();
+		boolean hay_planta = false;
+		for (int i = 0; i < model.obsGridWidth && !hay_planta; i++) {
+			for (int j = 0; j < model.obsGridHeight && !hay_planta; j++) {
+				hay_planta = escena_enemigos[i][j] == model.OBS_ENEMY;
 			}
-			System.out.println("*****************************************");
-			
+		}
+		for (int i = 0; i < model.obsGridWidth; i++) {
+			for (int j = 0; j < model.obsGridHeight; j++) {
+				System.out.print(escena_enemigos[j][i]);
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+		System.out.println("*****************************************");
+		
+		// si delante hay un muro que lo salte salvo que haya flor arriba
+		if ((escena[9][8] != model.OBS_NONE) && (actions[MarioActions.LEFT.getValue()] == false) && !hay_planta){
+			System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+			actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();;
+			actions[MarioActions.RIGHT.getValue()] = true;
+		}
+		else {
+			System.out.println(escena[9][8]);
 		}
 		
 		System.out.println(vista+" "+casilla_pregunta);
