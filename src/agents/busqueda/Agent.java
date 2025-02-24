@@ -26,6 +26,12 @@ public class Agent implements MarioAgent {
 	private final float MAX_SALTO_VERT = (float) 66.5;
 	
 	private boolean modo_debug;
+	
+	// posicion de Mario en la escena (el [0,0] es la esquina superior izquierda)
+	private final int POS_MARIO_X = 8;
+	private final int POS_MARIO_Y = 9;
+	
+	private final int MAX_HEIGHT_SEARCH = POS_MARIO_Y - 4;
 
 	@Override
 	public void initialize(MarioForwardModel model, MarioTimer timer) {
@@ -37,7 +43,7 @@ public class Agent implements MarioAgent {
 		actions[MarioActions.RIGHT.getValue()] = true;
 		actions[MarioActions.SPEED.getValue()] = true;
 
-		modo_debug = true;
+		modo_debug = false;
 	}
 
 	/**
@@ -56,34 +62,23 @@ public class Agent implements MarioAgent {
 		//actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
 		actions[MarioActions.JUMP.getValue()] = false;
 		
-		modo_debug = false;
-		if (modo_debug) {
-			//modo_debug = false;
-			
-			for (int i = 0; i < model.obsGridWidth; i++) {
-				for (int j = 0; j < model.obsGridHeight; j++) {
-					System.out.print(escena[j][i]);
-					System.out.print(" ");
-				}
-				System.out.println();
-			}
-			System.out.println("*****************************************");
-		}
-		
 		int casilla_pregunta = -1;
+		int casilla_j = -1;
 
 		// compruebo si en la escena hay un bloque pregunta y si lo hay
 		// empezare a buscarlo
 		// (solo lo buscare si puedo alcanzarlo de un salto)
 		for (int i = 0; i < model.obsGridWidth && !vista; i++) {
-			// empiezo a mirar en 4 porque por encima no me importa
-			for (int j = 4; j < model.obsGridHeight && !vista; j++) {
+			// solo miro entre donde puedo alcanzar y que este por encima de mario
+			for (int j = MAX_HEIGHT_SEARCH; j < POS_MARIO_Y && !vista; j++) {
 				if (escena[i][j] == model.OBS_QUESTION_BLOCK){
 					vista = true;
 					casilla_pregunta = i;
+					casilla_j = j;
 
 					// si esta en rango de salto dejo de saltar hasta ponerme debajo
-					if (j >= 4) {
+					// tambien compruebo que no este debajo
+					if ((j >= 5) && (j <= 9)) {
 						
 						// si esta justo debajo que salte y deje de moverse hacia delante
 						if (i == 8) {
@@ -122,14 +117,6 @@ public class Agent implements MarioAgent {
 				hay_planta = escena_enemigos[i][j] == model.OBS_ENEMY;
 			}
 		}
-		for (int i = 0; i < model.obsGridWidth; i++) {
-			for (int j = 0; j < model.obsGridHeight; j++) {
-				System.out.print(escena_enemigos[j][i]);
-				System.out.print(" ");
-			}
-			System.out.println();
-		}
-		System.out.println("*****************************************");
 		
 		// si delante hay un muro que lo salte salvo que haya flor arriba
 		if ((escena[9][8] != model.OBS_NONE) && (actions[MarioActions.LEFT.getValue()] == false) && !hay_planta){
@@ -137,13 +124,39 @@ public class Agent implements MarioAgent {
 			actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();;
 			actions[MarioActions.RIGHT.getValue()] = true;
 		}
+		else if ((escena[9][8] != model.OBS_NONE) && (actions[MarioActions.LEFT.getValue()] == false) && hay_planta) {
+			System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+			actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
+			actions[MarioActions.RIGHT.getValue()] = false;
+		}
 		else {
 			System.out.println(escena[9][8]);
 		}
 		
-		System.out.println(vista+" "+casilla_pregunta);
+		System.out.println(vista+" "+casilla_pregunta + " " + casilla_j);
+		pintaEscena(escena, model);
+		
+		if (modo_debug && vista) {
+			//modo_debug = false;
+			
+			pintaEscena(escena, model);
+			actions[MarioActions.RIGHT.getValue()] = false;
+			actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
+		}
 
 		return actions;
+	}
+	
+	public void pintaEscena(int[][] a_pintar, MarioForwardModel model) {
+		System.out.println("*****************************************");
+		for (int i = 0; i < model.obsGridWidth; i++) {
+			for (int j = 0; j < model.obsGridHeight; j++) {
+				System.out.print(a_pintar[j][i]);
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+		System.out.println("*****************************************");
 	}
 
 	@Override

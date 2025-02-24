@@ -24,7 +24,7 @@ public class Agent implements MarioAgent {
         actions = new boolean[MarioActions.numberOfActions()];
 
         // inicializo que siempre vaya hacia delante saltando
-        actions[MarioActions.RIGHT.getValue()] = false;
+        actions[MarioActions.RIGHT.getValue()] = true;
         actions[MarioActions.SPEED.getValue()] = true;
         
         // todavia no ha saltado
@@ -40,9 +40,10 @@ public class Agent implements MarioAgent {
         // hago que Mario salte siempre que pueda
     	// tambien hago que mientras este en el aire mantenga el boton de saltar
     	// para que los saltos sean mayores
-        //actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
+        actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
     	
     	// funcion para calcular cuantos bloques salta Mario al satar solo hacia arriba
+        /*
     	if (!medido) {
     		iniX = model.getMarioFloatPos()[0];
     		iniY = model.getMarioFloatPos()[1];
@@ -66,6 +67,7 @@ public class Agent implements MarioAgent {
     			
     		}
     	}
+    	*/
     	
     	if (espera > 0) {
     		espera = espera - 1;
