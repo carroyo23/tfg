@@ -18,7 +18,7 @@ class NodoAB{
 public class Agent implements MarioAgent {
 	
 	private boolean[] action;
-	private static int MAX_PROFUNDIDAD = 4;
+	private static int MAX_PROFUNDIDAD = 5;
 
     @Override
     public void initialize(MarioForwardModel model, MarioTimer timer) {
@@ -57,11 +57,13 @@ public class Agent implements MarioAgent {
         NodoAB nodo = new NodoAB();
         nodo.valor = -1000;
         nodo.model = model;
+        nodo.accion = new boolean[]{false, false, false, false, false};
         
-        NodoAB final_nodo = alphaBeta(nodo, MAX_PROFUNDIDAD, 0, 0);
+        NodoAB final_nodo = alphaBeta(nodo, MAX_PROFUNDIDAD);
         
         action = final_nodo.accion;
         
+        /*
         System.out.println(nodo.model.getGameStatus());
         System.out.print(model.getMarioFloatPos()[0]);
         
@@ -70,14 +72,20 @@ public class Agent implements MarioAgent {
         System.out.print(" ");
         System.out.println(model.getMarioFloatPos()[0] / model.getLevelFloatDimensions()[0]);
         System.out.println(final_nodo.valor);
+        */
         
+        /*
         System.out.println("LAS ACCIONES");
 		System.out.println(action[0]);
 		System.out.println(action[1]);
 		System.out.println(action[2]);
 		System.out.println(action[3]);
 		System.out.println(action[4]);
+        
 		System.out.println("FIN ACCIONES");
+		*/
+		
+		
         
         return action;
     }
@@ -94,72 +102,85 @@ public class Agent implements MarioAgent {
         return false;
     }
     
-    public NodoAB alphaBeta(NodoAB nodo, int profundidad, int alpha, int beta) {
+    public NodoAB alphaBeta(NodoAB nodo, int profundidad) {
     	NodoAB a_devolver = new NodoAB();
+    	
+    	// pasar las caracteristicas
     	a_devolver.model = nodo.model;
     	GameStatus status = a_devolver.model.getGameStatus();
-    	
     	a_devolver.accion = nodo.accion;
     	
     	// checkeo los nodos finales
-    	if ((status != GameStatus.RUNNING) || (profundidad == 0)){
+    	if ((status != GameStatus.RUNNING) || (profundidad <= 0)){
+    		
+    		a_devolver.valor = (a_devolver.model.getMarioFloatPos()[0] / a_devolver.model.getLevelFloatDimensions()[0]) * 500;
+    		a_devolver.valor -= (a_devolver.model.getMarioFloatPos()[1] / a_devolver.model.getLevelFloatDimensions()[1]) * 10;
+    		System.out.println(a_devolver.valor);
+    		a_devolver.valor += a_devolver.model.getKillsTotal() * 100;
     		
     		if (status == GameStatus.WIN) {
-    			a_devolver.valor = 1000;
-    		}
-    		else if (status == GameStatus.RUNNING) {
-    			a_devolver.valor = 800;
+    			a_devolver.valor += 1000;
     		}
     		else if (status == GameStatus.TIME_OUT) {
-    			a_devolver.valor = 300;
+    			a_devolver.valor += 300;
     		}
     		else if (status == GameStatus.LOSE) {
-    			a_devolver.valor = -200;
-    			return a_devolver;
-    		}
-    		else {
-    			System.out.println("RARO");
+    			a_devolver.valor = -1000000;
     		}
     		
+    		/*
     		if (a_devolver.accion[MarioActions.RIGHT.getValue()] && a_devolver.accion[MarioActions.SPEED.getValue()]) {
     			a_devolver.valor += 30;
     		}
-    		if (a_devolver.accion[MarioActions.JUMP.getValue()] && a_devolver.accion[MarioActions.SPEED.getValue()]) {
-    			a_devolver.valor += 20;
-    		}
     		
-    		a_devolver.valor += a_devolver.model.getMarioFloatPos()[0] / a_devolver.model.getLevelFloatDimensions()[0];
+    		if (a_devolver.accion[MarioActions.JUMP.getValue()]) {
+    			a_devolver.valor += 200;
+    		}
+    		*/
+    		
     		
     		return a_devolver;
     	}
+    	
+		// genero los hijos (genero desde el modelo actual todas las variantes de acciones)
+    	List<boolean[]> hijos;
+    	
+    	// filtro si no puedo saltar exploro el resto de acciones
+    	if (!(a_devolver.model.mayMarioJump() || !a_devolver.model.isMarioOnGround())) {
+			hijos = generaNodosNoJump();
+			//System.out.println("holaaaaa");
+		}
     	else {
-    		// genero los hijos (genero desde el modelo actual todas las variantes de acciones)
-    		List<boolean[]> hijos = generaNodos();
-    		
-    		NodoAB mejor = new NodoAB();
-    		NodoAB a_comparar = new NodoAB();
-    		
-    		NodoAB nuevo = new NodoAB();
-    		nuevo = a_devolver;
-    		
-    		// generar la poda para todos los hijos (creando nodos para asignar las acciones de generaNodos)
-    		for (int i = 0; i < hijos.size(); i++) {
-    			nuevo = new NodoAB();
-    			nuevo.model = a_devolver.model.clone();
-    			nuevo.valor = a_devolver.valor;
-    			nuevo.accion = hijos.get(i);
-    			
-    			nuevo.model.advance(nuevo.accion);
-    			
-    			a_comparar = alphaBeta(nuevo, profundidad - 1, alpha, beta);
-    			
-    			if (mejor.valor < a_comparar.valor) {
-    				mejor = a_comparar;
-    			}
-    		}
-    		
-    		a_devolver = mejor;
+    		// si puedo saltar que salte
+    		hijos = generaNodosReduced();
+    		//hijos = generaNodosJump();
+    		//System.out.println("adiosssss");
     	}
+		
+		NodoAB mejor = new NodoAB();
+		mejor.valor = -1000;
+		NodoAB a_comparar = new NodoAB();
+		NodoAB nuevo;
+		
+		// generar la poda para todos los hijos (creando nodos para asignar las acciones de generaNodos)
+		for (int i = 0; i < hijos.size(); i++) {
+			nuevo = new NodoAB();
+			nuevo.model = a_devolver.model.clone();
+			nuevo.valor = a_devolver.valor;
+			
+			nuevo.accion = hijos.get(i);
+			
+			nuevo.model.advance(nuevo.accion);
+			
+			a_comparar = alphaBeta(nuevo, profundidad - 1);
+			a_comparar.accion = hijos.get(i);
+			
+			if (mejor.valor < a_comparar.valor) {
+				mejor = a_comparar;
+			}
+		}
+		
+		a_devolver = mejor;
     	
     	return a_devolver;
     }
@@ -173,18 +194,18 @@ public class Agent implements MarioAgent {
     	int length = 5;
     	int total_combination = 32;
     	
-    	result.add(new boolean[]{false, false, false, false, false}); // Ninguna tecla presionada
+    	//result.add(new boolean[]{false, false, false, false, false}); // Ninguna tecla presionada
         result.add(new boolean[]{true, false, false, false, false});  // Solo LEFT
         result.add(new boolean[]{false, true, false, false, false});  // Solo RIGHT
-        result.add(new boolean[]{false, false, true, false, false});  // Solo JUMP
-        result.add(new boolean[]{false, false, false, true, false});  // Solo SPEED
-        result.add(new boolean[]{false, false, false, false, true});  // Solo DOWN
-        result.add(new boolean[]{false, true, true, false, false});   // RIGHT + JUMP
-        result.add(new boolean[]{true, false, true, false, false});   // LEFT + JUMP
+        result.add(new boolean[]{false, false, false, false, true});  // Solo JUMP
+        //result.add(new boolean[]{false, false, false, true, false});  // Solo SPEED
+        //result.add(new boolean[]{false, false, true, false, false});  // Solo DOWN
+        result.add(new boolean[]{false, true, false, false, true});   // RIGHT + JUMP
+        result.add(new boolean[]{true, false, false, false, true});   // LEFT + JUMP
         result.add(new boolean[]{false, true, false, true, false});   // RIGHT + SPEED
         result.add(new boolean[]{true, false, false, true, false});   // LEFT + SPEED
-        result.add(new boolean[]{false, true, true, true, false});    // RIGHT + JUMP + SPEED
-        result.add(new boolean[]{true, false, true, true, false});    // LEFT + JUMP + SPEED
+        result.add(new boolean[]{false, true, false, true, true});    // RIGHT + JUMP + SPEED
+        result.add(new boolean[]{true, false, false, true, true});    // LEFT + JUMP + SPEED
     	
         /*
     	for (int i = 0; i < total_combination; i++) {
@@ -198,6 +219,52 @@ public class Agent implements MarioAgent {
     	
     	return result;
     }
+    
+    public List<boolean[]> generaNodosReduced() {
+    	// heuristica: left y right no se pulsan a la vez ni saltar y down
+    	
+    	List<boolean[]> result = new ArrayList<>();
+    	
+        //result.add(new boolean[]{true, false, false, false, false});  // Solo LEFT
+        //result.add(new boolean[]{false, true, false, false, false});  // Solo RIGHT
+        //result.add(new boolean[]{false, true, false, false, true});   // RIGHT + JUMP
+        result.add(new boolean[]{true, false, false, false, true});   // LEFT + JUMP
+    	result.add(new boolean[]{false, false, false, false, true});  // Solo JUMP
+        result.add(new boolean[]{false, true, false, true, false});   // RIGHT + SPEED
+    	//result.add(new boolean[]{true, false, false, true, false});   // LEFT + SPEED
+        result.add(new boolean[]{false, true, false, true, true});    // RIGHT + JUMP + SPEED
+        //result.add(new boolean[]{true, false, false, true, true});    // LEFT + JUMP + SPEED
+    	
+    	return result;
+    }
+    
+    public List<boolean[]> generaNodosJump() {
+    	// heuristica: left y right no se pulsan a la vez ni saltar y down
+    	
+    	List<boolean[]> result = new ArrayList<>();
+    	
+        result.add(new boolean[]{false, true, false, false, true});   // RIGHT + JUMP
+        result.add(new boolean[]{true, false, false, false, true});   // LEFT + JUMP
+    	result.add(new boolean[]{false, false, false, false, true});  // Solo JUMP
+        result.add(new boolean[]{false, true, false, true, true});    // RIGHT + JUMP + SPEED
+    	
+    	return result;
+    }
+    
+    public List<boolean[]> generaNodosNoJump() {
+    	// heuristica: left y right no se pulsan a la vez ni saltar y down
+    	
+    	List<boolean[]> result = new ArrayList<>();
+    	
+        result.add(new boolean[]{true, false, false, false, false});  // Solo LEFT
+        result.add(new boolean[]{false, true, false, false, false});  // Solo RIGHT
+        result.add(new boolean[]{false, true, false, true, false});   // RIGHT + SPEED
+    	result.add(new boolean[]{true, false, false, true, false});   // LEFT + SPEED
+    	
+    	return result;
+    }
+    
+    
 	
 	@Override
 	public String getAgentName() {
