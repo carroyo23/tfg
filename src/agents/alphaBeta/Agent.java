@@ -18,7 +18,7 @@ class NodoAB{
 public class Agent implements MarioAgent {
 	
 	private boolean[] action;
-	private static int MAX_PROFUNDIDAD = 5;
+	private static int MAX_PROFUNDIDAD = 4;
 
     @Override
     public void initialize(MarioForwardModel model, MarioTimer timer) {
@@ -84,7 +84,13 @@ public class Agent implements MarioAgent {
         
 		System.out.println("FIN ACCIONES");
 		*/
-		
+        
+        /*
+        for (int i = 0; i < 5; i++) {
+        	System.out.print(action[i] + " ");
+        }
+        System.out.println();
+        */
 		
         
         return action;
@@ -119,13 +125,13 @@ public class Agent implements MarioAgent {
     		a_devolver.valor += a_devolver.model.getKillsTotal() * 100;
     		
     		if (status == GameStatus.WIN) {
-    			a_devolver.valor += 1000;
+    			a_devolver.valor = Float.POSITIVE_INFINITY;
     		}
     		else if (status == GameStatus.TIME_OUT) {
     			a_devolver.valor += 300;
     		}
     		else if (status == GameStatus.LOSE) {
-    			a_devolver.valor = -1000000;
+    			a_devolver.valor = Float.NEGATIVE_INFINITY;
     		}
     		
     		/*
@@ -158,7 +164,7 @@ public class Agent implements MarioAgent {
     	}
 		
 		NodoAB mejor = new NodoAB();
-		mejor.valor = -1000;
+		mejor.valor = Float.NEGATIVE_INFINITY;
 		NodoAB a_comparar = new NodoAB();
 		NodoAB nuevo;
 		
@@ -170,17 +176,26 @@ public class Agent implements MarioAgent {
 			
 			nuevo.accion = hijos.get(i);
 			
+			// hago que avance 3 veces para tener que clonar menos veces y hacer que pueda explorar mas
+			nuevo.model.advance(nuevo.accion);
+			nuevo.model.advance(nuevo.accion);
 			nuevo.model.advance(nuevo.accion);
 			
 			a_comparar = alphaBeta(nuevo, profundidad - 1);
 			a_comparar.accion = hijos.get(i);
 			
-			if (mejor.valor < a_comparar.valor) {
+			if (mejor.valor <= a_comparar.valor) {
 				mejor = a_comparar;
 			}
 		}
 		
 		a_devolver = mejor;
+		
+		if (a_devolver.accion == null) {
+			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+			System.out.println(a_devolver.valor);
+			System.out.println("fallaaaaaaaaaaaaaaa");
+		}
     	
     	return a_devolver;
     }

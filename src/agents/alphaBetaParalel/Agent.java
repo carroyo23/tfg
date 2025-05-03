@@ -23,7 +23,7 @@ public class Agent implements MarioAgent {
 	private Thread decisionThread;
 	private volatile boolean running = true;
 	
-	private static int MAX_PROFUNDIDAD = 6;
+	private static int MAX_PROFUNDIDAD = 5;
 
     @Override
     public void initialize(MarioForwardModel model, MarioTimer timer) {
