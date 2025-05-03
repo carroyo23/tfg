@@ -180,6 +180,7 @@ public class Agent implements MarioAgent {
 			nuevo.model.advance(nuevo.accion);
 			nuevo.model.advance(nuevo.accion);
 			nuevo.model.advance(nuevo.accion);
+			nuevo.model.advance(nuevo.accion);
 			
 			a_comparar = alphaBeta(nuevo, profundidad - 1);
 			a_comparar.accion = hijos.get(i);
