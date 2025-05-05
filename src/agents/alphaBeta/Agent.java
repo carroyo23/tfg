@@ -121,8 +121,8 @@ public class Agent implements MarioAgent {
     		
     		a_devolver.valor = (a_devolver.model.getMarioFloatPos()[0] / a_devolver.model.getLevelFloatDimensions()[0]) * 500;
     		a_devolver.valor -= (a_devolver.model.getMarioFloatPos()[1] / a_devolver.model.getLevelFloatDimensions()[1]) * 10;
-    		System.out.println(a_devolver.valor);
     		a_devolver.valor += a_devolver.model.getKillsTotal() * 100;
+    		//System.out.println(a_devolver.valor);
     		
     		if (status == GameStatus.WIN) {
     			a_devolver.valor = Float.POSITIVE_INFINITY;
@@ -134,16 +134,6 @@ public class Agent implements MarioAgent {
     			a_devolver.valor = Float.NEGATIVE_INFINITY;
     		}
     		
-    		/*
-    		if (a_devolver.accion[MarioActions.RIGHT.getValue()] && a_devolver.accion[MarioActions.SPEED.getValue()]) {
-    			a_devolver.valor += 30;
-    		}
-    		
-    		if (a_devolver.accion[MarioActions.JUMP.getValue()]) {
-    			a_devolver.valor += 200;
-    		}
-    		*/
-    		
     		
     		return a_devolver;
     	}
@@ -154,13 +144,12 @@ public class Agent implements MarioAgent {
     	// filtro si no puedo saltar exploro el resto de acciones
     	if (!(a_devolver.model.mayMarioJump() || !a_devolver.model.isMarioOnGround())) {
 			hijos = generaNodosNoJump();
-			//System.out.println("holaaaaa");
 		}
     	else {
-    		// si puedo saltar que salte
     		hijos = generaNodosReduced();
+    		
+    		// si puedo saltar que salte
     		//hijos = generaNodosJump();
-    		//System.out.println("adiosssss");
     	}
 		
 		NodoAB mejor = new NodoAB();
@@ -176,7 +165,8 @@ public class Agent implements MarioAgent {
 			
 			nuevo.accion = hijos.get(i);
 			
-			// hago que avance 3 veces para tener que clonar menos veces y hacer que pueda explorar mas
+			// hago que avance 4 veces para tener que clonar menos veces y hacer que pueda explorar mas
+			// esto hace que evite mejor las caidas porque le da tiempo a verlas
 			nuevo.model.advance(nuevo.accion);
 			nuevo.model.advance(nuevo.accion);
 			nuevo.model.advance(nuevo.accion);

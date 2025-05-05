@@ -1,5 +1,7 @@
 import engine.core.MarioGame;
 import engine.core.MarioResult;
+import engine.helper.GameStatus;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -32,10 +34,23 @@ public class PlayLevel {
 
     public static void main(String[] args) {
         MarioGame game = new MarioGame();
+        
+        int level_pass = 0;
+        
+        // jugar como humano
         //printResults(game.playGame(getLevel("./levels/original/lvl-7.txt"), 200, 0));
-        printResults(game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
+       
+        // mi agente
+        for (int i = 1; i <= 15; i++) {
+        	MarioResult result = game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, false);
+            printResults(result);
+            level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
+        }
+        
+        System.out.println(level_pass);
+        
         
         // A* Robin Baumgarten
-        //printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("./levels/original/lvl-9.txt"), 20, 0, true));
+        //printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("./levels/original/lvl-3.txt"), 20, 0, true));
     }
 }
