@@ -40,15 +40,18 @@ public class PlayLevel {
         // jugar como humano
         //printResults(game.playGame(getLevel("./levels/original/lvl-7.txt"), 200, 0));
        
-        // mi agente
+        // mi agente (todos los niveles
+        /*
         for (int i = 1; i <= 15; i++) {
         	MarioResult result = game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, false);
             printResults(result);
             level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
         }
-        
         System.out.println(level_pass);
+        */
         
+        // mi agente
+        printResults(game.runGame(new agents.myAStar.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
         
         // A* Robin Baumgarten
         //printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("./levels/original/lvl-3.txt"), 20, 0, true));

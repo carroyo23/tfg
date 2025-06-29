@@ -59,7 +59,7 @@ public class Agent implements MarioAgent {
         nodo.model = model;
         nodo.accion = new boolean[]{false, false, false, false, false};
         
-        NodoAB final_nodo = alphaBeta(nodo, MAX_PROFUNDIDAD);
+        NodoAB final_nodo = alphaBeta(nodo, MAX_PROFUNDIDAD, timer);
         
         action = final_nodo.accion;
         
@@ -92,6 +92,7 @@ public class Agent implements MarioAgent {
         System.out.println();
         */
 		
+        //System.out.println(timer.getRemainingTime());
         
         return action;
     }
@@ -108,7 +109,7 @@ public class Agent implements MarioAgent {
         return false;
     }
     
-    public NodoAB alphaBeta(NodoAB nodo, int profundidad) {
+    public NodoAB alphaBeta(NodoAB nodo, int profundidad, MarioTimer timer) {
     	NodoAB a_devolver = new NodoAB();
     	
     	// pasar las caracteristicas
@@ -172,7 +173,7 @@ public class Agent implements MarioAgent {
 			nuevo.model.advance(nuevo.accion);
 			nuevo.model.advance(nuevo.accion);
 			
-			a_comparar = alphaBeta(nuevo, profundidad - 1);
+			a_comparar = alphaBeta(nuevo, profundidad - 1, timer);
 			a_comparar.accion = hijos.get(i);
 			
 			if (mejor.valor <= a_comparar.valor) {

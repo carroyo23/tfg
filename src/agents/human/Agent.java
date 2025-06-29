@@ -12,24 +12,19 @@ public class Agent extends KeyAdapter implements MarioAgent {
     private boolean[] actions = null;
     
     int[][] escena;
-    
-    int ancho;
 
     @Override
     public void initialize(MarioForwardModel model, MarioTimer timer) {
         actions = new boolean[MarioActions.numberOfActions()];
         escena = new int[model.obsGridWidth][model.obsGridHeight];
-        ancho = model.obsGridWidth;
     }
 
     @Override
     public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
     	
-    	
-    	
-    	//escena = model.getMarioCompleteObservation(0,0);
-    	
     	/*
+    	escena = model.getMarioCompleteObservation(0,0);
+    	
     	for (int i = 0; i < model.obsGridWidth; i++) {
 			for (int j = 0; j < model.obsGridHeight; j++) {
 				System.out.print(escena[j][i]);
