@@ -12,72 +12,62 @@ public class Agent implements MarioAgent {
     */
     private boolean[] actions = null;
     
-    // variables para comprobar la maxima altura de salto de Mario en parado
-    public boolean ha_saltado; // comprobar si ha saltado
-    public boolean medido;
-    public float iniX, iniY;
-    public float max_altura, maxX;
-    public float espera;
+    public boolean debug;
 
     @Override
     public void initialize(MarioForwardModel model, MarioTimer timer) {
         actions = new boolean[MarioActions.numberOfActions()];
 
-        // inicializo que siempre vaya hacia delante saltando
-        actions[MarioActions.RIGHT.getValue()] = true;
-        actions[MarioActions.SPEED.getValue()] = true;
-        
-        // todavia no ha saltado
-        ha_saltado = false;
-        medido = false;
-        max_altura = 0;
-        espera = 100;
+       debug = true;
     }
 
     @Override
     public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
         
-        // hago que Mario salte siempre que pueda
-    	// tambien hago que mientras este en el aire mantenga el boton de saltar
-    	// para que los saltos sean mayores
-        actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
+    	if (debug) {
+    		get_info_casillas_y_float_pos(model);
+    		debug = false;
+    	}
     	
-    	// funcion para calcular cuantos bloques salta Mario al satar solo hacia arriba
-        /*
-    	if (!medido) {
-    		iniX = model.getMarioFloatPos()[0];
-    		iniY = model.getMarioFloatPos()[1];
-    		medido = true;
-    	}
-    	else {
-    		
-    		// codigo para que solo salte una vez
-    		if(!ha_saltado) {
-        		ha_saltado = !model.isMarioOnGround();
-        		actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
-        	}
-    		else {
-    			actions[MarioActions.JUMP.getValue()] = !model.isMarioOnGround();
-    		}
-    		
-    		// calculo de las coordenadas a maxima altura
-    		if (max_altura > model.getMarioFloatPos()[1]) {
-    			max_altura = model.getMarioFloatPos()[1];
-    			maxX = model.getMarioFloatPos()[0];
-    			
-    		}
-    	}
-    	*/
     	
-    	if (espera > 0) {
-    		espera = espera - 1;
-    	}
-    	else {
-    		System.out.print("Coordenadas iniciales: ");
-    		System.out.println(max_altura);
-    	}
+    	pinta_escena(model, model.getMarioCompleteObservation(0,0));
+    	actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
+		actions[MarioActions.RIGHT.getValue()] = true;
 
         return actions;
+    }
+    
+    public void pinta_escena(MarioForwardModel model, int [][] a_pintar) {
+    	System.out.println("*************************************************************");
+    	for (int i = 0; i < model.obsGridWidth; i++) {
+			for (int j = 0; j < model.obsGridHeight; j++) {
+				System.out.print(a_pintar[j][i]);
+			}
+			System.out.println();
+		}
+    	System.out.println("*************************************************************");
+    }
+    
+    public void get_info_casillas_y_float_pos(MarioForwardModel model) {
+    	for (int i = 0; i < model.getEnemiesFloatPos().length; i++) {
+    		System.out.println(model.getEnemiesFloatPos()[i]);
+    	}
+    	System.out.println("Mario pos:");
+    	for (int i = 0; i < model.getMarioFloatPos().length; i++) {
+    		System.out.println(model.getMarioFloatPos()[i]);
+    	}
+    	
+    	System.out.println("Nivel dimension:");
+    	for (int i = 0; i < model.getLevelFloatDimensions().length; i++) {
+    		System.out.println(model.getLevelFloatDimensions()[i]);
+    	}
+    	
+    	System.out.println("Escena dimension:");
+    	System.out.println(model.obsGridWidth);
+    	System.out.println(model.obsGridHeight);
+    	System.out.println("Escena dimension a mano:");
+    	System.out.println(model.getMarioCompleteObservation().length);
+    	System.out.println(model.getMarioCompleteObservation()[0].length);
     }
 
     @Override

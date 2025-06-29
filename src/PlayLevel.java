@@ -51,7 +51,7 @@ public class PlayLevel {
         */
         
         // mi agente
-        printResults(game.runGame(new agents.myAStar.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
+        printResults(game.runGame(new agents.prueba.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
         
         // A* Robin Baumgarten
         //printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("./levels/original/lvl-3.txt"), 20, 0, true));

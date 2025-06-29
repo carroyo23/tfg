@@ -100,29 +100,6 @@ public class Agent implements MarioAgent {
 		}
 		*/
     	
-    	// TODO: voy a probar la precision de los float usando al goomba que hay cerca y ver si consigo triangularlo
-    	
-    	System.out.println(model.getEnemiesFloatPos());
-    	for (int i = 0; i < model.getEnemiesFloatPos().length; i++) {
-    		System.out.println(model.getEnemiesFloatPos()[i]);
-    	}
-    	System.out.println("Mario pos:");
-    	for (int i = 0; i < model.getMarioFloatPos().length; i++) {
-    		System.out.println(model.getMarioFloatPos()[i]);
-    	}
-    	
-    	System.out.println("Nivel dimension:");
-    	for (int i = 0; i < model.getLevelFloatDimensions().length; i++) {
-    		System.out.println(model.getLevelFloatDimensions()[i]);
-    	}
-    	
-    	System.out.println("Escena dimension:");
-    	System.out.println(model.obsGridWidth);
-    	System.out.println(model.obsGridHeight);
-    	System.out.println("Escena dimension a mano:");
-    	System.out.println(model.getMarioCompleteObservation().length);
-    	System.out.println(model.getMarioCompleteObservation()[0].length);
-    	
     	
     	// meto el estado actual en abiertos (la g sera 0 porque no ha pasado tiempo)
     	NodoAStar actual = new NodoAStar(POS_MARIO_X, POS_MARIO_Y, 0, model.clone());
