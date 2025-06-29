@@ -37,14 +37,14 @@ public class Agent implements MarioAgent {
 	int[][] escena;
 	
 	// posicion de Mario en la escena (el [0,0] es la esquina superior izquierda)
-	private final int POS_MARIO_X = 8;
-	private final int POS_MARIO_Y = 9;
+	private final int POS_MARIO_X_GRID = 8;
+	private final int POS_MARIO_Y_GRID = 9;
 	
 	boolean debug;
 	
 	boolean hay_meta;
 	
-	private final int LIM_X = POS_MARIO_X - 4;
+	private final int LIM_X = POS_MARIO_X_GRID - 4;
 	
 	// tiempo total (el tiempo sera la g(x)
 	private int tiempo_ini;
@@ -83,8 +83,8 @@ public class Agent implements MarioAgent {
     	}
     	
     	// TODO: MARCAR LA CASILLA QUE VAMOS A IR BUSCANDO
-    	a_buscar_x = model.obsGridWidth - 1; // de momento busco a la misma altura que Mario
-    	a_buscar_y = POS_MARIO_Y;
+    	a_buscar_x = model.obsGridWidth - 1; // la ultima casilla que soy capaz de ver
+    	a_buscar_y = POS_MARIO_Y_GRID; // de momento busco a la misma altura que Mario
     	/*
     	for (int i = 0; i < model.obsGridWidth && !hay_meta; i++) {
 			for (int j = 0; j < model.obsGridHeight && !hay_meta; j++) {
@@ -102,7 +102,7 @@ public class Agent implements MarioAgent {
     	
     	
     	// meto el estado actual en abiertos (la g sera 0 porque no ha pasado tiempo)
-    	NodoAStar actual = new NodoAStar(POS_MARIO_X, POS_MARIO_Y, 0, model.clone());
+    	NodoAStar actual = new NodoAStar(POS_MARIO_X_GRID, POS_MARIO_Y_GRID, 0, model.clone());
     	actual.calculaDistancia(a_buscar_x, a_buscar_y);
     	
     	nodos[actual.x][actual.y] = actual;
@@ -154,7 +154,7 @@ public class Agent implements MarioAgent {
     					}
     				}
     				else if(modelo_hijo.getGameStatus() == GameStatus.RUNNING) {
-    					hijo = new NodoAStar(POS_MARIO_X, POS_MARIO_Y, tiempo_ini - modelo_hijo.getRemainingTime(), modelo_hijo);
+    					hijo = new NodoAStar(POS_MARIO_X_GRID, POS_MARIO_Y_GRID, tiempo_ini - modelo_hijo.getRemainingTime(), modelo_hijo);
     					hijo.calculaDistancia(a_buscar_x, a_buscar_y);
     					
     					// TODO: PARA COMPROBAR SI ESTA EN ABIERTOS O EN CERRADOS NO ME VALE LA CUADRICULA PQ SE VA MOVIENDO (?)
@@ -230,6 +230,15 @@ public class Agent implements MarioAgent {
     	result.add(new boolean[]{true, false, false, true, false});   // LEFT + SPEED
     	
     	return result;
+    }
+    
+    // devuelve la posicion dentro de la escena de una casilla dada la posicion absoluta de la casilla y de Mario
+    public int[] getCasillaRelativa(int[] pos_abs_casilla, int[] pos_mario){
+    	int[] a_devolver = new int[2];
+    	
+    	
+    	
+    	return a_devolver;
     }
 
     @Override
