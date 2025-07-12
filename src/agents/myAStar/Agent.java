@@ -17,10 +17,10 @@ public class Agent implements MarioAgent {
     */
     private boolean[] actions = null;
     
-    // coordenadas de la meta
-    int a_buscar_x;
-    int a_buscar_y;
-    
+    // coordenadas de la meta en casillas
+    int[] a_buscar_casilla;
+    float[] a_buscar_global;
+    		
     // Estructura para guardar nodos (abiertos y cerrados apuntaran aqui)
     NodoAStar [][] nodos;
     
@@ -36,27 +36,54 @@ public class Agent implements MarioAgent {
 	 */
 	int[][] escena;
 	
-	// posicion de Mario en la escena (el [0,0] es la esquina superior izquierda)
-	private final int POS_MARIO_X_GRID = 8;
-	private final int POS_MARIO_Y_GRID = 9;
-	
 	boolean debug;
 	
 	boolean hay_meta;
 	
-	private final int LIM_X = POS_MARIO_X_GRID - 4;
-	
 	// tiempo total (el tiempo sera la g(x)
 	private int tiempo_ini;
+	
+	public final int TAM_CASILLA = 16;
+	public final int FACTOR_DIV_CASILLA = 4; // para dividir en casillas hare pos >> 4 (por eficiencia)
+	
+	// dimensiones del nivel
+	private float[] dim_nivel_float;
+	private int[] dim_nivel_casillas;
+	
+	// posicion de Mario en la escena (el [0,0] es la esquina superior izquierda)
+	private final int[] POS_MARIO_GRID = {9,8};
+	
+	private final int LIM_X = POS_MARIO_GRID[0] - 4;
 
     @Override
     public void initialize(MarioForwardModel model, MarioTimer timer) {
         actions = new boolean[MarioActions.numberOfActions()];
         escena = new int[model.obsGridWidth][model.obsGridHeight];
         
+        a_buscar_casilla = new int[2];
+        a_buscar_global = new float[2];
+        
         debug = true;
         
         tiempo_ini = model.getRemainingTime();
+        
+        // guardo el tamaño del nivel
+        dim_nivel_float = model.getLevelFloatDimensions();
+        
+        dim_nivel_casillas = new int[] {((int) dim_nivel_float[0]) >> FACTOR_DIV_CASILLA, ((int) dim_nivel_float[1]) >> FACTOR_DIV_CASILLA};
+        
+        
+        // inicializo las matrices completamente a false
+        abiertos_matriz = new boolean[dim_nivel_casillas[0]][dim_nivel_casillas[1]];
+        cerrados = new boolean[dim_nivel_casillas[0]][dim_nivel_casillas[1]];
+        
+        for (int i = 0; i < dim_nivel_casillas[0]; i++) {
+        	for (int j = 0; j < dim_nivel_casillas[1]; j++) {
+        		abiertos_matriz[i][j] = false;
+        		cerrados[i][j] = false;
+        	}
+        }
+        
     }
 
     @Override
@@ -83,8 +110,15 @@ public class Agent implements MarioAgent {
     	}
     	
     	// TODO: MARCAR LA CASILLA QUE VAMOS A IR BUSCANDO
-    	a_buscar_x = model.obsGridWidth - 1; // la ultima casilla que soy capaz de ver
-    	a_buscar_y = POS_MARIO_Y_GRID; // de momento busco a la misma altura que Mario
+    
+    	// busco la ultima casilla a la altura de Mario que pueda ver
+    	a_buscar_casilla[0] = model.obsGridWidth - 1;
+    	a_buscar_casilla[1] = POS_MARIO_GRID[1]; // de momento busco a la misma altura que Mario
+    	
+    	// identifico la posicion global de la casilla
+    	a_buscar_global[0] = ((a_buscar_casilla[0] - POS_MARIO_GRID[0]) * TAM_CASILLA) + model.getMarioFloatPos()[0];
+    	a_buscar_global[1] = model.getMarioFloatPos()[1];
+    	
     	/*
     	for (int i = 0; i < model.obsGridWidth && !hay_meta; i++) {
 			for (int j = 0; j < model.obsGridHeight && !hay_meta; j++) {
@@ -93,8 +127,8 @@ public class Agent implements MarioAgent {
 					hay_meta = true;
 					
 					// marco la posicion relativa porque en cada escena lanzare un A*
-					a_buscar_x = i;
-					a_buscar_y = j;
+					a_buscar_casilla[0] = i;
+					a_buscar_casilla[1] = j;
 				}
 			}
 		}
@@ -102,8 +136,8 @@ public class Agent implements MarioAgent {
     	
     	
     	// meto el estado actual en abiertos (la g sera 0 porque no ha pasado tiempo)
-    	NodoAStar actual = new NodoAStar(POS_MARIO_X_GRID, POS_MARIO_Y_GRID, 0, model.clone());
-    	actual.calculaDistancia(a_buscar_x, a_buscar_y);
+    	NodoAStar actual = new NodoAStar(POS_MARIO_GRID[0], POS_MARIO_GRID[1], 0, model.clone());
+    	actual.calculaDistancia(a_buscar_casilla[0], a_buscar_casilla[1]);
     	
     	nodos[actual.x][actual.y] = actual;
     	abiertos_cola.add(actual);
@@ -154,8 +188,8 @@ public class Agent implements MarioAgent {
     					}
     				}
     				else if(modelo_hijo.getGameStatus() == GameStatus.RUNNING) {
-    					hijo = new NodoAStar(POS_MARIO_X_GRID, POS_MARIO_Y_GRID, tiempo_ini - modelo_hijo.getRemainingTime(), modelo_hijo);
-    					hijo.calculaDistancia(a_buscar_x, a_buscar_y);
+    					hijo = new NodoAStar(POS_MARIO_GRID[0], POS_MARIO_GRID[1], tiempo_ini - modelo_hijo.getRemainingTime(), modelo_hijo);
+    					hijo.calculaDistancia(a_buscar_casilla[0], a_buscar_casilla[1]);
     					
     					// TODO: PARA COMPROBAR SI ESTA EN ABIERTOS O EN CERRADOS NO ME VALE LA CUADRICULA PQ SE VA MOVIENDO (?)
     				}
@@ -233,10 +267,20 @@ public class Agent implements MarioAgent {
     }
     
     // devuelve la posicion dentro de la escena de una casilla dada la posicion absoluta de la casilla y de Mario
-    public int[] getCasillaRelativa(int[] pos_abs_casilla, int[] pos_mario){
+    public int[] getCasillaRelativa(float[] pos_abs_casilla, float[] pos_mario){
     	int[] a_devolver = new int[2];
     	
+    	// calculo la distancia absoluta desde mario a la casilla
+    	a_devolver[0] = ((int) pos_abs_casilla[0]) - ((int) pos_mario[0]);
+    	a_devolver[1] = ((int) pos_abs_casilla[1]) - ((int) pos_mario[1]);
     	
+    	// la divido entre el numero de posiciones que abarca una casilla
+    	a_devolver[0] = a_devolver[0] >> FACTOR_DIV_CASILLA;
+    	a_devolver[1] = a_devolver[1] >> FACTOR_DIV_CASILLA;
+    	
+    	// le sumo la posicion relativa de Mario en la escena
+    	a_devolver[0] = a_devolver[0] + POS_MARIO_GRID[0];
+    	a_devolver[1] = a_devolver[1] + POS_MARIO_GRID[1];
     	
     	return a_devolver;
     }

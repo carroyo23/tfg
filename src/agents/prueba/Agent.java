@@ -20,6 +20,8 @@ public class Agent implements MarioAgent {
     @Override
     public void initialize(MarioForwardModel model, MarioTimer timer) {
         actions = new boolean[MarioActions.numberOfActions()];
+        
+        actions[MarioActions.RIGHT.getValue()] = true;
 
        debug = true;
     }
@@ -32,14 +34,17 @@ public class Agent implements MarioAgent {
     		get_info_casillas_y_float_pos(model);
     		debug = false;
     		
+    		/*
     		System.out.println("Casilla a buscar (goomba): ");
     		System.out.println("Pos absoluta: " + model.getEnemiesFloatPos()[1] + " " + model.getEnemiesFloatPos()[2]);
     		int [] casilla_a_buscar = getCasillaRelativa(new float[]{model.getEnemiesFloatPos()[1],model.getEnemiesFloatPos()[2]}, model.getMarioFloatPos());
     		System.out.println("Pos relativa: " + casilla_a_buscar[0] + " " + casilla_a_buscar[1]);
+    		*/
     	}
     	
-    	//actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
-		//actions[MarioActions.RIGHT.getValue()] = true;
+    	//comprobacionMarioY(model);
+		comprobacionMarioX(model);
+		
 
         return actions;
     }
@@ -98,6 +103,36 @@ public class Agent implements MarioAgent {
     	a_devolver[1] = a_devolver[1] + POS_MARIO_GRID[1];
     	
     	return a_devolver;
+    }
+    
+    public void comprobacionMarioY(MarioForwardModel model) {
+    	// comprobacion de en que casilla esta Mario (Y)
+    	// para ello hago que salte cuando encima suya haya una casilla con interrogacion
+    	boolean hay_casilla = false;
+		
+    	for (int i = 0; i < model.obsGridHeight && !hay_casilla; i++) {
+    		hay_casilla = model.getMarioCompleteObservation(0, 0)[POS_MARIO_GRID[0]][i] == model.OBS_QUESTION_BLOCK;
+    	}
+    	
+    	if (hay_casilla) {
+    		actions[MarioActions.RIGHT.getValue()] = false;
+    		actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
+    	}
+    }
+    
+    public void comprobacionMarioX(MarioForwardModel model) {
+    	// comprobacion de en que casilla esta Mario (X)
+    	// para ello hago que deje de moverse cuando haya un enemigo en su fila
+    	boolean hay_casilla = false;
+		
+    	for (int i = 0; i < model.obsGridWidth && !hay_casilla; i++) {
+    		hay_casilla = model.getMarioCompleteObservation(0, 0)[i][POS_MARIO_GRID[1]] == 2;
+    	}
+    	
+    	if (hay_casilla) {
+    		actions[MarioActions.RIGHT.getValue()] = false;
+    		actions[MarioActions.JUMP.getValue()] = model.mayMarioJump() || !model.isMarioOnGround();
+    	}
     }
 
     @Override
