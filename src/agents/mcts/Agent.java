@@ -53,6 +53,7 @@ public class Agent implements MarioAgent {
 		return action;
 	}
 	
+	// genera todos los hijos de un nodo
 	public List<NodoMCTS> generaHijos(NodoMCTS padre){
 		List<NodoMCTS> a_devolver = new ArrayList<>();
 		
