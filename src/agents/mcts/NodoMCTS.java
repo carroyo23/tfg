@@ -7,7 +7,7 @@ public class NodoMCTS {
 	public MarioForwardModel model; // estado del juego
 	NodoMCTS padre;
 	List<NodoMCTS> hijos;
-	double recompensa;
+	float recompensa;
 	int visitas;
 	private boolean[] action;
 	
@@ -21,7 +21,7 @@ public class NodoMCTS {
 	}
 	
 	// constructor completo
-	public NodoMCTS (MarioForwardModel nuevo_modelo, NodoMCTS nuevo_padre, List<NodoMCTS> nuevos_hijos, double nueva_recompensa, int nuevas_visitas, boolean[] accion_padre) {
+	public NodoMCTS (MarioForwardModel nuevo_modelo, NodoMCTS nuevo_padre, List<NodoMCTS> nuevos_hijos, float nueva_recompensa, int nuevas_visitas, boolean[] accion_padre) {
 		model = nuevo_modelo;
 		padre = nuevo_padre;
 		hijos = nuevos_hijos;
@@ -31,7 +31,7 @@ public class NodoMCTS {
 	}
 	
 	// constructor simple
-	public NodoMCTS (MarioForwardModel nuevo_modelo, NodoMCTS nuevo_padre, double nueva_recompensa, boolean[] accion_padre) {
+	public NodoMCTS (MarioForwardModel nuevo_modelo, NodoMCTS nuevo_padre, float nueva_recompensa, boolean[] accion_padre) {
 		model = nuevo_modelo;
 		padre = nuevo_padre;
 		hijos = null;

@@ -18,8 +18,8 @@ public class Agent implements MarioAgent {
 	*/
 	private boolean[] action;
 	
-	private static int MAX_ITERACIONES = 4;
-	private static int MAX_PROFUNDIDAD = 12;
+	private static int MAX_ITERACIONES = 4; // numero de iteraciones del bucle principal
+	private static int MAX_PROFUNDIDAD = 12; // numero de acciones aleatorias a realizar en cada nodo al simular
 	
 	private static int NUM_REPS_ACTION = 4; // las veces que se repite una accion para que pueda mirar mas a futuro
 	
@@ -41,8 +41,14 @@ public class Agent implements MarioAgent {
 
 		// creo un nodo inicial
 		int recompensa = -1;
-		NodoMCTS inicial = new NodoMCTS(model, null, , recompensa, 0, null);
+		NodoMCTS inicial = new NodoMCTS(model, null, null, recompensa, 0, null);
 		
+		boolean fin = false;
+		
+		// bucle principal mientras no encuentre un estado en el que gane o no se acabe el tiempo de pensar
+		while (!fin) {
+			
+		}
 		
 		return action;
 	}
@@ -50,17 +56,22 @@ public class Agent implements MarioAgent {
 	public List<NodoMCTS> generaHijos(NodoMCTS padre){
 		List<NodoMCTS> a_devolver = new ArrayList<>();
 		
+		MarioForwardModel modelo_hijo;
+		float recompensa_hijo;
+		
 		List<boolean[]> posibles_acciones = generaAcciones(padre.model);
 		
 		for (int i = 0; i < posibles_acciones.size(); i++) {
-			MarioForwardModel modelo_hijo = padre.model.clone();
+			modelo_hijo = padre.model.clone();
 			
-			// repito la accion un numero de ticks porque no afecta mucho al juego y permite mirar mas a futuro clonando menos modelos
+			// repito la accion un numero de ticks porque no afecta mucho al juego y permite mirar mas a futuro clonando menos estados
 			for (int j = 0; j < NUM_REPS_ACTION; j++) {
 				modelo_hijo.advance(posibles_acciones.get(i));
 			}
 			
-			a_devolver.add(new NodoMCTS(modelo_hijo, padre, null, -1, 0, posibles_acciones.get(i));
+			recompensa_hijo = generaRecompensa(modelo_hijo);
+			
+			a_devolver.add(new NodoMCTS(modelo_hijo, padre, null, recompensa_hijo, 0, posibles_acciones.get(i)));
 		}
 		
 		return a_devolver;
@@ -72,19 +83,17 @@ public class Agent implements MarioAgent {
 		
 		GameStatus status = model.getGameStatus();
 		
-		a_devolver = (model.getMarioFloatPos()[0] / model.getLevelFloatDimensions()[0]) * 500;
-		a_devolver -= (model.getMarioFloatPos()[1] / model.getLevelFloatDimensions()[1]) * 10;
-		a_devolver += model.getKillsTotal() * 100;
+		// heuristica que da puntos en funcion de como de a la derecha y arriba este Mario
+		a_devolver = (model.getMarioFloatPos()[0] / model.getLevelFloatDimensions()[0]) * VALOR_HORIZONTAL;
+		a_devolver -= (model.getMarioFloatPos()[1] / model.getLevelFloatDimensions()[1]) * VALOR_VERTICAL;
 		
-		if (status == GameStatus.WIN) {
-			a_devolver = Float.POSITIVE_INFINITY;
-		}
-		else if (status == GameStatus.TIME_OUT) {
-			a_devolver += 300;
-		}
-		else if (status == GameStatus.LOSE) {
-			a_devolver = Float.NEGATIVE_INFINITY;
-		}
+		// suma de puntos por matar enemigos
+		a_devolver += model.getKillsTotal() * VALOR_KILL;
+		
+		// comprobacion del estado del juego si este ha terminado
+		a_devolver = (status == GameStatus.WIN) ? Float.POSITIVE_INFINITY : a_devolver;
+		a_devolver = (status == GameStatus.TIME_OUT) ? a_devolver + VALOR_TIME_OUT : a_devolver;
+		a_devolver = (status == GameStatus.LOSE) ? Float.NEGATIVE_INFINITY : a_devolver;
 		
 		return a_devolver;
 	}
