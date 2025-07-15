@@ -5,6 +5,7 @@ import engine.helper.MarioActions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import engine.core.MarioAgent;
 import engine.core.MarioForwardModel;
@@ -30,6 +31,8 @@ public class Agent implements MarioAgent {
 	private static float VALOR_TIME_OUT = 300;
 	private static float VALOR_WIN = 500;
 	private static float VALOR_LOSE = 500;
+	
+	private static float CONST_UCT = (float) 1.3; // TODO: AJUSTAR ESTE VALOR
 
 	@Override
 	public void initialize(MarioForwardModel model, MarioTimer timer) {
@@ -40,18 +43,133 @@ public class Agent implements MarioAgent {
 	public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
 
 		// creo un nodo inicial
-		int recompensa = -1;
-		NodoMCTS inicial = new NodoMCTS(model, null, null, recompensa, 0, null);
+		float recompensa = -1;
+		NodoMCTS inicial = new NodoMCTS(model, null, null, recompensa, 1, null);
+		inicial.hijos = generaHijos(inicial);
+		inicial.recompensa = generaRecompensa(inicial.model);
 		
-		boolean fin = false;
+		// empiezo mirando el nodo inicial
+		NodoMCTS actual;
+		
+		Random random = new Random();
+		NodoMCTS nodo_backpropagation;
 		
 		// bucle principal mientras no encuentre un estado en el que gane o no se acabe el tiempo de pensar
+		boolean fin = false;
 		while (!fin) {
+			
+			// seleccion del mejor nodo
+			actual = seleccionaNodo(inicial);
+			
+			// expando el nodo (genero sus hijos)
+			actual.hijos = generaHijos(actual);
+			
+			// simulo sus hijos al azar un numero de acciones
+			for (NodoMCTS a_simular : actual.hijos) {
+				
+				// genero el numero de acciones al azar que necesito
+				for (int i = 0; i < MAX_PROFUNDIDAD; i++) {
+					a_simular.model.advance(Acciones.ACCIONES_REDUCED_Y_NO_JUMP.get(random.nextInt(Acciones.ACCIONES_REDUCED_Y_NO_JUMP.size())));
+				}
+				
+				// calculo la nueva recompensa
+				a_simular.recompensa = generaRecompensa(a_simular.model);
+				a_simular.visitas = 1;
+				
+				// hago backpropagation con la recompensa
+				nodo_backpropagation = a_simular;
+				while (nodo_backpropagation.padre != null) {
+					nodo_backpropagation = nodo_backpropagation.padre;
+					nodo_backpropagation.visitas += 1;
+					nodo_backpropagation.recompensa += a_simular.recompensa;
+				}
+				
+				// TODO: DIVIDIR LA RECOMPENSA DE CADA NODO ENTRE EL NUMERO DE HIJOS
+				
+			}
+			fin = timer.getRemainingTime() <= 5;
 			
 		}
 		
+		// me quedo con la mejor accion
+		float mejor_recompensa = Float.NEGATIVE_INFINITY;
+		boolean[] mejor_accion = null;
+		
+		for (NodoMCTS a_comparar : inicial.hijos) {
+			if (mejor_recompensa < a_comparar.recompensa) {
+				mejor_recompensa = a_comparar.recompensa;
+				mejor_accion = a_comparar.action;
+			}
+		}
+		
+		action = mejor_accion;
+		
 		return action;
 	}
+	
+	// selecciona el mejor nodo basandose en la puntuación UCT
+	public NodoMCTS seleccionaNodo(NodoMCTS raiz) {
+		NodoMCTS mejor_nodo = raiz;
+		float valor_mejor_nodo = Float.NEGATIVE_INFINITY;
+		float nuevo_valor;
+		List<NodoMCTS> hijos_a_comparar;
+		
+		//pintaNodo(raiz);
+		//pintaNodo(mejor_nodo);
+		//System.out.println("entro bucle");
+		
+		while ((mejor_nodo.hijos != null) && !mejor_nodo.hijos.isEmpty()) {
+			
+			//pintaNodo(mejor_nodo);
+			
+			// reinicio variables para cada nivel del arbol
+			hijos_a_comparar = mejor_nodo.hijos;
+			valor_mejor_nodo = Float.NEGATIVE_INFINITY;
+			
+			// recorro los hijos
+			for (int i = 0; i < hijos_a_comparar.size(); i++) {
+				nuevo_valor = getUCT(hijos_a_comparar.get(i));
+				
+				//pintaNodo(hijos_a_comparar.get(i));
+				//System.out.println(nuevo_valor);
+				
+				// actualizo el mejor nodo
+				if (nuevo_valor > valor_mejor_nodo) {
+					valor_mejor_nodo = nuevo_valor;
+					mejor_nodo = hijos_a_comparar.get(i);
+				}
+			}
+		}
+		
+		return mejor_nodo;
+	}
+	
+	// Calcula la puntuacion UCT de un nodo
+	public float getUCT(NodoMCTS nodo) {
+		float a_devolver = -1;
+		float explotacion;
+		float exploracion;
+		
+		if (nodo.visitas != 0) {
+			explotacion = (float) nodo.recompensa / (float) nodo.padre.visitas;
+			exploracion = (float) (CONST_UCT * Math.sqrt(Math.log(nodo.padre.visitas) / nodo.visitas));
+			
+			a_devolver = explotacion + exploracion;
+			
+			/*
+			System.out.println("-------------------------------------");
+			System.out.println(explotacion);
+			System.out.println(exploracion);
+			System.out.println("-------------------------------------");
+			*/
+		}
+		else {
+			a_devolver = Float.POSITIVE_INFINITY;
+		}
+		
+		return a_devolver;
+	}
+	
 	
 	// genera todos los hijos de un nodo
 	public List<NodoMCTS> generaHijos(NodoMCTS padre){
@@ -103,6 +221,7 @@ public class Agent implements MarioAgent {
     	
     	List<boolean[]> a_devolver = new ArrayList<>();
     	
+    	/*
     	// filtro si no puedo saltar exploro el resto de acciones
     	if (!(model.mayMarioJump() || !model.isMarioOnGround())) {
 			a_devolver = generaNodosNoJump();
@@ -113,12 +232,18 @@ public class Agent implements MarioAgent {
     		// si puedo saltar que salte
     		//hijos = generaNodosJump();
     	}
+    	*/
+    	
+    	// filtro si no puedo saltar exploro el resto de acciones
+    	//a_devolver = (!(model.mayMarioJump() || !model.isMarioOnGround())) ? generaNodosNoJump() : generaNodosReduced();
+    	
+    	a_devolver = generaNodosReducedYNoJump();
     	
     	return a_devolver;
     }
     
     public List<boolean[]> generaNodosReduced() {
-    	// heuristica: left y right no se pulsan a la vez ni saltar y down
+    	// heuristica: left y right no se pulsan a la vez ni saltar y down (de hecho down no parece util)
     	
     	List<boolean[]> result = new ArrayList<>();
     	
@@ -129,6 +254,24 @@ public class Agent implements MarioAgent {
     	result.add(new boolean[]{false, false, false, false, true});  // Solo JUMP
         result.add(new boolean[]{false, true, false, true, false});   // RIGHT + SPEED
     	//result.add(new boolean[]{true, false, false, true, false});   // LEFT + SPEED
+        result.add(new boolean[]{false, true, false, true, true});    // RIGHT + JUMP + SPEED
+        //result.add(new boolean[]{true, false, false, true, true});    // LEFT + JUMP + SPEED
+    	
+    	return result;
+    }
+    
+    public List<boolean[]> generaNodosReducedYNoJump() {
+    	// heuristica: left y right no se pulsan a la vez ni saltar y down (de hecho down no parece util)
+    	
+    	List<boolean[]> result = new ArrayList<>();
+    	
+        result.add(new boolean[]{true, false, false, false, false});  // Solo LEFT
+        result.add(new boolean[]{false, true, false, false, false});  // Solo RIGHT
+        //result.add(new boolean[]{false, true, false, false, true});   // RIGHT + JUMP
+        result.add(new boolean[]{true, false, false, false, true});   // LEFT + JUMP
+    	result.add(new boolean[]{false, false, false, false, true});  // Solo JUMP
+        result.add(new boolean[]{false, true, false, true, false});   // RIGHT + SPEED
+    	result.add(new boolean[]{true, false, false, true, false});   // LEFT + SPEED
         result.add(new boolean[]{false, true, false, true, true});    // RIGHT + JUMP + SPEED
         //result.add(new boolean[]{true, false, false, true, true});    // LEFT + JUMP + SPEED
     	
@@ -171,6 +314,19 @@ public class Agent implements MarioAgent {
 			}
 			System.out.println();
 		}
+		System.out.println("*****************************************");
+	}
+	
+	public void pintaNodo(NodoMCTS a_pintar) {
+		System.out.println("*****************************************");
+		if (a_pintar.hijos == null) {
+			System.out.println("No tiene hijos (es null)");
+		}
+		else {
+			System.out.println("Numero hijos: " + a_pintar.hijos.size());
+		}
+		System.out.println(a_pintar.recompensa);
+		System.out.println(a_pintar.visitas);
 		System.out.println("*****************************************");
 	}
 

@@ -4,12 +4,15 @@ import engine.core.MarioForwardModel;
 import java.util.List;
 
 public class NodoMCTS {
+	
+	// dejo los atributos como public porque esta clase se usara como un struct
+	
 	public MarioForwardModel model; // estado del juego
-	NodoMCTS padre;
-	List<NodoMCTS> hijos;
-	float recompensa;
-	int visitas;
-	private boolean[] action;
+	public NodoMCTS padre;
+	public List<NodoMCTS> hijos;
+	public float recompensa;
+	public int visitas;
+	public boolean[] action;
 	
 	public NodoMCTS () {
 		model = null;
