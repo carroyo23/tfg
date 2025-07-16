@@ -20,7 +20,7 @@ public class Agent implements MarioAgent {
 	private boolean[] action;
 	
 	private static int MAX_ITERACIONES = 3; // numero de iteraciones del bucle principal
-	private static int MAX_PROFUNDIDAD = 50; // numero de acciones aleatorias a realizar en cada nodo al simular
+	private static int MAX_PROFUNDIDAD = 20; // numero de acciones aleatorias a realizar en cada nodo al simular
 	
 	private static int NUM_REPS_ACTION = 4; // las veces que se repite una accion para que pueda mirar mas a futuro
 	
@@ -30,7 +30,7 @@ public class Agent implements MarioAgent {
 	private static float VALOR_KILL = 100;
 	private static float VALOR_TIME_OUT = 300;
 	private static float VALOR_WIN = Float.POSITIVE_INFINITY;
-	private static float VALOR_LOSE = -1000000;
+	private static float VALOR_LOSE = -10000000;
 	
 	private static float MAX_TIEMPO = 5;
 	
@@ -84,7 +84,7 @@ public class Agent implements MarioAgent {
 					
 					// genero el numero de acciones al azar que necesito
 					for (int i = 0; i < MAX_PROFUNDIDAD; i++) {
-						a_simular.model.advance(Acciones.ACCIONES_REDUCED_Y_NO_JUMP.get(random.nextInt(Acciones.ACCIONES_REDUCED_Y_NO_JUMP.size())));
+						a_simular.model.advance(Acciones.ACCIONES_REDUCED.get(random.nextInt(Acciones.ACCIONES_REDUCED.size())));
 					}
 					
 					// calculo la nueva recompensa
@@ -146,8 +146,6 @@ public class Agent implements MarioAgent {
 		return action;
 	}
 	
-	// TODO: ASEGURAR QUE DEVUELVE ACCION Y QUE DISTINGUE QUE ES UN NODO FINAL
-	
 	// selecciona el mejor nodo basandose en la puntuación UCT
 	public NodoMCTS seleccionaNodo(NodoMCTS raiz, MarioTimer timer) {
 		NodoMCTS mejor_nodo = raiz;
@@ -156,7 +154,7 @@ public class Agent implements MarioAgent {
 		List<NodoMCTS> hijos_a_comparar;
 		int mejor_nodo_indice = -1;
 		
-		pintaNodo(raiz);
+		//pintaNodo(raiz);
 		//pintaNodo(mejor_nodo);
 		
 		while (((mejor_nodo.hijos != null) && !mejor_nodo.hijos.isEmpty()) && (timer.getRemainingTime() > MAX_TIEMPO) && !esNodoFinal(mejor_nodo)) {
@@ -290,7 +288,7 @@ public class Agent implements MarioAgent {
     	
     	//a_devolver = generaNodosReducedYNoJump();
     	
-    	a_devolver = Acciones.ACCIONES_REDUCED_Y_NO_JUMP;
+    	a_devolver = Acciones.ACCIONES_REDUCED;
     	
     	return a_devolver;
     }
