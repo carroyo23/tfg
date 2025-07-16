@@ -19,28 +19,36 @@ public class Agent implements MarioAgent {
 	*/
 	private boolean[] action;
 	
-	private static int MAX_ITERACIONES = 4; // numero de iteraciones del bucle principal
-	private static int MAX_PROFUNDIDAD = 12; // numero de acciones aleatorias a realizar en cada nodo al simular
+	private static int MAX_ITERACIONES = 3; // numero de iteraciones del bucle principal
+	private static int MAX_PROFUNDIDAD = 50; // numero de acciones aleatorias a realizar en cada nodo al simular
 	
 	private static int NUM_REPS_ACTION = 4; // las veces que se repite una accion para que pueda mirar mas a futuro
 	
 	// valores para la heuristica de las recompensas
 	private static float VALOR_HORIZONTAL = 500;
-	private static float VALOR_VERTICAL = 10;
+	private static float VALOR_VERTICAL = 50;
 	private static float VALOR_KILL = 100;
 	private static float VALOR_TIME_OUT = 300;
-	private static float VALOR_WIN = 500;
-	private static float VALOR_LOSE = 500;
+	private static float VALOR_WIN = Float.POSITIVE_INFINITY;
+	private static float VALOR_LOSE = -1000000;
+	
+	private static float MAX_TIEMPO = 5;
 	
 	private static float CONST_UCT = (float) 1.3; // TODO: AJUSTAR ESTE VALOR
+	
+	int cont;
 
 	@Override
 	public void initialize(MarioForwardModel model, MarioTimer timer) {
 		action = new boolean[MarioActions.numberOfActions()];
+		cont = 0;
 	}
 
 	@Override
 	public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
+		
+		// inicializo action como andar a la derecha por si no decidiera nada
+		action[MarioActions.RIGHT.getValue()] = true;
 
 		// creo un nodo inicial
 		float recompensa = -1;
@@ -53,76 +61,110 @@ public class Agent implements MarioAgent {
 		
 		Random random = new Random();
 		NodoMCTS nodo_backpropagation;
+		float mejor_recompensa_hijos;
 		
 		// bucle principal mientras no encuentre un estado en el que gane o no se acabe el tiempo de pensar
 		boolean fin = false;
+		boolean hay_nodo_final = false;
 		while (!fin) {
+			cont++;
 			
 			// seleccion del mejor nodo
-			actual = seleccionaNodo(inicial);
+			actual = seleccionaNodo(inicial, timer);
 			
-			// expando el nodo (genero sus hijos)
-			actual.hijos = generaHijos(actual);
+			if (actual.model.getGameStatus() != GameStatus.WIN) {
 			
-			// simulo sus hijos al azar un numero de acciones
-			for (NodoMCTS a_simular : actual.hijos) {
+				// expando el nodo (genero sus hijos)
+				actual.hijos = generaHijos(actual);
 				
-				// genero el numero de acciones al azar que necesito
-				for (int i = 0; i < MAX_PROFUNDIDAD; i++) {
-					a_simular.model.advance(Acciones.ACCIONES_REDUCED_Y_NO_JUMP.get(random.nextInt(Acciones.ACCIONES_REDUCED_Y_NO_JUMP.size())));
+				mejor_recompensa_hijos = Float.NEGATIVE_INFINITY;
+				
+				// simulo sus hijos al azar un numero de acciones
+				for (NodoMCTS a_simular : actual.hijos) {
+					
+					// genero el numero de acciones al azar que necesito
+					for (int i = 0; i < MAX_PROFUNDIDAD; i++) {
+						a_simular.model.advance(Acciones.ACCIONES_REDUCED_Y_NO_JUMP.get(random.nextInt(Acciones.ACCIONES_REDUCED_Y_NO_JUMP.size())));
+					}
+					
+					// calculo la nueva recompensa
+					a_simular.recompensa = generaRecompensa(a_simular.model);
+					a_simular.visitas = 1;
+					
+					mejor_recompensa_hijos = (mejor_recompensa_hijos < a_simular.recompensa) ? a_simular.recompensa : mejor_recompensa_hijos;
+					
+					// hago backpropagation con la recompensa
+					nodo_backpropagation = a_simular;
+					while (nodo_backpropagation.padre != null) {
+						nodo_backpropagation.padre.visitas += 1;
+						nodo_backpropagation.padre.recompensa += nodo_backpropagation.recompensa / (float) nodo_backpropagation.padre.hijos.size();
+						nodo_backpropagation = nodo_backpropagation.padre;
+						
+					}
+					
 				}
 				
-				// calculo la nueva recompensa
-				a_simular.recompensa = generaRecompensa(a_simular.model);
-				a_simular.visitas = 1;
-				
+				/*
 				// hago backpropagation con la recompensa
-				nodo_backpropagation = a_simular;
+				nodo_backpropagation = actual;
 				while (nodo_backpropagation.padre != null) {
 					nodo_backpropagation = nodo_backpropagation.padre;
 					nodo_backpropagation.visitas += 1;
-					nodo_backpropagation.recompensa += a_simular.recompensa;
+					nodo_backpropagation.recompensa += a_simular.recompensa / (float) actual.hijos.size();
+					
 				}
+				*/
 				
-				// TODO: DIVIDIR LA RECOMPENSA DE CADA NODO ENTRE EL NUMERO DE HIJOS
-				
+				fin = timer.getRemainingTime() <= MAX_TIEMPO;
 			}
-			fin = timer.getRemainingTime() <= 5;
+			else {
+				fin = true;
+				hay_nodo_final = true;
+				action = actual.action;
+			}
 			
 		}
 		
-		// me quedo con la mejor accion
-		float mejor_recompensa = Float.NEGATIVE_INFINITY;
-		boolean[] mejor_accion = null;
-		
-		for (NodoMCTS a_comparar : inicial.hijos) {
-			if (mejor_recompensa < a_comparar.recompensa) {
-				mejor_recompensa = a_comparar.recompensa;
-				mejor_accion = a_comparar.action;
+		if (!hay_nodo_final) {
+			// me quedo con la mejor accion
+			float mejor_recompensa = Float.NEGATIVE_INFINITY;
+			boolean[] mejor_accion = null;
+			
+			for (NodoMCTS a_comparar : inicial.hijos) {
+				if (mejor_recompensa < a_comparar.recompensa) {
+					mejor_recompensa = a_comparar.recompensa;
+					mejor_accion = a_comparar.action;
+				}
 			}
+			
+			action = mejor_accion;
 		}
 		
-		action = mejor_accion;
+		System.out.println("iteraciones bucle: " + cont);
+		cont = 0;
 		
 		return action;
 	}
 	
+	// TODO: ASEGURAR QUE DEVUELVE ACCION Y QUE DISTINGUE QUE ES UN NODO FINAL
+	
 	// selecciona el mejor nodo basandose en la puntuación UCT
-	public NodoMCTS seleccionaNodo(NodoMCTS raiz) {
+	public NodoMCTS seleccionaNodo(NodoMCTS raiz, MarioTimer timer) {
 		NodoMCTS mejor_nodo = raiz;
 		float valor_mejor_nodo = Float.NEGATIVE_INFINITY;
 		float nuevo_valor;
 		List<NodoMCTS> hijos_a_comparar;
+		int mejor_nodo_indice = -1;
 		
-		//pintaNodo(raiz);
+		pintaNodo(raiz);
 		//pintaNodo(mejor_nodo);
-		//System.out.println("entro bucle");
 		
-		while ((mejor_nodo.hijos != null) && !mejor_nodo.hijos.isEmpty()) {
+		while (((mejor_nodo.hijos != null) && !mejor_nodo.hijos.isEmpty()) && (timer.getRemainingTime() > MAX_TIEMPO) && !esNodoFinal(mejor_nodo)) {
 			
 			//pintaNodo(mejor_nodo);
 			
 			// reinicio variables para cada nivel del arbol
+			mejor_nodo_indice = -1;
 			hijos_a_comparar = mejor_nodo.hijos;
 			valor_mejor_nodo = Float.NEGATIVE_INFINITY;
 			
@@ -134,19 +176,28 @@ public class Agent implements MarioAgent {
 				//System.out.println(nuevo_valor);
 				
 				// actualizo el mejor nodo
-				if (nuevo_valor > valor_mejor_nodo) {
+				if (nuevo_valor >= valor_mejor_nodo) {
 					valor_mejor_nodo = nuevo_valor;
-					mejor_nodo = hijos_a_comparar.get(i);
+					//mejor_nodo = hijos_a_comparar.get(i);
+					mejor_nodo_indice = i;
 				}
 			}
+			
+			mejor_nodo = mejor_nodo.hijos.get(mejor_nodo_indice);
+			
+			//pintaNodo(mejor_nodo);
 		}
 		
 		return mejor_nodo;
 	}
 	
+	public boolean esNodoFinal(NodoMCTS nodo) {
+		return nodo.model.getGameStatus() != GameStatus.RUNNING;
+	}
+	
 	// Calcula la puntuacion UCT de un nodo
 	public float getUCT(NodoMCTS nodo) {
-		float a_devolver = -1;
+		float a_devolver;
 		float explotacion;
 		float exploracion;
 		
@@ -210,9 +261,9 @@ public class Agent implements MarioAgent {
 		a_devolver += model.getKillsTotal() * VALOR_KILL;
 		
 		// comprobacion del estado del juego si este ha terminado
-		a_devolver = (status == GameStatus.WIN) ? Float.POSITIVE_INFINITY : a_devolver;
-		a_devolver = (status == GameStatus.TIME_OUT) ? a_devolver + VALOR_TIME_OUT : a_devolver;
-		a_devolver = (status == GameStatus.LOSE) ? Float.NEGATIVE_INFINITY : a_devolver;
+		a_devolver = (status == GameStatus.WIN) ? VALOR_WIN : a_devolver;
+		a_devolver = (status == GameStatus.TIME_OUT) ? a_devolver - VALOR_TIME_OUT : a_devolver;
+		a_devolver = (status == GameStatus.LOSE) ? VALOR_LOSE : a_devolver;
 		
 		return a_devolver;
 	}
@@ -237,7 +288,9 @@ public class Agent implements MarioAgent {
     	// filtro si no puedo saltar exploro el resto de acciones
     	//a_devolver = (!(model.mayMarioJump() || !model.isMarioOnGround())) ? generaNodosNoJump() : generaNodosReduced();
     	
-    	a_devolver = generaNodosReducedYNoJump();
+    	//a_devolver = generaNodosReducedYNoJump();
+    	
+    	a_devolver = Acciones.ACCIONES_REDUCED_Y_NO_JUMP;
     	
     	return a_devolver;
     }
