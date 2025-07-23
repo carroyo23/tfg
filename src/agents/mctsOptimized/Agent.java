@@ -22,7 +22,7 @@ public class Agent implements MarioAgent {
 	private static int MAX_ITERACIONES = 3; // numero de iteraciones del bucle principal
 	private static int MAX_PROFUNDIDAD = 5; // numero de acciones aleatorias a realizar en cada nodo al simular
 	
-	private static int NUM_REPS_ACTION = 2; // las veces que se repite una accion para que pueda mirar mas a futuro
+	private static int NUM_REPS_ACTION = 1; // las veces que se repite una accion para que pueda mirar mas a futuro
 	
 	// valores para la heuristica de las recompensas
 	private static float VALOR_HORIZONTAL = 500;

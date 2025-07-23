@@ -40,19 +40,20 @@ public class PlayLevel {
         // jugar como humano
         //printResults(game.playGame(getLevel("./levels/original/lvl-10.txt"), 200, 0));
        
-        // mi agente alphaBeta (todos los niveles)
-        /*
+        // mi agente alphaBeta optimizado (todos los niveles)
+        
         for (int i = 1; i <= 15; i++) {
-        	MarioResult result = game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+        	MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
             printResults(result);
             level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
         }
         System.out.println(level_pass);
-        */
+        
+        
         
         // mi agente mtcs optimizando constantes
-        printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
-        printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
+        //printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
+        //printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
         
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
