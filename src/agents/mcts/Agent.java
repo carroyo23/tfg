@@ -20,13 +20,13 @@ public class Agent implements MarioAgent {
 	private boolean[] action;
 	
 	private static int MAX_ITERACIONES = 3; // numero de iteraciones del bucle principal
-	private static int MAX_PROFUNDIDAD = 20; // numero de acciones aleatorias a realizar en cada nodo al simular
+	private static int MAX_PROFUNDIDAD = 5; // numero de acciones aleatorias a realizar en cada nodo al simular
 	
-	private static int NUM_REPS_ACTION = 4; // las veces que se repite una accion para que pueda mirar mas a futuro
+	private static int NUM_REPS_ACTION = 1; // las veces que se repite una accion para que pueda mirar mas a futuro
 	
 	// valores para la heuristica de las recompensas
 	private static float VALOR_HORIZONTAL = 500;
-	private static float VALOR_VERTICAL = 50;
+	private static float VALOR_VERTICAL = 10;
 	private static float VALOR_KILL = 100;
 	private static float VALOR_TIME_OUT = 300;
 	private static float VALOR_WIN = Float.POSITIVE_INFINITY;
@@ -37,18 +37,21 @@ public class Agent implements MarioAgent {
 	private static float CONST_UCT = (float) 1.3; // TODO: AJUSTAR ESTE VALOR
 	
 	int cont;
+	
+	Random random;
 
 	@Override
 	public void initialize(MarioForwardModel model, MarioTimer timer) {
 		action = new boolean[MarioActions.numberOfActions()];
 		cont = 0;
+		random = new Random(42);
 	}
 
 	@Override
 	public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
 		
 		// inicializo action como andar a la derecha por si no decidiera nada
-		action[MarioActions.RIGHT.getValue()] = true;
+		//action[MarioActions.RIGHT.getValue()] = true; // LO COMENTO PARA VER SI EN ALGUN MOMENTO NO DECIDE NADA VER EL ERROR
 
 		// creo un nodo inicial
 		float recompensa = -1;
@@ -59,7 +62,7 @@ public class Agent implements MarioAgent {
 		// empiezo mirando el nodo inicial
 		NodoMCTS actual;
 		
-		Random random = new Random();
+		
 		NodoMCTS nodo_backpropagation;
 		float mejor_recompensa_hijos;
 		
@@ -84,7 +87,7 @@ public class Agent implements MarioAgent {
 					
 					// genero el numero de acciones al azar que necesito
 					for (int i = 0; i < MAX_PROFUNDIDAD; i++) {
-						a_simular.model.advance(Acciones.ACCIONES_REDUCED.get(random.nextInt(Acciones.ACCIONES_REDUCED.size())));
+						a_simular.model.advance(Acciones.ACCIONES_COMPLETE.get(random.nextInt(Acciones.ACCIONES_COMPLETE.size())));
 					}
 					
 					// calculo la nueva recompensa
@@ -270,25 +273,12 @@ public class Agent implements MarioAgent {
     	
     	List<boolean[]> a_devolver = new ArrayList<>();
     	
-    	/*
-    	// filtro si no puedo saltar exploro el resto de acciones
-    	if (!(model.mayMarioJump() || !model.isMarioOnGround())) {
-			a_devolver = generaNodosNoJump();
-		}
-    	else {
-    		a_devolver = generaNodosReduced();
-    
-    		// si puedo saltar que salte
-    		//hijos = generaNodosJump();
-    	}
-    	*/
-    	
     	// filtro si no puedo saltar exploro el resto de acciones
     	//a_devolver = (!(model.mayMarioJump() || !model.isMarioOnGround())) ? generaNodosNoJump() : generaNodosReduced();
     	
-    	//a_devolver = generaNodosReducedYNoJump();
+    	//a_devolver = Acciones.ACCIONES_REDUCED;
     	
-    	a_devolver = Acciones.ACCIONES_REDUCED;
+    	a_devolver = Acciones.ACCIONES_COMPLETE;
     	
     	return a_devolver;
     }

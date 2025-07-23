@@ -38,27 +38,28 @@ public class PlayLevel {
         int level_pass = 0;
         
         // jugar como humano
-        //printResults(game.playGame(getLevel("./levels/original/lvl-7.txt"), 200, 0));
+        //printResults(game.playGame(getLevel("./levels/original/lvl-10.txt"), 200, 0));
        
         // mi agente alphaBeta (todos los niveles)
         /*
         for (int i = 1; i <= 15; i++) {
-        	MarioResult result = game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, false);
+        	MarioResult result = game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
             printResults(result);
             level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
         }
         System.out.println(level_pass);
         */
         
+        
         // mi agente alphaBeta
         //printResults(game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-3.txt"), 20, 0, true));
         
         // mi agente mtcs
         printResults(game.runGame(new agents.mcts.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
-        //printResults(game.runGame(new agents.mcts.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
+        printResults(game.runGame(new agents.mcts.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
         
         
         // A* Robin Baumgarten
-        //printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("./levels/original/lvl-3.txt"), 20, 0, true));
+        //printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("./levels/original/lvl-10.txt"), 20, 0, true));
     }
 }

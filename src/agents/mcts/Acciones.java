@@ -45,4 +45,14 @@ public class Acciones {
 	        new boolean[]{false, true, false, true, true},    // RIGHT + JUMP + SPEED
 	        new boolean[]{true, false, false, true, true}    // LEFT + JUMP + SPEED
 	    );
+	
+	public static final List<boolean[]> ACCIONES_MCTS = List.of(
+			//new boolean[]{true, false, false, false, true},   // LEFT + JUMP
+			new boolean[]{false, false, false, false, true},    // JUMP
+			new boolean[]{false, true, false, true, false},    // RIGHT + SPEED
+			new boolean[]{false, true, false, true, true},     // RIGHT + JUMP + SPEED
+			//new boolean[]{true, false, false, false, false},   // LEFT
+			new boolean[]{false, true, false, false, false}   // RIGHT
+			//new boolean[]{true, false, false, true, false}     // LEFT + SPEED
+	    );
 }
