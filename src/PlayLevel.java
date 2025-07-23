@@ -50,14 +50,24 @@ public class PlayLevel {
         System.out.println(level_pass);
         */
         
+        // mi agente mtcs optimizando constantes
+        printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
+        printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
+        
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // AGENTES FUNCIONALES
         
         // mi agente alphaBeta
         //printResults(game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-3.txt"), 20, 0, true));
         
         // mi agente mtcs
-        printResults(game.runGame(new agents.mcts.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
-        printResults(game.runGame(new agents.mcts.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
+        //printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
+        //printResults(game.runGame(new agents.mcts.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
         
+        // FIN AGENTES FUNCIONALES
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         // A* Robin Baumgarten
         //printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("./levels/original/lvl-10.txt"), 20, 0, true));
