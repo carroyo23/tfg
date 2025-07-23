@@ -36,6 +36,7 @@ public class PlayLevel {
         MarioGame game = new MarioGame();
         
         int level_pass = 0;
+        float perc_pass = 0;
         
         // jugar como humano
         //printResults(game.playGame(getLevel("./levels/original/lvl-10.txt"), 200, 0));
@@ -46,9 +47,22 @@ public class PlayLevel {
         	MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
             printResults(result);
             level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
+            perc_pass += result.getCompletionPercentage();
         }
-        System.out.println(level_pass);
+        System.out.println("Niveles pasados: " + level_pass);
+        System.out.println("Porcentaje pasado: " + perc_pass);
         
+        level_pass = 0;
+        perc_pass = 0;
+        
+        for (int i = 1; i <= 15; i++) {
+        	MarioResult result = game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+            printResults(result);
+            level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
+            perc_pass += result.getCompletionPercentage();
+        }
+        System.out.println("Niveles pasados: " + level_pass);
+        System.out.println("Porcentaje pasado: " + perc_pass);
         
         
         // mi agente mtcs optimizando constantes
