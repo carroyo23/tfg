@@ -26,13 +26,22 @@ public class Agent implements MarioAgent {
 	private static int NUM_REPS_ACTION = 4; // las veces que se repite una accion para que pueda mirar mas a futuro
 	
 	// valores para la heuristica de las recompensas
-	private static float VALOR_HORIZONTAL = 500;
-	private static float VALOR_VERTICAL = 30;
+	private float VALOR_HORIZONTAL = 700;
+	private float VALOR_VERTICAL = 30;
 	private static float VALOR_KILL = 10;
 	private static float VALOR_MONEDA = 10;
 	private static float VALOR_TIME_OUT = -300;
 	private static float VALOR_WIN = Float.POSITIVE_INFINITY;
 	private static float VALOR_LOSE = Float.NEGATIVE_INFINITY;
+	
+	public Agent(float nuevo_horizontal, float nuevo_vertical) {
+		VALOR_HORIZONTAL = nuevo_horizontal;
+		VALOR_VERTICAL = nuevo_vertical;
+	}
+	
+	public Agent() {
+		
+	}
 
     @Override
     public void initialize(MarioForwardModel model, MarioTimer timer) {

@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+//para redirigir salida a fichero para guardar resultados
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 public class PlayLevel {
     public static void printResults(MarioResult result) {
         System.out.println("****************************************************************");
@@ -35,14 +39,83 @@ public class PlayLevel {
     public static void main(String[] args) {
         MarioGame game = new MarioGame();
         
-        int level_pass = 0;
-        float perc_pass = 0;
+        int level_pass;
+        float perc_pass;
+        int tiempo_restante;
+        int monedas;
         
         // jugar como humano
         //printResults(game.playGame(getLevel("./levels/original/lvl-10.txt"), 200, 0));
+        
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// PRUEBAS FICHEROS
+        /*
+        try {
+        	PrintWriter salida_fichero;
+        	
+        	for(int horizontal = 100; horizontal < 800; horizontal = horizontal + 100) {
+        		
+        		salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\resultados\\salida_alphaBetaOptimized_horizontal_vertical_ " + horizontal + ".txt"));
+        		
+        		salida_fichero.println("*******************************************");
+        		salida_fichero.println("*******************************************");
+            	salida_fichero.println("Puntuacion por horizontal: " + horizontal);
+            	
+            	System.out.println("Horizontal: " + horizontal);
+        		
+        		for (int vertical = 0; vertical < 100; vertical += 10) {
+	            	level_pass = 0;
+	                perc_pass = 0;
+	                monedas = 0;
+	                tiempo_restante = 0;
+	                
+	                System.out.println("Vertical: " + vertical);
+	            
+	                salida_fichero.println("///////////////////////////////////////////////////////////");
+	            	salida_fichero.println("Puntuacion por vertical: " + vertical);
+	            	for (int i = 1; i <= 15; i++) {
+	            		
+	            		//System.out.print("Nivel: " + i + " ");
+	            		
+	    	        	MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(horizontal, vertical), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, false);
+	    	            printResults(result);
+	    	            level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
+	    	            perc_pass += result.getCompletionPercentage();
+	    	            monedas += result.getCurrentCoins();
+	    	            tiempo_restante += result.getRemainingTime();
+	    	            salida_fichero.println("Nivel " + i + " porcentaje: " + result.getCompletionPercentage() + " Tiempo restante: " + result.getRemainingTime() + " Monedas: " + result.getCurrentCoins());
+	            	}
+	            	salida_fichero.println("Niveles pasados: " + level_pass);
+	                salida_fichero.println("Porcentaje pasado: " + perc_pass);
+	                salida_fichero.println("Tiempo restante: " + tiempo_restante);
+	                salida_fichero.println("Monedas conseguidas: " + monedas);
+	            	salida_fichero.println("*******************************************");
+	            	salida_fichero.println("*******************************************");
+        		}
+        		
+        		salida_fichero.close();
+            }
+        	
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+        */
+        
+        // FIN PRUEBAS FICHEROS
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
        
+        
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// PRUEBAS COMPLETAS AGENTES
+        
         // mi agente alphaBeta optimizado (todos los niveles)
         
+        level_pass = 0;
+        perc_pass = 0; 
+         
         for (int i = 1; i <= 15; i++) {
         	MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
             printResults(result);
@@ -52,6 +125,8 @@ public class PlayLevel {
         System.out.println("Niveles pasados: " + level_pass);
         System.out.println("Porcentaje pasado: " + perc_pass);
         
+        
+        /*
         level_pass = 0;
         perc_pass = 0;
         
@@ -63,7 +138,11 @@ public class PlayLevel {
         }
         System.out.println("Niveles pasados: " + level_pass);
         System.out.println("Porcentaje pasado: " + perc_pass);
+        */
         
+        // FIN PRUEBAS COMPLETAS AGENTES
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         // mi agente mtcs optimizando constantes
         //printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
