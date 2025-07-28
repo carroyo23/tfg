@@ -34,9 +34,11 @@ public class Agent implements MarioAgent {
 	private static float VALOR_WIN = Float.POSITIVE_INFINITY;
 	private static float VALOR_LOSE = Float.NEGATIVE_INFINITY;
 	
-	public Agent(float nuevo_horizontal, float nuevo_vertical) {
+	public Agent(float nuevo_horizontal, float nuevo_vertical, float nuevo_kill, float nuevo_moneda) {
 		VALOR_HORIZONTAL = nuevo_horizontal;
 		VALOR_VERTICAL = nuevo_vertical;
+		VALOR_KILL = nuevo_kill;
+		VALOR_MONEDA = nuevo_moneda;
 	}
 	
 	public Agent() {
