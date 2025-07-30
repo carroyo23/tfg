@@ -54,31 +54,31 @@ public class PlayLevel {
         try {
         	PrintWriter salida_fichero;
         	
-        	for(int kill = 0; kill <= 100; kill = kill + 10) {
+        	for(double utc = 1; utc <= 3; utc = utc + 0.2) {
         		
-        		salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\resultados\\greedy\\salida_alphaBetaOptimized_kill_monedas_ " + kill + ".txt"));
+        		salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\resultados\\greedy\\mcts_utc\\salida_mctsOptimized_utc_" + utc + ".txt"));
         		
         		salida_fichero.println("*******************************************");
         		salida_fichero.println("*******************************************");
-            	salida_fichero.println("Puntuacion por kill: " + kill);
+            	salida_fichero.println("Puntuacion por uct: " + utc);
             	
-            	System.out.println("kill: " + kill);
+            	System.out.println("kill: " + utc);
         		
-        		for (int valor_monedas = 10; valor_monedas <= 100; valor_monedas += 10) {
+        		for (int veces = 0; veces < 15; veces++) {
 	            	level_pass = 0;
 	                perc_pass = 0;
 	                monedas_conseguidas = 0;
 	                tiempo_restante = 0;
 	                
-	                System.out.println("Valor monedas: " + valor_monedas);
+	                System.out.println("Valor monedas: " + veces);
 	            
 	                salida_fichero.println("///////////////////////////////////////////////////////////");
-	            	salida_fichero.println("Puntuacion por valor monedas: " + valor_monedas);
+	            	salida_fichero.println("Puntuacion por vez: " + veces);
 	            	for (int i = 1; i <= 15; i++) {
 	            		
 	            		//System.out.print("Nivel: " + i + " ");
 	            		
-	    	        	MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(700, 30, kill, valor_monedas), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, false);
+	    	        	MarioResult result = game.runGame(new agents.mctsOptimized.Agent((float)utc), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, false);
 	    	            printResults(result);
 	    	            level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
 	    	            perc_pass += result.getCompletionPercentage();
@@ -145,8 +145,8 @@ public class PlayLevel {
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         // mi agente mtcs optimizando constantes
-        //printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
-        //printResults(game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
+        //printResults(game.runGame(new agents.mctsOptimized.Agent((float)2), getLevel("./levels/testLevels/short.txt"), 20, 0, true));
+        //printResults(game.runGame(new agents.mctsOptimized.Agent((float)2), getLevel("./levels/original/lvl-1.txt"), 20, 0, true));
         
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

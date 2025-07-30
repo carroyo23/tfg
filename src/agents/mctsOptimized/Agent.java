@@ -25,8 +25,8 @@ public class Agent implements MarioAgent {
 	private static int NUM_REPS_ACTION = 1; // las veces que se repite una accion para que pueda mirar mas a futuro
 	
 	// valores para la heuristica de las recompensas
-	private static float VALOR_HORIZONTAL = 500;
-	private static float VALOR_VERTICAL = 10;
+	private static float VALOR_HORIZONTAL = 700;
+	private static float VALOR_VERTICAL = 30;
 	private static float VALOR_KILL = 100;
 	private static float VALOR_TIME_OUT = 300;
 	private static float VALOR_WIN = Float.POSITIVE_INFINITY;
@@ -34,11 +34,19 @@ public class Agent implements MarioAgent {
 	
 	private static float MAX_TIEMPO = 5;
 	
-	private static float CONST_UCT = (float) 1.3; // TODO: AJUSTAR ESTE VALOR
+	private float CONST_UCT = (float) 1.3; // TODO: AJUSTAR ESTE VALOR
 	
 	int cont;
 	
 	Random random;
+	
+	public Agent(float uct) {
+		CONST_UCT = uct;
+	}
+	
+	public Agent() {
+		
+	}
 
 	@Override
 	public void initialize(MarioForwardModel model, MarioTimer timer) {
@@ -143,7 +151,7 @@ public class Agent implements MarioAgent {
 			action = mejor_accion;
 		}
 		
-		System.out.println("iteraciones bucle: " + cont);
+		//System.out.println("iteraciones bucle: " + cont);
 		cont = 0;
 		
 		return action;
