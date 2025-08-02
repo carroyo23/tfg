@@ -1,0 +1,42 @@
+*******************************************
+Puntuacion por horizontal: 300
+Nivel 1 porcentaje: 0.673656
+Nivel 2 porcentaje: 1.0
+Niveles pasados: 1
+Porcentaje pasado: 1.673656
+*******************************************
+*******************************************
+Puntuacion por horizontal: 350
+Nivel 1 porcentaje: 0.7056025
+Nivel 2 porcentaje: 1.0
+Niveles pasados: 1
+Porcentaje pasado: 1.7056025
+*******************************************
+*******************************************
+Puntuacion por horizontal: 400
+Nivel 1 porcentaje: 0.7080904
+Nivel 2 porcentaje: 1.0
+Niveles pasados: 1
+Porcentaje pasado: 1.7080904
+*******************************************
+*******************************************
+Puntuacion por horizontal: 450
+Nivel 1 porcentaje: 0.7080904
+Nivel 2 porcentaje: 1.0
+Niveles pasados: 1
+Porcentaje pasado: 1.7080904
+*******************************************
+*******************************************
+Puntuacion por horizontal: 500
+Nivel 1 porcentaje: 1.0
+Nivel 2 porcentaje: 1.0
+Niveles pasados: 2
+Porcentaje pasado: 2.0
+*******************************************
+*******************************************
+Puntuacion por horizontal: 550
+Nivel 1 porcentaje: 1.0
+Nivel 2 porcentaje: 1.0
+Niveles pasados: 2
+Porcentaje pasado: 2.0
+*******************************************

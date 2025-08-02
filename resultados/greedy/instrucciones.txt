@@ -1,0 +1,23 @@
+primero saco la mejor combinación de puntos por estar a la derecha y por estar arriba con estos datos del resto (porque funcionaban):
+
+// metadatos sobre la busqueda para eficiencia
+private static int MAX_PROFUNDIDAD = 4; // cuantos niveles de profundidad explorar en el árbol
+private static int NUM_REPS_ACTION = 4; // las veces que se repite una accion para que pueda mirar mas a futuro
+	
+// valores para la heuristica de las recompensas
+private float VALOR_HORIZONTAL = 700;
+private float VALOR_VERTICAL = 30;
+private static float VALOR_KILL = 10;
+private static float VALOR_MONEDA = 10;
+private static float VALOR_TIME_OUT = -300;
+private static float VALOR_WIN = Float.POSITIVE_INFINITY;
+private static float VALOR_LOSE = Float.NEGATIVE_INFINITY;
+
+LOS MEJORES DATOS:
+	HORIZONTAL: 700
+	VERTICAL: 30
+
+A continuación fijaré horizontal a 700 y vertical a 30 y optimizaré las kill y las monedas.
+
+Para el MCTS lo que hare sera que el nombre del fichero sera la variable a conmutar (empezando por UTC) y lo ejecutare un numero de veces (al principio 15).
+

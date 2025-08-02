@@ -1,0 +1,233 @@
+*******************************************
+*******************************************
+Puntuacion por kill: 20
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 10
+Nivel 1 porcentaje: 1.0 Tiempo restante: 8150 Monedas: 3
+Nivel 2 porcentaje: 1.0 Tiempo restante: 10640 Monedas: 6
+Nivel 3 porcentaje: 1.0 Tiempo restante: 10910 Monedas: 14
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 4
+Nivel 5 porcentaje: 1.0 Tiempo restante: 8510 Monedas: 1
+Nivel 6 porcentaje: 1.0 Tiempo restante: 12530 Monedas: 12
+Nivel 7 porcentaje: 1.0 Tiempo restante: 7580 Monedas: 16
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 1.0 Tiempo restante: 11060 Monedas: 16
+Nivel 11 porcentaje: 1.0 Tiempo restante: 8300 Monedas: 8
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 1.0 Tiempo restante: 11960 Monedas: 15
+Nivel 14 porcentaje: 1.0 Tiempo restante: 9290 Monedas: 1
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 12
+Porcentaje pasado: 13.822745
+Tiempo restante: 119190
+Monedas conseguidas: 103
+*******************************************
+*******************************************
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 20
+Nivel 1 porcentaje: 1.0 Tiempo restante: 7520 Monedas: 5
+Nivel 2 porcentaje: 1.0 Tiempo restante: 9500 Monedas: 8
+Nivel 3 porcentaje: 1.0 Tiempo restante: 10850 Monedas: 14
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 5
+Nivel 5 porcentaje: 1.0 Tiempo restante: 8600 Monedas: 2
+Nivel 6 porcentaje: 0.40712896 Tiempo restante: 16820 Monedas: 4
+Nivel 7 porcentaje: 1.0 Tiempo restante: 7250 Monedas: 18
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 0.52020997 Tiempo restante: 15170 Monedas: 7
+Nivel 11 porcentaje: 1.0 Tiempo restante: 7310 Monedas: 9
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 1.0 Tiempo restante: 11300 Monedas: 18
+Nivel 14 porcentaje: 1.0 Tiempo restante: 10280 Monedas: 0
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 10
+Porcentaje pasado: 12.750085
+Tiempo restante: 124860
+Monedas conseguidas: 97
+*******************************************
+*******************************************
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 30
+Nivel 1 porcentaje: 1.0 Tiempo restante: 7550 Monedas: 5
+Nivel 2 porcentaje: 1.0 Tiempo restante: 9410 Monedas: 9
+Nivel 3 porcentaje: 1.0 Tiempo restante: 10850 Monedas: 14
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 7
+Nivel 5 porcentaje: 1.0 Tiempo restante: 7280 Monedas: 4
+Nivel 6 porcentaje: 1.0 Tiempo restante: 12110 Monedas: 12
+Nivel 7 porcentaje: 1.0 Tiempo restante: 6050 Monedas: 20
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 0.52020997 Tiempo restante: 15170 Monedas: 7
+Nivel 11 porcentaje: 1.0 Tiempo restante: 6530 Monedas: 12
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 0.3414756 Tiempo restante: 16730 Monedas: 7
+Nivel 14 porcentaje: 1.0 Tiempo restante: 10160 Monedas: 1
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 10
+Porcentaje pasado: 12.684431
+Tiempo restante: 122100
+Monedas conseguidas: 105
+*******************************************
+*******************************************
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 40
+Nivel 1 porcentaje: 1.0 Tiempo restante: 6740 Monedas: 8
+Nivel 2 porcentaje: 1.0 Tiempo restante: 8810 Monedas: 16
+Nivel 3 porcentaje: 1.0 Tiempo restante: 10850 Monedas: 14
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 10
+Nivel 5 porcentaje: 1.0 Tiempo restante: 7850 Monedas: 4
+Nivel 6 porcentaje: 1.0 Tiempo restante: 12380 Monedas: 13
+Nivel 7 porcentaje: 1.0 Tiempo restante: 6050 Monedas: 20
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 0.5202254 Tiempo restante: 15170 Monedas: 7
+Nivel 11 porcentaje: 0.10503803 Tiempo restante: 18500 Monedas: 2
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 0.3414756 Tiempo restante: 16730 Monedas: 7
+Nivel 14 porcentaje: 1.0 Tiempo restante: 10580 Monedas: 5
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 9
+Porcentaje pasado: 11.789484
+Tiempo restante: 133920
+Monedas conseguidas: 113
+*******************************************
+*******************************************
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 50
+Nivel 1 porcentaje: 1.0 Tiempo restante: 6230 Monedas: 8
+Nivel 2 porcentaje: 1.0 Tiempo restante: 8390 Monedas: 14
+Nivel 3 porcentaje: 0.5204208 Tiempo restante: 15860 Monedas: 5
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 10
+Nivel 5 porcentaje: 1.0 Tiempo restante: 7850 Monedas: 4
+Nivel 6 porcentaje: 0.40691355 Tiempo restante: 16190 Monedas: 7
+Nivel 7 porcentaje: 1.0 Tiempo restante: 6050 Monedas: 20
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 0.5202254 Tiempo restante: 15170 Monedas: 7
+Nivel 11 porcentaje: 0.10503803 Tiempo restante: 18500 Monedas: 2
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 0.3414756 Tiempo restante: 16730 Monedas: 7
+Nivel 14 porcentaje: 1.0 Tiempo restante: 10580 Monedas: 5
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 7
+Porcentaje pasado: 10.716818
+Tiempo restante: 141810
+Monedas conseguidas: 96
+*******************************************
+*******************************************
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 60
+Nivel 1 porcentaje: 1.0 Tiempo restante: 6230 Monedas: 8
+Nivel 2 porcentaje: 1.0 Tiempo restante: 8150 Monedas: 15
+Nivel 3 porcentaje: 0.5204208 Tiempo restante: 15860 Monedas: 5
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 11
+Nivel 5 porcentaje: 1.0 Tiempo restante: 7850 Monedas: 4
+Nivel 6 porcentaje: 0.40691355 Tiempo restante: 16190 Monedas: 7
+Nivel 7 porcentaje: 1.0 Tiempo restante: 6050 Monedas: 20
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 0.5202254 Tiempo restante: 15170 Monedas: 7
+Nivel 11 porcentaje: 0.10503803 Tiempo restante: 18500 Monedas: 2
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 0.3414756 Tiempo restante: 16730 Monedas: 7
+Nivel 14 porcentaje: 1.0 Tiempo restante: 10580 Monedas: 5
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 7
+Porcentaje pasado: 10.716818
+Tiempo restante: 141570
+Monedas conseguidas: 98
+*******************************************
+*******************************************
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 70
+Nivel 1 porcentaje: 1.0 Tiempo restante: 6230 Monedas: 8
+Nivel 2 porcentaje: 1.0 Tiempo restante: 8150 Monedas: 15
+Nivel 3 porcentaje: 0.5204208 Tiempo restante: 15860 Monedas: 5
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 11
+Nivel 5 porcentaje: 1.0 Tiempo restante: 7850 Monedas: 4
+Nivel 6 porcentaje: 0.40691355 Tiempo restante: 16190 Monedas: 7
+Nivel 7 porcentaje: 1.0 Tiempo restante: 6050 Monedas: 20
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 0.5202254 Tiempo restante: 15170 Monedas: 7
+Nivel 11 porcentaje: 0.10503803 Tiempo restante: 18500 Monedas: 2
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 0.3414756 Tiempo restante: 16730 Monedas: 7
+Nivel 14 porcentaje: 1.0 Tiempo restante: 10580 Monedas: 5
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 7
+Porcentaje pasado: 10.716818
+Tiempo restante: 141570
+Monedas conseguidas: 98
+*******************************************
+*******************************************
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 80
+Nivel 1 porcentaje: 1.0 Tiempo restante: 6230 Monedas: 8
+Nivel 2 porcentaje: 1.0 Tiempo restante: 8150 Monedas: 15
+Nivel 3 porcentaje: 0.5206849 Tiempo restante: 14570 Monedas: 7
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 12
+Nivel 5 porcentaje: 1.0 Tiempo restante: 7850 Monedas: 4
+Nivel 6 porcentaje: 0.40691355 Tiempo restante: 16190 Monedas: 7
+Nivel 7 porcentaje: 1.0 Tiempo restante: 6050 Monedas: 20
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 0.5202254 Tiempo restante: 15170 Monedas: 7
+Nivel 11 porcentaje: 0.10503803 Tiempo restante: 18500 Monedas: 2
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 0.3414756 Tiempo restante: 16730 Monedas: 7
+Nivel 14 porcentaje: 1.0 Tiempo restante: 10580 Monedas: 5
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 7
+Porcentaje pasado: 10.717082
+Tiempo restante: 140280
+Monedas conseguidas: 101
+*******************************************
+*******************************************
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 90
+Nivel 1 porcentaje: 1.0 Tiempo restante: 6230 Monedas: 8
+Nivel 2 porcentaje: 1.0 Tiempo restante: 8150 Monedas: 15
+Nivel 3 porcentaje: 0.5206849 Tiempo restante: 14570 Monedas: 7
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 12
+Nivel 5 porcentaje: 1.0 Tiempo restante: 7850 Monedas: 4
+Nivel 6 porcentaje: 0.40691355 Tiempo restante: 16190 Monedas: 7
+Nivel 7 porcentaje: 1.0 Tiempo restante: 6050 Monedas: 20
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 0.5202254 Tiempo restante: 15170 Monedas: 7
+Nivel 11 porcentaje: 0.10503803 Tiempo restante: 18500 Monedas: 2
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 0.3414756 Tiempo restante: 16730 Monedas: 7
+Nivel 14 porcentaje: 1.0 Tiempo restante: 10580 Monedas: 5
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 7
+Porcentaje pasado: 10.717082
+Tiempo restante: 140280
+Monedas conseguidas: 101
+*******************************************
+*******************************************
+///////////////////////////////////////////////////////////
+Puntuacion por valor monedas: 100
+Nivel 1 porcentaje: 1.0 Tiempo restante: 6230 Monedas: 8
+Nivel 2 porcentaje: 1.0 Tiempo restante: 8150 Monedas: 15
+Nivel 3 porcentaje: 0.5206849 Tiempo restante: 14570 Monedas: 7
+Nivel 4 porcentaje: 0.94656736 Tiempo restante: 0 Monedas: 12
+Nivel 5 porcentaje: 1.0 Tiempo restante: 7850 Monedas: 4
+Nivel 6 porcentaje: 0.40691355 Tiempo restante: 16190 Monedas: 7
+Nivel 7 porcentaje: 1.0 Tiempo restante: 6050 Monedas: 20
+Nivel 8 porcentaje: 1.0 Tiempo restante: 11360 Monedas: 0
+Nivel 9 porcentaje: 1.0 Tiempo restante: 8900 Monedas: 0
+Nivel 10 porcentaje: 0.5202254 Tiempo restante: 15170 Monedas: 7
+Nivel 11 porcentaje: 0.10503803 Tiempo restante: 18500 Monedas: 2
+Nivel 12 porcentaje: 0.24022512 Tiempo restante: 0 Monedas: 1
+Nivel 13 porcentaje: 0.3414756 Tiempo restante: 16730 Monedas: 7
+Nivel 14 porcentaje: 1.0 Tiempo restante: 10580 Monedas: 5
+Nivel 15 porcentaje: 0.6359529 Tiempo restante: 0 Monedas: 6
+Niveles pasados: 7
+Porcentaje pasado: 10.717082
+Tiempo restante: 140280
+Monedas conseguidas: 101
+*******************************************
+*******************************************

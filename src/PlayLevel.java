@@ -1,6 +1,7 @@
 import engine.core.MarioGame;
 import engine.core.MarioResult;
 import engine.helper.GameStatus;
+import engine.core.MarioAgent;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -50,13 +51,13 @@ public class PlayLevel {
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// PRUEBAS FICHEROS
-        
+        /*
         try {
         	PrintWriter salida_fichero;
         	
         	for(double utc = 1; utc <= 3; utc = utc + 0.2) {
         		
-        		salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\resultados\\greedy\\mcts_utc\\salida_mctsOptimized_utc_" + utc + ".txt"));
+        		salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\greedy\\mcts_utc\\salida_mctsOptimized_utc_" + utc + ".txt"));
         		
         		salida_fichero.println("*******************************************");
         		salida_fichero.println("*******************************************");
@@ -100,6 +101,7 @@ public class PlayLevel {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+	    */
         
         
         // FIN PRUEBAS FICHEROS
@@ -113,9 +115,10 @@ public class PlayLevel {
         
         // mi agente alphaBeta optimizado (todos los niveles)
         
+        /*
         level_pass = 0;
         perc_pass = 0; 
-        /* 
+        
         for (int i = 1; i <= 15; i++) {
         	MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(700, 30), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
             printResults(result);
@@ -165,5 +168,19 @@ public class PlayLevel {
         
         // A* Robin Baumgarten
         //printResults(game.runGame(new agents.robinBaumgarten.Agent(), getLevel("./levels/original/lvl-15.txt"), 20, 0, true));
+    }
+    
+    public static void pruebaAgenteTodosNiveles(MarioAgent agente, MarioGame game) {
+    	int level_pass = 0;
+        float perc_pass = 0;
+        
+        for (int i = 1; i <= 15; i++) {
+        	MarioResult result = game.runGame(agente, getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+            printResults(result);
+            level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
+            perc_pass += result.getCompletionPercentage();
+        }
+        System.out.println("Niveles pasados: " + level_pass);
+        System.out.println("Porcentaje pasado: " + perc_pass);
     }
 }
