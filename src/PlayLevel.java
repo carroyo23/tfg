@@ -6,10 +6,15 @@ import engine.core.MarioAgent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
+import java.util.concurrent.Executors;
 //para redirigir salida a fichero para guardar resultados
 import java.io.FileWriter;
 import java.io.PrintWriter;
+
+// paralelizar codigo
+import java.util.concurrent.*;
+import java.util.List;
+import java.util.stream.*;
 
 public class PlayLevel {
     public static void printResults(MarioResult result) {
@@ -55,7 +60,7 @@ public class PlayLevel {
         try {
         	PrintWriter salida_fichero;
         	
-        	for(double utc = 1; utc <= 3; utc = utc + 0.2) {
+        	for(double utc = 3; utc <= 4; utc = utc + 0.2) {
         		
         		salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\greedy\\mcts_utc\\salida_mctsOptimized_utc_" + utc + ".txt"));
         		
@@ -115,7 +120,7 @@ public class PlayLevel {
         
         // mi agente alphaBeta optimizado (todos los niveles)
         
-        /*
+        
         level_pass = 0;
         perc_pass = 0; 
         
@@ -127,7 +132,7 @@ public class PlayLevel {
         }
         System.out.println("Niveles pasados: " + level_pass);
         System.out.println("Porcentaje pasado: " + perc_pass);
-        */
+        
         
         /*
         level_pass = 0;
@@ -146,6 +151,74 @@ public class PlayLevel {
         // FIN PRUEBAS COMPLETAS AGENTES
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+ 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // INICIO PRUEBAS PARALELAS
+        
+        
+        /*
+        int cores = Runtime.getRuntime().availableProcessors();
+        ExecutorService pool = Executors.newFixedThreadPool(15);
+        System.out.println(cores);
+
+        try {
+          List<Callable<MarioResult>> tareas = IntStream.rangeClosed(1, 15)
+            .mapToObj(i -> (Callable<MarioResult>) () -> {
+              MarioGame mg = new MarioGame();	
+              MarioAgent agent = new agents.alphaBetaOptimized.Agent(700, 30);
+              String level = getLevel("./levels/original/lvl-" + i + ".txt");
+              return mg.runGame(agent, level, 20, 0, false);
+            })
+            .collect(Collectors.toList());
+
+          // invokeAll sí arroja InterruptedException (hay que tratarlo)
+          List<Future<MarioResult>> futuros = pool.invokeAll(tareas);
+
+          int pasa = 0;
+          double sumaCompletion = 0.0;
+
+          for (Future<MarioResult> f : futuros) {
+            try {
+              MarioResult r = f.get(); // también arroja InterruptedException
+              if (r.getGameStatus() == GameStatus.WIN) {
+            	  pasa++;
+              }
+              sumaCompletion += r.getCompletionPercentage();
+              printResults(r);
+            } catch (InterruptedException ie) {
+              Thread.currentThread().interrupt();
+              System.err.println("Hilo interrumpido mientras esperaba resultados");
+              // quizá quieras salir del ciclo
+              break;
+            } catch (ExecutionException ee) {
+              System.err.println("Falló nivel: " + ee.getCause());
+            }
+          }
+          System.out.println(sumaCompletion);
+          System.out.format("Pasados %2d/15 → %.1f%%\n", pasa, sumaCompletion);
+        } catch (InterruptedException ex) {
+          Thread.currentThread().interrupt();
+          System.err.println("El hilo principal fue interrumpido durante invokeAll");
+        } finally {
+          pool.shutdown();
+          try {
+            if (!pool.awaitTermination(5, TimeUnit.MINUTES)) {
+              pool.shutdownNow();
+              System.err.println("Pool no terminó en tiempo — apagado forzado");
+            }
+          } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+            System.err.println("Interrupción mientras cerraba el pool");
+          }
+        }
+		*/
+
+        
+        // FIN PRUEBAS PARALELAS
+ 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         // mi agente mtcs optimizando constantes
         //printResults(game.runGame(new agents.mctsOptimized.Agent((float)2), getLevel("./levels/testLevels/short.txt"), 20, 0, true));

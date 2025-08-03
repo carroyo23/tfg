@@ -28,8 +28,8 @@ public class Agent implements MarioAgent {
 	// valores para la heuristica de las recompensas
 	private float VALOR_HORIZONTAL = 700;
 	private float VALOR_VERTICAL = 30;
-	private static float VALOR_KILL = 10;
-	private static float VALOR_MONEDA = 10;
+	private float VALOR_KILL = 10;
+	private float VALOR_MONEDA = 10;
 	private static float VALOR_TIME_OUT = -300;
 	private static float VALOR_WIN = Float.POSITIVE_INFINITY;
 	private static float VALOR_LOSE = Float.NEGATIVE_INFINITY;
@@ -39,6 +39,11 @@ public class Agent implements MarioAgent {
 		VALOR_VERTICAL = nuevo_vertical;
 		VALOR_KILL = nuevo_kill;
 		VALOR_MONEDA = nuevo_moneda;
+	}
+	
+	public Agent(float nuevo_horizontal, float nuevo_vertical) {
+		VALOR_HORIZONTAL = nuevo_horizontal;
+		VALOR_VERTICAL = nuevo_vertical;
 	}
 	
 	public Agent() {
