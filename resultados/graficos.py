@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
-#TODO: TERMINAR ESTA FUNCION
 """
 el formato de la linea sera el siguiente:
 Nivel 1 porcentaje: 1.0 Tiempo restante: 8330 Monedas: 3;Nivel 2 porcentaje: 1.0 Tiempo restante: 11090 Monedas: 5
@@ -16,10 +15,24 @@ Nivel 1 porcentaje: 1.0 Tiempo restante: 8330 Monedas: 3;Nivel 2 porcentaje: 1.0
 def get_info_line_nivel(line):
     lines = line.split(";")
 
+    resumen_nivel = dict()
+
     for nivel in lines:
-        partes = nivel.split(":")
-    
-    return -1
+        if nivel:
+            partes = nivel.split(":")
+            num_nivel = int((partes[0].lstrip("Nivel ")).rstrip(" porcentaje"))
+            porcentaje = float((partes[1].lstrip(" ")).rstrip(" Tiempo restante"))
+            tiempo = float((partes[2].lstrip(" ")).rstrip(" Monedas"))
+            monedas = int((partes[3].lstrip(" ")).rstrip())
+
+            resumen_nivel[f'resumen_{num_nivel}'] = {
+                'nivel': num_nivel,
+                'porcentaje_pasado': porcentaje,
+                'tiempo_restante': tiempo,
+                'monedas_conseguidas': monedas
+            }
+
+    return resumen_nivel
 
 def lectura_fichero(file_path):
 
@@ -68,7 +81,7 @@ def lectura_fichero(file_path):
                 continue
 
             if (fixed_line.startswith("Nivel ")):
-                linea_niveles += ";" + fixed_line
+                linea_niveles += fixed_line + ";"
 
             elif (fixed_line.startswith("Niveles")):
                 resumen_nivel = get_info_line_nivel(linea_niveles)
@@ -125,17 +138,45 @@ def extraccion_porcentaje_pasado(resumenes):
 
     return resultado
 
-# nota: aqui solo hay que tener en cuenta los de los niveles pasados
+# nota: aqui solo hay que tener en cuenta los de los niveles superados
 def extraccion_tiempo_restante(resumenes):
-    return 0
+    resultado = []
+    
+    for resumen in resumenes:
+
+        valor_principal = resumen.get('valor_principal', 0)
+        resumen_principal = resumen.get('resumen_principal', {})
+
+        for clave_secundaria, resumen_secundario in resumen_principal.items():
+            valor_secundario = resumen_secundario.get('valor_secundario', 0)
+            resumen_nivel = resumen_secundario.get('resumen_nivel', {})
+                
+            tiempo_total = 0
+            for nivel_data in resumen_nivel.values():
+                if nivel_data.get('porcentaje_pasado', 0) == 1.0:
+                    tiempo_total += nivel_data.get('tiempo_restante', 0)
+
+            resultado.append([valor_principal, valor_secundario, tiempo_total])
+
+    return resultado
 
 def extraccion_monedas_conseguidas(resumenes):
     return extraccion_estadistica(resumenes, 'monedas_conseguidas')
 
 # nota: esto sera una mezcla entre el tiempo restante, las monedas conseguidas
 # y porcentaje superado
-def extraccion_puntuacion_conseguida(resumen):
-    return 0
+def extraccion_puntuacion_conseguida(resumenes):
+    monedas_conseguidas = extraccion_monedas_conseguidas(resumenes)
+    tiempo_restante = extraccion_tiempo_restante(resumenes)
+
+    puntuacion = []
+    for m, t in zip(monedas_conseguidas, tiempo_restante):
+        valor_principal = m[0]
+        valor_secundario = m[1]
+        suma = m[2] + t[2]
+        puntuacion.append([valor_principal, valor_secundario, suma])
+
+    return puntuacion
 
 def pinta_grafico(datos):
     # Separar en 3 listas
@@ -162,7 +203,7 @@ def pinta_grafico(datos):
     plt.tight_layout()
     plt.show()
 
-def pinta_grafico_2d(datos):
+def pinta_grafico_malla(datos):
     # Convertimos a arrays de numpy
     datos = np.array(datos)
 
@@ -201,6 +242,30 @@ def pinta_grafico_2d(datos):
     plt.tight_layout()
     plt.show()
 
+#los datos aleatorios la segunda variable seran las repeticiones por lo que solo me interesa la primera
+def pinta_grafico_repeticiones(datos):
+    # Agrupar porcentajes por valor_principal
+    grupos = defaultdict(list)
+    for valor_principal, _, porcentaje in datos:
+        grupos[valor_principal].append(porcentaje)
+
+    # Calcular medias
+    x = []
+    y = []
+    for valor in sorted(grupos):
+        x.append(valor)
+        y.append(np.mean(grupos[valor]))
+
+    # Graficar
+    plt.figure(figsize=(10, 6))
+    plt.plot(x, y, marker='o', linestyle='-', color='purple')
+    plt.xlabel('Valor Principal')
+    plt.ylabel('Porcentaje Promedio')
+    plt.title('Porcentaje Promedio por Valor Principal')
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
 def main():
     parser = argparse.ArgumentParser(description="Procesa ficheros de puntuación con combinaciones de parámetros.")
     parser.add_argument("-dir", "-d", type=str, help="Ruta al directorio con los archivos de entrada (ej: source/carpeta_datos)")
@@ -210,13 +275,26 @@ def main():
     #print(resumenes)
     lista_porcentajes = extraccion_porcentaje_pasado(resumenes)
     lista_monedas = extraccion_monedas_conseguidas(resumenes)
+    lista_tiempo = extraccion_tiempo_restante(resumenes)
+    lista_puntuacion = extraccion_puntuacion_conseguida(resumenes)
     #print(lista_monedas)
 
+    #pinta_grafico_repeticiones(lista_porcentajes) # para mcts
+
+    
+    pinta_grafico(lista_puntuacion)
+    pinta_grafico_malla(lista_puntuacion)
+
+    pinta_grafico(lista_tiempo)
+    pinta_grafico_malla(lista_tiempo)
+    
     pinta_grafico(lista_porcentajes)
-    pinta_grafico_2d(lista_porcentajes)
+    pinta_grafico_malla(lista_porcentajes)
 
     pinta_grafico(lista_monedas)
-    pinta_grafico_2d(lista_monedas)
+    pinta_grafico_malla(lista_monedas)
+    
+    
 
 
 if __name__ == "__main__":

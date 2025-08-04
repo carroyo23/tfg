@@ -29,7 +29,7 @@ public class Agent implements MarioAgent {
 	private float VALOR_HORIZONTAL = 700;
 	private float VALOR_VERTICAL = 30;
 	private float VALOR_KILL = 10;
-	private float VALOR_MONEDA = 10;
+	private float VALOR_MONEDA = 12;
 	private static float VALOR_TIME_OUT = -300;
 	private static float VALOR_WIN = Float.POSITIVE_INFINITY;
 	private static float VALOR_LOSE = Float.NEGATIVE_INFINITY;

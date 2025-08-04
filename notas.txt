@@ -1,0 +1,192 @@
+MarioForwardModel
+	advance: creo que permite simular que va pasando.
+	getCompletionPercentage: esto puede servir de g(x) para el A*
+
+getMarioCompleteObservation:
+	Mario esta en [8][8]
+	La siguiente casilla es la [9][8]
+
+La matriz esta invertida hay que visualizarla como j,i
+
+2 goombas adyacentes:
+
+2.0 // tipo
+134.25 // x
+223.0 // y
+2.0
+150.25
+223.0
+
+4 goombas en cuadrado: (de aquí a ver si extrapolo las casillas)
+
+2.0
+134.25
+207.0
+goomba 1 (casilla): 8.39x12.93 -> (8x12) 
+
+2.0
+134.25
+223.0
+goomba 2 (casilla): 8.39x13.93 -> (8x13)
+
+2.0
+150.25
+207.0
+goomba 3 (casilla): 9.39x12.93 -> (9x12)
+
+2.0
+150.25
+223.0
+goomba 4 (casilla): 9.39x13.93 -> (9x13)
+
+de aquí extrapolo que para el nivel short.txt -> casillas miden: 16x16
+
+Mario: 56.0x223.0 -> (3.5,13.9) -> (3,13)
+
+Nivel dimensión:
+3232.0
+256.0
+
+como cada casilla son 16x16 la dimensión del nivel por casillas será: 202x16
+
+Por ultimo la escena (lo que ve Mario en cada momento) tiene una dimensión (en casillas) de: 16x16 (lo que equivale en float a 256x256)
+Hay que tener en cuenta que al estar centrada en Mario si Mario esta en el suelo todas las casillas debajo del suelo serán inventadas y falatará parte del cielo
+
+
+
+Diseño algoritmo MCTS:
+
+Se irá creando un árbol en el que cada nodo sea un estado del juego después de
+cierta acción. En cada paso del algoritmo se seleccionará un nodo y se expandirá:
+	- Opcion 1: generar tantos nodos hijos como acciones y avanzarlos al azar
+	  hacia el futuro a cada uno de ellos (hasta el final o un número de pasos)
+	- Opción 2: avanzarlo al azar (hasta el final o un número de pasos) y guardar
+	  la recompensa en el nodo, esto estará creando un único hijo (el de la acción
+	  que elija)
+
+Creo que me quedaré con la opción 1 porque creo que tiene mejor esperanza al ver
+todos los hijos y si consigo paralelizar esa parte podría ser bastante eficiente.
+Igualmente puede dar problemas con la memoria.
+Por otro lado la opción 2 lo que permitiría es una mayor expansión hacia el futuro
+del nodo al crear menos nodos. Igualmente a priori me parece menos interesante puesto
+que estas opciones serian al azar.
+
+Una vez expandido el nodo se guarda la recompensa y se repite el proceso. Finalmente
+se devolverá la acción en el nodo base que lleve al nodo más prometedor.
+
+Pensandolo mejor y teniendo en cuenta el coste exponencial en memoria (y en tiempo
+mientras no lo paralelice) empezaré implementando la opción 1 para mantener la
+componente aleatoria de los algoritmos basados en MonteCarlo y después haré otra
+versión siguiendo la opción 2 y los compararé. Incluso si la opción 2 funciona sin
+paralelizar haré otro agente más implementando la versión 2 pero paralelizando para
+así tener más agentes con los que comparar.
+
+Al final no estoy seguro de como volver a expandir nodos padre si tienen hijos pero
+no todos con lo que crearé todos los hijos (opción 1)
+
+MI TEORIA: en el metodo seleccionaNodo no reiniciar valor_mejor_nodo en cada nivel
+
+COMO VOY A ALMACENAR LAS METRICAS:
+
+
+{
+	'valor_principal': 100,
+	'resumen_principal': {
+		'resumen_secundario_10': {
+			'valor_secundario': 10,
+			'niveles_pasados': 10,
+			'porcentaje_pasado': 10,
+			'tiempo_restante': 10,
+			'monedas_conseguidas: 10,
+			'resumen_nivel': {
+				'resumen_1': {
+					'nivel': 1,
+					'porcentaje_pasado': 10,
+					'tiempo_restante': 10,
+					'monedas_conseguidas: 10
+				}
+			}
+		}
+	}
+}
+
+
+PARA MCTS LO RECOMENDABLE SON 30 EJECUCIONES (si tarda mucho al menos 10)
+y luego calcular media y desviación típica
+
+Primera ejecucion paralela:
+horizontal = 700
+vertical = 30
+kill = 10
+monedas = 12
+Suma de porcentaje pasado: 14.375971019268036
+Pasados 13/15 → 14,4%
+
+horizontal = 700
+vertical = 30
+kill = 10
+monedas = 10
+Suma de porcentaje pasado: 14.322538375854492
+Pasados 12/15 → 14,3%
+
+Para hacer el algoritmo genetico o memetico como voy a comparar todas las
+caracteristicas a la vez voy a cambiar la estructura de los ficheros. Tendran
+esta forma:
+
+Valores a optimizar:
+horizontal: 10
+vertical: 10
+valor_monedas: 10
+valor_kill: 10
+uct: 1
+posibles_acciones (max 4): [false, true, false, true, true], [true, true, false, true, true], [false, false, false, false, false], [true, true, true, true, true]
+Resultados: (nivel;porcentaje;tiempo_restante;monedas)
+1;0.9;0;2
+2;0.9;0;5
+3;1.0;20;1
+Pasados: 2
+Porcentaje: 7
+Tiempo_restante: 23
+Monedas_conseguidas: 10
+*************************************************************************
+Valores a optimizar:
+horizontal: 10
+vertical: 10
+valor_monedas: 10
+valor_kill: 10
+uct: 1
+posibles_acciones (max 4): [false, true, false, true, true], [true, true, false, true, true], [false, false, false, false, false], [true, true, true, true, true]
+Resultados: (nivel;porcentaje;tiempo_restante;monedas)
+1;0.9;0;2
+2;0.9;0;5
+3;1.0;20;1
+Pasados: 2
+Porcentaje: 7
+Tiempo_restante: 23
+Monedas_conseguidas: 10
+*************************************************************************
+
+Y los voy a almacenar de esta manera:
+
+{
+	'horizontal': 100,
+	'vertical': 10,
+	'valor_monedas': 7,
+	'valor_kill': 12,
+	'niveles_pasados': 10,
+	'porcentaje_pasado': 10,
+	'tiempo_restante': 10,
+	'monedas_conseguidas: 10,
+	'resumen_1': {
+		'nivel': 1,
+		'porcentaje_pasado': 10,
+		'tiempo_restante': 10,
+		'monedas_conseguidas: 10
+	},
+	'resumen_2': {
+		'nivel': 2,
+		'porcentaje_pasado': 10,
+		'tiempo_restante': 10,
+		'monedas_conseguidas: 10
+	}
+}

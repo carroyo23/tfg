@@ -120,7 +120,7 @@ public class PlayLevel {
         
         // mi agente alphaBeta optimizado (todos los niveles)
         
-        
+        /*
         level_pass = 0;
         perc_pass = 0; 
         
@@ -132,7 +132,7 @@ public class PlayLevel {
         }
         System.out.println("Niveles pasados: " + level_pass);
         System.out.println("Porcentaje pasado: " + perc_pass);
-        
+        */
         
         /*
         level_pass = 0;
@@ -157,10 +157,12 @@ public class PlayLevel {
  		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // INICIO PRUEBAS PARALELAS
         
+        //pruebaAlphaBetaOptimizedTodosNivelesParalelo(700, 30, 10, 10);
+        
         
         /*
         int cores = Runtime.getRuntime().availableProcessors();
-        ExecutorService pool = Executors.newFixedThreadPool(15);
+        ExecutorService pool = Executors.newFixedThreadPool(cores-1);
         System.out.println(cores);
 
         try {
@@ -196,7 +198,7 @@ public class PlayLevel {
               System.err.println("Falló nivel: " + ee.getCause());
             }
           }
-          System.out.println(sumaCompletion);
+          System.out.println("Suma de porcentaje pasado: " + sumaCompletion);
           System.out.format("Pasados %2d/15 → %.1f%%\n", pasa, sumaCompletion);
         } catch (InterruptedException ex) {
           Thread.currentThread().interrupt();
@@ -255,5 +257,75 @@ public class PlayLevel {
         }
         System.out.println("Niveles pasados: " + level_pass);
         System.out.println("Porcentaje pasado: " + perc_pass);
+    }
+    
+    public static float[] pruebaAlphaBetaOptimizedTodosNivelesParalelo(float horizontal, float vertical, float kill, float moneda) {
+    	float [] a_devolver = new float[4]; // [num_niveles_pasados, porcentaje_total_pasado, tiempo_restante, monedas_conseguidas]
+    	
+    	int cores = Runtime.getRuntime().availableProcessors();
+        ExecutorService pool = Executors.newFixedThreadPool(cores-1);
+        System.out.println(cores);
+
+        try {
+          List<Callable<MarioResult>> tareas = IntStream.rangeClosed(1, 15)
+            .mapToObj(i -> (Callable<MarioResult>) () -> {
+              MarioGame mg = new MarioGame();	
+              MarioAgent agent = new agents.alphaBetaOptimized.Agent(horizontal, vertical, kill, moneda);
+              String level = getLevel("./levels/original/lvl-" + i + ".txt");
+              return mg.runGame(agent, level, 20, 0, false);
+            })
+            .collect(Collectors.toList());
+
+          // invokeAll sí arroja InterruptedException (hay que tratarlo)
+          List<Future<MarioResult>> futuros = pool.invokeAll(tareas);
+
+          int pasa = 0;
+          double sumaCompletion = 0.0;
+          int monedasConseguidas = 0;
+          double tiempoRestante = 0.0;
+
+          for (Future<MarioResult> f : futuros) {
+            try {
+              MarioResult r = f.get(); // también arroja InterruptedException
+              if (r.getGameStatus() == GameStatus.WIN) {
+            	  pasa++;
+              }
+              sumaCompletion += r.getCompletionPercentage();
+              monedasConseguidas += r.getCurrentCoins();
+              tiempoRestante += r.getRemainingTime();
+              printResults(r);
+            } catch (InterruptedException ie) {
+              Thread.currentThread().interrupt();
+              System.err.println("Hilo interrumpido mientras esperaba resultados");
+              // quizá quieras salir del ciclo
+              break;
+            } catch (ExecutionException ee) {
+              System.err.println("Falló nivel: " + ee.getCause());
+            }
+          }
+          a_devolver[0] = (float)pasa;
+          a_devolver[1] = (float)sumaCompletion;
+          a_devolver[2] = (float)tiempoRestante;
+          a_devolver[3] = (float)monedasConseguidas;
+          
+          System.out.println("Suma de porcentaje pasado: " + sumaCompletion);
+          System.out.format("Pasados %2d/15 → %.1f%%\n", pasa, sumaCompletion);
+        } catch (InterruptedException ex) {
+          Thread.currentThread().interrupt();
+          System.err.println("El hilo principal fue interrumpido durante invokeAll");
+        } finally {
+          pool.shutdown();
+          try {
+            if (!pool.awaitTermination(5, TimeUnit.MINUTES)) {
+              pool.shutdownNow();
+              System.err.println("Pool no terminó en tiempo — apagado forzado");
+            }
+          } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+            System.err.println("Interrupción mientras cerraba el pool");
+          }
+        }
+        
+        return a_devolver;
     }
 }
