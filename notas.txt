@@ -144,7 +144,7 @@ Resultados: (nivel;porcentaje;tiempo_restante;monedas)
 1;0.9;0;2
 2;0.9;0;5
 3;1.0;20;1
-Pasados: 2
+Niveles_superados: 2
 Porcentaje: 7
 Tiempo_restante: 23
 Monedas_conseguidas: 10
@@ -160,7 +160,7 @@ Resultados: (nivel;porcentaje;tiempo_restante;monedas)
 1;0.9;0;2
 2;0.9;0;5
 3;1.0;20;1
-Pasados: 2
+Niveles_superados: 2
 Porcentaje: 7
 Tiempo_restante: 23
 Monedas_conseguidas: 10
@@ -173,7 +173,7 @@ Y los voy a almacenar de esta manera:
 	'vertical': 10,
 	'valor_monedas': 7,
 	'valor_kill': 12,
-	'niveles_pasados': 10,
+	'niveles_superados': 10,
 	'porcentaje_pasado': 10,
 	'tiempo_restante': 10,
 	'monedas_conseguidas: 10,
@@ -189,4 +189,41 @@ Y los voy a almacenar de esta manera:
 		'tiempo_restante': 10,
 		'monedas_conseguidas: 10
 	}
+}
+
+De momento para el genetico tendra esta forma simplificada porque no voy a 
+analizar cada nivel por separado sino las medias (en principio tampoco alterare las acciones disponibles):
+Valores a optimizar:
+horizontal: 10
+vertical: 10
+valor_monedas: 10
+valor_kill: 10
+uct: 1
+Niveles_superados: 2
+Porcentaje: 7
+Tiempo_restante: 23
+Monedas_conseguidas: 10
+*************************************************************************
+Valores a optimizar:
+horizontal: 10
+vertical: 10
+valor_monedas: 10
+valor_kill: 10
+uct: 1
+Niveles_superados: 2
+Porcentaje: 7
+Tiempo_restante: 23
+Monedas_conseguidas: 10
+*************************************************************************
+
+y el json queda asi:
+{
+	'horizontal': 100,
+	'vertical': 10,
+	'valor_monedas': 7,
+	'valor_kill': 12,
+	'niveles_superados': 10,
+	'porcentaje_pasado': 10,
+	'tiempo_restante': 10,
+	'monedas_conseguidas: 10,
 }

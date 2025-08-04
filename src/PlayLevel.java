@@ -160,7 +160,7 @@ public class PlayLevel {
         //pruebaAlphaBetaOptimizedTodosNivelesParalelo(700, 30, 10, 10);
         
         
-        /*
+        
         int cores = Runtime.getRuntime().availableProcessors();
         ExecutorService pool = Executors.newFixedThreadPool(cores-1);
         System.out.println(cores);
@@ -169,7 +169,7 @@ public class PlayLevel {
           List<Callable<MarioResult>> tareas = IntStream.rangeClosed(1, 15)
             .mapToObj(i -> (Callable<MarioResult>) () -> {
               MarioGame mg = new MarioGame();	
-              MarioAgent agent = new agents.alphaBetaOptimized.Agent(700, 30);
+              MarioAgent agent = new agents.mctsOptimized.Agent();
               String level = getLevel("./levels/original/lvl-" + i + ".txt");
               return mg.runGame(agent, level, 20, 0, false);
             })
@@ -215,7 +215,7 @@ public class PlayLevel {
             System.err.println("Interrupción mientras cerraba el pool");
           }
         }
-		*/
+		
 
         
         // FIN PRUEBAS PARALELAS

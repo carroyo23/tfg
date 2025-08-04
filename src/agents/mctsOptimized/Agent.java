@@ -25,16 +25,16 @@ public class Agent implements MarioAgent {
 	private static int NUM_REPS_ACTION = 1; // las veces que se repite una accion para que pueda mirar mas a futuro
 	
 	// valores para la heuristica de las recompensas
-	private static float VALOR_HORIZONTAL = 700;
-	private static float VALOR_VERTICAL = 30;
-	private static float VALOR_KILL = 100;
-	private static float VALOR_TIME_OUT = 300;
-	private static float VALOR_WIN = Float.POSITIVE_INFINITY;
-	private static float VALOR_LOSE = -10000000;
+	private float VALOR_HORIZONTAL = 700;
+	private float VALOR_VERTICAL = 30;
+	private float VALOR_KILL = 100;
+	private final float VALOR_TIME_OUT = 300;
+	private final float VALOR_WIN = Float.POSITIVE_INFINITY;
+	private final float VALOR_LOSE = -10000000;
 	
-	private static float MAX_TIEMPO = 5;
+	private final float MAX_TIEMPO = 5;
 	
-	private float CONST_UCT = (float) 1.3; // TODO: AJUSTAR ESTE VALOR
+	private float CONST_UCT = (float) 1.25;
 	
 	int cont;
 	

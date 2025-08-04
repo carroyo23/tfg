@@ -1,4 +1,4 @@
-package agents.alphaBetaOptimized;
+package agents.alphaBetaGenetico;
 
 import engine.core.MarioAgent;
 import engine.core.MarioForwardModel;
@@ -248,6 +248,6 @@ public class Agent implements MarioAgent {
 	
 	@Override
 	public String getAgentName() {
-		return "AlphaBetaOptimizedAgent";
+		return "AlphaBetaGeneticoAgent";
 	}
 }
