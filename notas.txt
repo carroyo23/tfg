@@ -237,3 +237,7 @@ de explotación y de explotación.
 Como operador de mutacion usaré Mov(W, delta) donde lo que haré será coger
 un gen al azar y sumarle una componente z, la cual será un número aleatorio
 de una distribución normal con media 0 y desviación estandar delta (N(0,delta^2))
+
+POSIBLE IDEA: guardar en ficheros ciertas generaciones del genetico para ver como evoluciona
+
+Voy a empezar con un modelo estacionario

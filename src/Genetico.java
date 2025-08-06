@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -11,6 +12,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.PriorityQueue;
+import java.util.Collections;
 
 import engine.core.MarioAgent;
 import engine.core.MarioGame;
@@ -48,9 +51,10 @@ class Resumen {
 	}
 }
 
-class Individuo {
+class Individuo implements Comparable<Individuo>{
 	// la forma de este array sera la siguiente: [valor_horizontal, valor_vertical, valor_kill, valor_monedas]
 	public float[] genoma = null;
+	public static final int NUM_GENES = 4;
 	
 	public Resumen resultados = null;
 	public float fitness = -1;
@@ -87,8 +91,117 @@ class Individuo {
 		float tiempo_restante_norm = Math.max(0f, Math.min(1f, resultados.tiempo_restante / 20000.0f)); // el maximo de tiempo son 20 segundos (20 mil milisegundos)
 		float monedas_conseguidas_norm = Math.max(0f, Math.min(1f, resultados.monedas_conseguidas / 1000.0f)); // ningun nivel tendra 1000 monedas
 		
-		return (niveles_superados_norm * PESO_NIVEL) + (porcentaje_superado_norm * PESO_PORCENTAJE) + (tiempo_restante_norm * PESO_TIEMPO) + (monedas_conseguidas_norm * PESO_MONEDAS);
+		// actualizo el fitness
+		fitness = (niveles_superados_norm * PESO_NIVEL) + (porcentaje_superado_norm * PESO_PORCENTAJE) + (tiempo_restante_norm * PESO_TIEMPO) + (monedas_conseguidas_norm * PESO_MONEDAS);
+		
+		return fitness;
 	}
+	
+	public void generaRandomSol(Random generador_random) {
+		// anulo los resultados que hubiera
+		resultados = null;
+		fitness = -1;
+		
+		genoma = new float[NUM_GENES];
+		
+		for (int i = 0; i < NUM_GENES; i++) {
+			genoma[i] = generador_random.nextFloat();
+		}
+		
+		// actualizo el fitness y los resultados
+		resultados = evaluaIndividuo(genoma);
+		getFitness();
+	}
+	
+	public void actualizaFitness() {
+		resultados = evaluaIndividuo(genoma);
+		getFitness();
+	}
+	
+	public static String getLevel(String filepath) {
+        String content = "";
+        try {
+            content = new String(Files.readAllBytes(Paths.get(filepath)));
+        } catch (IOException e) {
+        }
+        return content;
+    }
+	
+	public static Resumen evaluaIndividuo(float[] genes) {
+    	Resumen a_devolver = new Resumen(); // [num_niveles_pasados, porcentaje_total_pasado, tiempo_restante, monedas_conseguidas]
+    	
+    	int cores = Runtime.getRuntime().availableProcessors();
+        ExecutorService pool = Executors.newFixedThreadPool(cores-1);
+        //System.out.println(cores);
+
+        try {
+          List<Callable<MarioResult>> tareas = IntStream.rangeClosed(1, 15)
+            .mapToObj(i -> (Callable<MarioResult>) () -> {
+              MarioGame mg = new MarioGame();	
+              MarioAgent agent = new agents.alphaBetaGenetico.Agent(genes[0], genes[1], genes[2], genes[3]);
+              String level = getLevel("./levels/original/lvl-" + i + ".txt");
+              return mg.runGame(agent, level, 20, 0, false);
+            })
+            .collect(Collectors.toList());
+
+          // invokeAll sí arroja InterruptedException (hay que tratarlo)
+          List<Future<MarioResult>> futuros = pool.invokeAll(tareas);
+
+          int pasa = 0;
+          double sumaCompletion = 0.0;
+          int monedasConseguidas = 0;
+          double tiempoRestante = 0.0;
+
+          for (Future<MarioResult> f : futuros) {
+            try {
+              MarioResult r = f.get(); // también arroja InterruptedException
+              if (r.getGameStatus() == GameStatus.WIN) {
+            	  pasa++;
+              }
+              sumaCompletion += r.getCompletionPercentage();
+              monedasConseguidas += r.getCurrentCoins();
+              tiempoRestante += r.getRemainingTime();
+              //printResults(r);
+              
+            } catch (InterruptedException ie) {
+              Thread.currentThread().interrupt();
+              System.err.println("Hilo interrumpido mientras esperaba resultados");
+              // quizá quieras salir del ciclo
+              break;
+            } catch (ExecutionException ee) {
+              System.err.println("Falló nivel: " + ee.getCause());
+            }
+          }
+          a_devolver.niveles_superados = pasa;
+          a_devolver.porcentaje_superado = (float)sumaCompletion;
+          a_devolver.tiempo_restante = (float)tiempoRestante;
+          a_devolver.monedas_conseguidas = monedasConseguidas;
+          
+          //System.out.println("Suma de porcentaje pasado: " + sumaCompletion);
+          //System.out.format("Pasados %2d/15 → %.1f%%\n", pasa, sumaCompletion);
+        } catch (InterruptedException ex) {
+          Thread.currentThread().interrupt();
+          System.err.println("El hilo principal fue interrumpido durante invokeAll");
+        } finally {
+          pool.shutdown();
+          try {
+            if (!pool.awaitTermination(5, TimeUnit.MINUTES)) {
+              pool.shutdownNow();
+              System.err.println("Pool no terminó en tiempo — apagado forzado");
+            }
+          } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+            System.err.println("Interrupción mientras cerraba el pool");
+          }
+        }
+        
+        return a_devolver;
+    }
+	
+	@Override
+    public int compareTo(Individuo otro) {
+        return Float.compare(fitness, otro.fitness);
+    }
 }
 
 public class Genetico {
@@ -137,8 +250,8 @@ public class Genetico {
 	
 	// operador de cruce (cruza 2 padres para generar 2 hijos) (solo paso los genomas porque el resto no lo necesito)
 	// se usara el cruce BLX-alpha
-	public static Individuo[] op_cruce_BLX(final float[] uno, final float[] otro, float alpha, final Random generador_random) {
-		Individuo[] hijos = new Individuo[2];
+	public static List<Individuo> op_cruce_BLX(final float[] uno, final float[] otro, float alpha) {
+		List<Individuo> hijos = new ArrayList<Individuo>();
 		
 		float min, max, diff;
 		float[] primer_genoma = uno.clone();
@@ -160,14 +273,14 @@ public class Genetico {
 		}
 		
 		// relleno los hijos (aniado el genoma y dejo los resultados como indeterminados hasta que se evaluen
-		hijos[0] = new Individuo(primer_genoma);
-		hijos[1] = new Individuo(segundo_genoma);
+		hijos.add(new Individuo(primer_genoma));
+		hijos.add(new Individuo(segundo_genoma));
 		
 		return hijos;
 	}
 	
 	
-	public static Individuo op_mutacion(final float [] a_mutar, float delta, final Random generador_random) {
+	public static Individuo op_mutacion(final float [] a_mutar, float delta) {
 		Individuo mutado;
 		float [] nuevo_genoma = a_mutar.clone();
 		
@@ -182,6 +295,83 @@ public class Genetico {
 		mutado = new Individuo(nuevo_genoma);
 		
 		return mutado;
+	}
+	
+	// algoritmo genetico estacionario
+	public static Individuo AGE() {
+		final int NUM_INDIVIDUOS = 50; // tamaño de la poblacion
+		final int MAX_EVAL = 1000; // maximo de soluciones a evaluar
+		final int NUM_HIJOS = 2; // numero de hijos que devolvera el operador de seleccion (al ser estacionario solo 2)
+		final float PROB_CRUCE = 1.0f;
+		final float PROB_MUTA = 0.08f;
+		final float ALPHA = 0.3f; // alpha para el operador de cruce BLX-alpha que sera BLX-0.3
+		
+		int num_eval = 0;
+		
+		// usare una lista para ir quitando y metiendo individuos con facilidad
+		List<Individuo> poblacion = new ArrayList<Individuo>();
+		List<Individuo> nuevos; // la nueva generacion
+		
+		// ReverseOrder porque quiero sacar los mejores del torneo por lo que ordeno de mayor a menor
+		PriorityQueue<Individuo> torneo = new PriorityQueue<Individuo>(Comparator.reverseOrder());
+		
+		// genero la poblacion inicial de manera aleatoria
+		for (int i = 0; i < NUM_INDIVIDUOS; i++) {
+			System.out.println("INI");
+			Individuo nuevo = new Individuo();
+			nuevo.generaRandomSol(generador_random);
+			poblacion.add(nuevo);
+			num_eval++;
+			System.out.println("**************************************************************");
+		}
+		
+		while (num_eval <= MAX_EVAL) {
+			
+			// selecciono 2 padres
+			nuevos = op_seleccion(poblacion, NUM_HIJOS);
+			
+			// los cruzo
+			nuevos = op_cruce_BLX(nuevos.get(0).genoma, nuevos.get(1).genoma, ALPHA);
+			
+			// los muto o no segun la probabilidad de cruce
+			for (Individuo hijo : nuevos) {
+				if (generador_random.nextInt(100) < (PROB_MUTA*100)) {
+					hijo = op_mutacion(hijo.genoma, 0.05f);
+				}
+				
+				// al haberse cruzado, muten o no, actualizo su fitness
+				hijo.actualizaFitness();
+				num_eval++;
+			}
+			
+			// hago un torneo con los peores de la poblacion y los hijos
+			for (int i = 0; i < NUM_HIJOS; i++) {
+				torneo.add(nuevos.get(i));
+				Individuo peor = Collections.min(poblacion, Comparator.comparingDouble(j -> j.fitness));
+				poblacion.remove(peor);
+				torneo.add(peor);
+			}
+			
+			// me quedo con los 2 mejores
+			for (int i = 0; i < NUM_HIJOS; i++) {
+				poblacion.add(torneo.element());
+				torneo.poll();
+			}
+			
+			Individuo mejor = Collections.max(poblacion, Comparator.comparingDouble(i -> i.fitness));
+			
+			System.out.println("**************************************************************");
+			System.out.println("Horizontal: " + mejor.genoma[0]);
+			System.out.println("Vertical: " + mejor.genoma[1]);
+			System.out.println("kill: " + mejor.genoma[2]);
+			System.out.println("monedas: " + mejor.genoma[3]);
+			
+			System.out.println("Niveles superados: " + mejor.resultados.niveles_superados);
+			System.out.println("Porcentaje superado: " + mejor.resultados.porcentaje_superado);
+			System.out.println("**************************************************************");
+		}
+		
+		return Collections.max(poblacion, Comparator.comparingDouble(i -> i.fitness));
 	}
 	
 	public static void printResults(MarioResult result) {
@@ -211,9 +401,17 @@ public class Genetico {
 	
 	public static void main(String[] args) {
 		
-		Resumen resumenes;
-		Individuo valores;
+		Individuo mejor = AGE();
 		
+		System.out.println("Horizontal: " + mejor.genoma[0]);
+		System.out.println("Vertical: " + mejor.genoma[1]);
+		System.out.println("kill: " + mejor.genoma[2]);
+		System.out.println("monedas: " + mejor.genoma[3]);
+		
+		System.out.println("Niveles superados: " + mejor.resultados.niveles_superados);
+		System.out.println("Porcentaje superado: " + mejor.resultados.porcentaje_superado);
+		
+		/*
 		//Random generador_random = new Random(42);
 		System.out.println(generador_random.nextDouble());
 		System.out.println(generador_random.nextDouble());
@@ -241,8 +439,10 @@ public class Genetico {
         } catch (IOException e) {
       	  e.printStackTrace();
         }
+        */
 	}
 	
+	/*
 	public static Resumen pruebaAlphaBetaGeneticoTodosNivelesParalelo(float horizontal, float vertical, float kill, float moneda) {
     	Resumen a_devolver = new Resumen(); // [num_niveles_pasados, porcentaje_total_pasado, tiempo_restante, monedas_conseguidas]
     	
@@ -293,8 +493,8 @@ public class Genetico {
           a_devolver.tiempo_restante = (float)tiempoRestante;
           a_devolver.monedas_conseguidas = monedasConseguidas;
           
-          System.out.println("Suma de porcentaje pasado: " + sumaCompletion);
-          System.out.format("Pasados %2d/15 → %.1f%%\n", pasa, sumaCompletion);
+          //System.out.println("Suma de porcentaje pasado: " + sumaCompletion);
+          //System.out.format("Pasados %2d/15 → %.1f%%\n", pasa, sumaCompletion);
         } catch (InterruptedException ex) {
           Thread.currentThread().interrupt();
           System.err.println("El hilo principal fue interrumpido durante invokeAll");
@@ -313,4 +513,5 @@ public class Genetico {
         
         return a_devolver;
     }
+    */
 }
