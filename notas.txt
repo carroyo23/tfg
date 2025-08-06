@@ -227,3 +227,5 @@ y el json queda asi:
 	'tiempo_restante': 10,
 	'monedas_conseguidas: 10,
 }
+
+Tambien puedo probar ademas del genetico usar la busqueda local solidWest

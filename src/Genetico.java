@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -22,21 +23,85 @@ import java.io.PrintWriter;
 
 import java.util.Random;
 
-class Gen {
-	public float horizontal;
-	public float vertical;
-	public float kill;
-	public float monedas;
+class Resumen {
+	public int niveles_superados = -1;
+	public float porcentaje_superado = -1;
+	public float tiempo_restante = -1;
+	public int monedas_conseguidas = -1;
 }
 
-class Resumen {
-	public int niveles_superados;
-	public float porcentaje_superado;
-	public float tiempo_restante;
-	public int monedas_conseguidas;
+class Individuo {
+	public float horizontal = 0;
+	public float vertical = 0;
+	public float kill = 0;
+	public float monedas = 0;
+	Resumen resultados;
+	float fitness;
+	
+	public final float PESO_NIVEL = 100f;
+	public final float PESO_PORCENTAJE = 70f;
+	public final float PESO_TIEMPO = 30f;
+	public final float PESO_MONEDAS = 5f;
+	
+	
+	public float getFitness() {
+		
+		// primero normalizo todos los valores para que esten en la misma escala
+		float niveles_superados_norm = Math.max(0f, Math.min(1f, resultados.niveles_superados / 15.0f)); // el maximo son 15 niveles
+		float porcentaje_superado_norm = Math.max(0f, Math.min(1f, resultados.porcentaje_superado / 15.0f)); // el maximo son 15 niveles
+		float tiempo_restante_norm = Math.max(0f, Math.min(1f, resultados.tiempo_restante / 20000.0f)); // el maximo de tiempo son 20 segundos (20 mil milisegundos)
+		float monedas_conseguidas_norm = Math.max(0f, Math.min(1f, resultados.monedas_conseguidas / 1000.0f)); // ningun nivel tendra 1000 monedas
+		
+		return (niveles_superados_norm * PESO_NIVEL) + (porcentaje_superado_norm * PESO_PORCENTAJE) + (tiempo_restante_norm * PESO_TIEMPO) + (monedas_conseguidas_norm * PESO_MONEDAS);
+	}
 }
 
 public class Genetico {
+	
+	public static Random generador_random = new Random(42);
+	
+	// el operador de seleccion sera por torneo de 3 individuos
+	public static List<Individuo> op_seleccion(List<Individuo> poblacion, int tam_reemplazo) {
+		List<Individuo> nuevos = new ArrayList<>();
+		
+		int num_individuos = poblacion.size();
+		int pos1 = -1, pos2 = -1, pos3 = -1; // las posiciones de los individuos en la poblacion
+		float fit1, fit2, fit3; // las puntuaciones de cada individuo
+		float max; // para calcular el mejor individuo
+		
+		for (int i = 0; i < tam_reemplazo; i++) {
+			
+			// escojo 3 individuos aleatoriamente asegurandome de que sean distintos
+	        while((pos1 == pos2) || (pos1 == pos3) || (pos2 == pos3)){
+	        	pos1 = generador_random.nextInt(0, num_individuos);
+				pos2 = generador_random.nextInt(0, num_individuos);
+				pos3 = generador_random.nextInt(0, num_individuos);
+	        }
+	        
+	        fit1 = poblacion.get(pos1).getFitness();
+	        fit2 = poblacion.get(pos2).getFitness();
+	        fit3 = poblacion.get(pos3).getFitness();
+	        
+	        // me quedo con el que mejor fitness tenga
+	        max = Math.max(fit1, fit2);
+	        max = Math.max(max, fit3);
+	        
+	        if (fit1 == max){
+	            nuevos.add(poblacion.get(pos1));
+	        }
+	        else if (fit2 == max){
+	            nuevos.add(poblacion.get(pos2));   
+	        }
+	        else{
+	            nuevos.add(poblacion.get(pos3));
+	        }
+		}
+		
+		return nuevos;
+	}
+	
+	
+	
 	public static void printResults(MarioResult result) {
         System.out.println("****************************************************************");
         System.out.println("Game Status: " + result.getGameStatus().toString() +
@@ -65,9 +130,9 @@ public class Genetico {
 	public static void main(String[] args) {
 		
 		Resumen resumenes;
-		Gen valores;
+		Individuo valores;
 		
-		Random generador_random = new Random(42);
+		//Random generador_random = new Random(42);
 		System.out.println(generador_random.nextDouble());
 		System.out.println(generador_random.nextDouble());
 		System.out.println(generador_random.nextDouble());
