@@ -137,7 +137,7 @@ public class Genetico {
 	
 	// operador de cruce (cruza 2 padres para generar 2 hijos) (solo paso los genomas porque el resto no lo necesito)
 	// se usara el cruce BLX-alpha
-	public static Individuo[] op_cruce(final float[] uno, final float[] otro, float alpha, final Random generador_random) {
+	public static Individuo[] op_cruce_BLX(final float[] uno, final float[] otro, float alpha, final Random generador_random) {
 		Individuo[] hijos = new Individuo[2];
 		
 		float min, max, diff;
@@ -159,11 +159,29 @@ public class Genetico {
 			segundo_genoma[i] = (float) generador_random.nextDouble(min - alpha*diff, max + alpha*diff);
 		}
 		
-		// relleno los hijos (añado el genoma y dejo los resultados como indeterminados hasta que se evaluen
+		// relleno los hijos (aniado el genoma y dejo los resultados como indeterminados hasta que se evaluen
 		hijos[0] = new Individuo(primer_genoma);
 		hijos[1] = new Individuo(segundo_genoma);
 		
 		return hijos;
+	}
+	
+	
+	public static Individuo op_mutacion(final float [] a_mutar, float delta, final Random generador_random) {
+		Individuo mutado;
+		float [] nuevo_genoma = a_mutar.clone();
+		
+		// cojo un gen aleatorio y lo muto
+		int pos_a_mutar = generador_random.nextInt(a_mutar.length);
+		
+		// para mutarlo le sumare una componente z sacado de una distribucion N(0, delta^2)
+		float z = (float)generador_random.nextGaussian(0, delta*delta);
+		
+		// creo al nuevo individuo a partir de la mutacion asegurandome de que sea valida, es decir, este en el intervalo [0,1]
+		nuevo_genoma[pos_a_mutar] = Math.max(0, Math.min(1, nuevo_genoma[pos_a_mutar] + z));
+		mutado = new Individuo(nuevo_genoma);
+		
+		return mutado;
 	}
 	
 	public static void printResults(MarioResult result) {

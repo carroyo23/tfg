@@ -233,3 +233,7 @@ Tambien puedo probar ademas del genetico usar la busqueda local solidWest.
 Para el genetico usare de operador de cruce el BLX-alpha porque las caracterisiticas
 son independientes y es un operador de cruce ampliamente usado y que tiene omponente
 de explotación y de explotación.
+
+Como operador de mutacion usaré Mov(W, delta) donde lo que haré será coger
+un gen al azar y sumarle una componente z, la cual será un número aleatorio
+de una distribución normal con media 0 y desviación estandar delta (N(0,delta^2))
