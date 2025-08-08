@@ -1,0 +1,6 @@
+Horizontal: 0.8549335
+Vertical: 0.01538014
+kill: 0.54818577
+monedas: 0.5560822
+Niveles superados: 12
+Porcentaje superado: 13.429877

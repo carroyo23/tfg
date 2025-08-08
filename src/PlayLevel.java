@@ -120,19 +120,19 @@ public class PlayLevel {
         
         // mi agente alphaBeta optimizado (todos los niveles)
         
-        /*
+        
         level_pass = 0;
         perc_pass = 0; 
         
         for (int i = 1; i <= 15; i++) {
-        	MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(700, 30), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+        	MarioResult result = game.runGame(new agents.alphaBetaGenetico.Agent(906.56567f, 16.587923f, 56.484187f, 68.577754f), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
             printResults(result);
             level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
             perc_pass += result.getCompletionPercentage();
         }
         System.out.println("Niveles pasados: " + level_pass);
         System.out.println("Porcentaje pasado: " + perc_pass);
-        */
+        
         
         /*
         level_pass = 0;
@@ -160,7 +160,7 @@ public class PlayLevel {
         //pruebaAlphaBetaOptimizedTodosNivelesParalelo(700, 30, 10, 10);
         
         
-        
+        /*
         int cores = Runtime.getRuntime().availableProcessors();
         ExecutorService pool = Executors.newFixedThreadPool(cores-1);
         System.out.println(cores);
@@ -215,7 +215,7 @@ public class PlayLevel {
             System.err.println("Interrupción mientras cerraba el pool");
           }
         }
-		
+		*/
 
         
         // FIN PRUEBAS PARALELAS

@@ -55,6 +55,7 @@ class Individuo implements Comparable<Individuo>{
 	// la forma de este array sera la siguiente: [valor_horizontal, valor_vertical, valor_kill, valor_monedas]
 	public float[] genoma = null;
 	public static final int NUM_GENES = 4;
+	public static final int [] NORMALIZER = {1000, 100, 100, 100}; // la puntuacion por avanzar es 1 orden de magnitud mayor que el resto
 	
 	public Resumen resultados = null;
 	public float fitness = -1;
@@ -109,12 +110,12 @@ class Individuo implements Comparable<Individuo>{
 		}
 		
 		// actualizo el fitness y los resultados
-		resultados = evaluaIndividuo(genoma);
+		resultados = evaluaIndividuo();
 		getFitness();
 	}
 	
 	public void actualizaFitness() {
-		resultados = evaluaIndividuo(genoma);
+		resultados = evaluaIndividuo();
 		getFitness();
 	}
 	
@@ -127,8 +128,15 @@ class Individuo implements Comparable<Individuo>{
         return content;
     }
 	
-	public static Resumen evaluaIndividuo(float[] genes) {
+	public Resumen evaluaIndividuo() {
     	Resumen a_devolver = new Resumen(); // [num_niveles_pasados, porcentaje_total_pasado, tiempo_restante, monedas_conseguidas]
+    	
+    	float[] genes = genoma.clone();
+    	
+    	// denormalizo cada gen
+    	for (int i = 0; i < NUM_GENES; i++) {
+    		genes[i] = genes[i] * NORMALIZER[i];
+    	}
     	
     	int cores = Runtime.getRuntime().availableProcessors();
         ExecutorService pool = Executors.newFixedThreadPool(cores-1);
@@ -218,6 +226,9 @@ public class Genetico {
 		float max; // para calcular el mejor individuo
 		
 		for (int i = 0; i < tam_reemplazo; i++) {
+			pos1 = -1;
+			pos2 = -1;
+			pos3 = -1;
 			
 			// escojo 3 individuos aleatoriamente asegurandome de que sean distintos
 	        while((pos1 == pos2) || (pos1 == pos3) || (pos2 == pos3)){
@@ -225,6 +236,8 @@ public class Genetico {
 				pos2 = generador_random.nextInt(0, num_individuos);
 				pos3 = generador_random.nextInt(0, num_individuos);
 	        }
+	        
+	        System.out.println("Posiciones: " + pos1 + " " + pos2 + " " + pos3);
 	        
 	        fit1 = poblacion.get(pos1).getFitness();
 	        fit2 = poblacion.get(pos2).getFitness();
@@ -263,13 +276,17 @@ public class Genetico {
 		for (int i = 0; i < primer_genoma.length; i++) {
 			
 			// calculo la diferencia, el maximo y el minimo
+			
 			min = Math.min(primer_genoma[i], segundo_genoma[i]);
 			max = Math.max(primer_genoma[i], segundo_genoma[i]);
+			System.out.println(min + " " + max);
 			diff = max - min;
 			
 			// asigno en cada gen un valor aleatorio dentro del rango que marca el operador de cruce BLX-alpha
-			primer_genoma[i] = (float) generador_random.nextDouble(min - alpha*diff, max + alpha*diff);
-			segundo_genoma[i] = (float) generador_random.nextDouble(min - alpha*diff, max + alpha*diff);
+			if (diff != 0) {
+				primer_genoma[i] = (float) generador_random.nextDouble(min - alpha*diff, max + alpha*diff);
+				segundo_genoma[i] = (float) generador_random.nextDouble(min - alpha*diff, max + alpha*diff);
+			}
 		}
 		
 		// relleno los hijos (aniado el genoma y dejo los resultados como indeterminados hasta que se evaluen
@@ -315,61 +332,86 @@ public class Genetico {
 		// ReverseOrder porque quiero sacar los mejores del torneo por lo que ordeno de mayor a menor
 		PriorityQueue<Individuo> torneo = new PriorityQueue<Individuo>(Comparator.reverseOrder());
 		
+		int contador = 0;
+		
 		// genero la poblacion inicial de manera aleatoria
 		for (int i = 0; i < NUM_INDIVIDUOS; i++) {
-			System.out.println("INI");
 			Individuo nuevo = new Individuo();
 			nuevo.generaRandomSol(generador_random);
 			poblacion.add(nuevo);
+			System.out.println("GENERADO INDIVIDO: " + i);
 			num_eval++;
-			System.out.println("**************************************************************");
 		}
 		
-		while (num_eval <= MAX_EVAL) {
-			
-			// selecciono 2 padres
-			nuevos = op_seleccion(poblacion, NUM_HIJOS);
-			
-			// los cruzo
-			nuevos = op_cruce_BLX(nuevos.get(0).genoma, nuevos.get(1).genoma, ALPHA);
-			
-			// los muto o no segun la probabilidad de cruce
-			for (Individuo hijo : nuevos) {
-				if (generador_random.nextInt(100) < (PROB_MUTA*100)) {
-					hijo = op_mutacion(hijo.genoma, 0.05f);
+		System.out.println("FIN INCIACION");
+		
+		try {
+	      	  PrintWriter salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\resumen_generacion_pesos.txt"));
+		
+			while (num_eval <= MAX_EVAL) {
+				
+				// selecciono 2 padres
+				nuevos = op_seleccion(poblacion, NUM_HIJOS);
+				
+				// los cruzo
+				nuevos = op_cruce_BLX(nuevos.get(0).genoma, nuevos.get(1).genoma, ALPHA);
+				
+				// los muto o no segun la probabilidad de cruce
+				for (Individuo hijo : nuevos) {
+					if (generador_random.nextInt(100) < (PROB_MUTA*100)) {
+						hijo = op_mutacion(hijo.genoma, 0.05f);
+					}
+					
+					// al haberse cruzado, muten o no, actualizo su fitness
+					hijo.actualizaFitness();
+					num_eval++;
 				}
 				
-				// al haberse cruzado, muten o no, actualizo su fitness
-				hijo.actualizaFitness();
-				num_eval++;
+				// hago un torneo con los peores de la poblacion y los hijos
+				for (int i = 0; i < NUM_HIJOS; i++) {
+					torneo.add(nuevos.get(i));
+					Individuo peor = Collections.min(poblacion, Comparator.comparingDouble(j -> j.fitness));
+					poblacion.remove(peor);
+					torneo.add(peor);
+				}
+				
+				// me quedo con los 2 mejores
+				for (int i = 0; i < NUM_HIJOS; i++) {
+					poblacion.add(torneo.element());
+					torneo.poll();
+				}
+				
+				Individuo mejor = Collections.max(poblacion, Comparator.comparingDouble(i -> i.fitness));
+				
+				System.out.println("**************************************************************");
+				System.out.println("MEJOR INDIVIDUO GENERACION " + contador + ":");
+				System.out.println("Horizontal: " + mejor.genoma[0]);
+				System.out.println("Vertical: " + mejor.genoma[1]);
+				System.out.println("kill: " + mejor.genoma[2]);
+				System.out.println("monedas: " + mejor.genoma[3]);
+				
+				System.out.println("Niveles superados: " + mejor.resultados.niveles_superados);
+				System.out.println("Porcentaje superado: " + mejor.resultados.porcentaje_superado);
+				System.out.println("**************************************************************");
+				
+				salida_fichero.println("**************************************************************");
+				salida_fichero.println("MEJOR INDIVIDUO GENERACION " + contador + ":");
+		      	salida_fichero.println("Horizontal: " + mejor.genoma[0]);
+		      	salida_fichero.println("Vertical: " + mejor.genoma[1]);
+		      	salida_fichero.println("kill: " + mejor.genoma[2]);
+		      	salida_fichero.println("monedas: " + mejor.genoma[3]);
+				
+		      	salida_fichero.println("Niveles superados: " + mejor.resultados.niveles_superados);
+		      	salida_fichero.println("Porcentaje superado: " + mejor.resultados.porcentaje_superado);
+		      	salida_fichero.println("**************************************************************");
+		      	
+		      	contador++;
 			}
-			
-			// hago un torneo con los peores de la poblacion y los hijos
-			for (int i = 0; i < NUM_HIJOS; i++) {
-				torneo.add(nuevos.get(i));
-				Individuo peor = Collections.min(poblacion, Comparator.comparingDouble(j -> j.fitness));
-				poblacion.remove(peor);
-				torneo.add(peor);
-			}
-			
-			// me quedo con los 2 mejores
-			for (int i = 0; i < NUM_HIJOS; i++) {
-				poblacion.add(torneo.element());
-				torneo.poll();
-			}
-			
-			Individuo mejor = Collections.max(poblacion, Comparator.comparingDouble(i -> i.fitness));
-			
-			System.out.println("**************************************************************");
-			System.out.println("Horizontal: " + mejor.genoma[0]);
-			System.out.println("Vertical: " + mejor.genoma[1]);
-			System.out.println("kill: " + mejor.genoma[2]);
-			System.out.println("monedas: " + mejor.genoma[3]);
-			
-			System.out.println("Niveles superados: " + mejor.resultados.niveles_superados);
-			System.out.println("Porcentaje superado: " + mejor.resultados.porcentaje_superado);
-			System.out.println("**************************************************************");
-		}
+		
+			salida_fichero.close();
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
 		
 		return Collections.max(poblacion, Comparator.comparingDouble(i -> i.fitness));
 	}
@@ -410,6 +452,22 @@ public class Genetico {
 		
 		System.out.println("Niveles superados: " + mejor.resultados.niveles_superados);
 		System.out.println("Porcentaje superado: " + mejor.resultados.porcentaje_superado);
+		
+		try {
+	      	  PrintWriter salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\mejor_individuo_pesos.txt"));
+	      	  
+	      	salida_fichero.println("Horizontal: " + mejor.genoma[0]);
+	      	salida_fichero.println("Vertical: " + mejor.genoma[1]);
+	      	salida_fichero.println("kill: " + mejor.genoma[2]);
+	      	salida_fichero.println("monedas: " + mejor.genoma[3]);
+			
+	      	salida_fichero.println("Niveles superados: " + mejor.resultados.niveles_superados);
+	      	salida_fichero.println("Porcentaje superado: " + mejor.resultados.porcentaje_superado);
+	      	  
+	      	  salida_fichero.close();
+	        } catch (IOException e) {
+	      	  e.printStackTrace();
+	        }
 		
 		/*
 		//Random generador_random = new Random(42);
