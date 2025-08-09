@@ -206,6 +206,75 @@ class Individuo implements Comparable<Individuo>{
         return a_devolver;
     }
 	
+	public Resumen evaluaIndividuoMCTS() {
+    	Resumen a_devolver = new Resumen(); // [num_niveles_pasados, porcentaje_total_pasado, tiempo_restante, monedas_conseguidas]
+    	
+    	float[] genes = genoma.clone();
+    	
+    	// denormalizo cada gen
+    	for (int i = 0; i < NUM_GENES; i++) {
+    		genes[i] = genes[i] * NORMALIZER[i];
+    	}
+    	
+    	int cores = Runtime.getRuntime().availableProcessors();
+        ExecutorService pool = Executors.newFixedThreadPool(cores-1);
+
+        try {
+          List<Callable<MarioResult>> tareas = new ArrayList<>();
+          
+          
+
+          List<Future<MarioResult>> futuros = pool.invokeAll(tareas);
+
+          int pasa = 0;
+          double sumaCompletion = 0.0;
+          int monedasConseguidas = 0;
+          double tiempoRestante = 0.0;
+
+          for (Future<MarioResult> f : futuros) {
+            try {
+              MarioResult r = f.get();
+              if (r.getGameStatus() == GameStatus.WIN) {
+            	  pasa++;
+              }
+              sumaCompletion += r.getCompletionPercentage();
+              monedasConseguidas += r.getCurrentCoins();
+              tiempoRestante += r.getRemainingTime();
+              
+            } catch (InterruptedException ie) {
+              Thread.currentThread().interrupt();
+              System.err.println("Hilo interrumpido mientras esperaba resultados");
+              break;
+            } catch (ExecutionException ee) {
+              System.err.println("Falló nivel: " + ee.getCause());
+            }
+          }
+          a_devolver.niveles_superados = pasa;
+          a_devolver.porcentaje_superado = (float)sumaCompletion;
+          a_devolver.tiempo_restante = (float)tiempoRestante;
+          a_devolver.monedas_conseguidas = monedasConseguidas;
+          
+          //System.out.println("Suma de porcentaje pasado: " + sumaCompletion);
+          //System.out.format("Pasados %2d/15 → %.1f%%\n", pasa, sumaCompletion);
+        } catch (InterruptedException ex) {
+          Thread.currentThread().interrupt();
+          System.err.println("El hilo principal fue interrumpido durante invokeAll");
+        } finally {
+          pool.shutdown();
+          try {
+            if (!pool.awaitTermination(5, TimeUnit.MINUTES)) {
+              pool.shutdownNow();
+              System.err.println("Pool no terminó en tiempo — apagado forzado");
+            }
+          } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+            System.err.println("Interrupción mientras cerraba el pool");
+          }
+        }
+        
+        return a_devolver;
+    }
+	
 	@Override
     public int compareTo(Individuo otro) {
         return Float.compare(fitness, otro.fitness);
@@ -236,8 +305,6 @@ public class Genetico {
 				pos2 = generador_random.nextInt(0, num_individuos);
 				pos3 = generador_random.nextInt(0, num_individuos);
 	        }
-	        
-	        System.out.println("Posiciones: " + pos1 + " " + pos2 + " " + pos3);
 	        
 	        fit1 = poblacion.get(pos1).getFitness();
 	        fit2 = poblacion.get(pos2).getFitness();
@@ -279,7 +346,6 @@ public class Genetico {
 			
 			min = Math.min(primer_genoma[i], segundo_genoma[i]);
 			max = Math.max(primer_genoma[i], segundo_genoma[i]);
-			System.out.println(min + " " + max);
 			diff = max - min;
 			
 			// asigno en cada gen un valor aleatorio dentro del rango que marca el operador de cruce BLX-alpha
@@ -443,6 +509,10 @@ public class Genetico {
 	
 	public static void main(String[] args) {
 		
+		int cores = Runtime.getRuntime().availableProcessors();
+		System.out.println(cores);
+		
+		/*
 		Individuo mejor = AGE();
 		
 		System.out.println("Horizontal: " + mejor.genoma[0]);
@@ -468,108 +538,6 @@ public class Genetico {
 	        } catch (IOException e) {
 	      	  e.printStackTrace();
 	        }
-		
-		/*
-		//Random generador_random = new Random(42);
-		System.out.println(generador_random.nextDouble());
-		System.out.println(generador_random.nextDouble());
-		System.out.println(generador_random.nextDouble());
-		System.out.println(generador_random.nextDouble());
-		System.out.println(generador_random.nextDouble());
-		System.out.println(generador_random.nextDouble());
-		
-		try {
-      	  PrintWriter salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\prueba_paralela.txt"));
-      	  
-      	  resumenes = pruebaAlphaBetaGeneticoTodosNivelesParalelo(700, 30, 10, 12);
-      	  salida_fichero.println("Niveles superados: " + resumenes.niveles_superados);
-      	  salida_fichero.println("Porcentaje: " + resumenes.porcentaje_superado);
-      	  salida_fichero.println("Tiempo_restante: " + resumenes.tiempo_restante);
-      	  salida_fichero.println("Monedas_conseguidas: " + resumenes.monedas_conseguidas);
-      	  salida_fichero.println("*************************************************************************");
-      	  resumenes = pruebaAlphaBetaGeneticoTodosNivelesParalelo(700, 30, 11, 13);
-      	  salida_fichero.println("Niveles superados: " + resumenes.niveles_superados);
-    	  salida_fichero.println("Porcentaje: " + resumenes.porcentaje_superado);
-    	  salida_fichero.println("Tiempo_restante: " + resumenes.tiempo_restante);
-    	  salida_fichero.println("Monedas_conseguidas: " + resumenes.monedas_conseguidas);
-    	  salida_fichero.println("*************************************************************************");
-      	  salida_fichero.close();
-        } catch (IOException e) {
-      	  e.printStackTrace();
-        }
-        */
+	        */
 	}
-	
-	/*
-	public static Resumen pruebaAlphaBetaGeneticoTodosNivelesParalelo(float horizontal, float vertical, float kill, float moneda) {
-    	Resumen a_devolver = new Resumen(); // [num_niveles_pasados, porcentaje_total_pasado, tiempo_restante, monedas_conseguidas]
-    	
-    	int cores = Runtime.getRuntime().availableProcessors();
-        ExecutorService pool = Executors.newFixedThreadPool(cores-1);
-        //System.out.println(cores);
-
-        try {
-          List<Callable<MarioResult>> tareas = IntStream.rangeClosed(1, 15)
-            .mapToObj(i -> (Callable<MarioResult>) () -> {
-              MarioGame mg = new MarioGame();	
-              MarioAgent agent = new agents.alphaBetaGenetico.Agent(horizontal, vertical, kill, moneda);
-              String level = getLevel("./levels/original/lvl-" + i + ".txt");
-              return mg.runGame(agent, level, 20, 0, false);
-            })
-            .collect(Collectors.toList());
-
-          // invokeAll sí arroja InterruptedException (hay que tratarlo)
-          List<Future<MarioResult>> futuros = pool.invokeAll(tareas);
-
-          int pasa = 0;
-          double sumaCompletion = 0.0;
-          int monedasConseguidas = 0;
-          double tiempoRestante = 0.0;
-
-          for (Future<MarioResult> f : futuros) {
-            try {
-              MarioResult r = f.get(); // también arroja InterruptedException
-              if (r.getGameStatus() == GameStatus.WIN) {
-            	  pasa++;
-              }
-              sumaCompletion += r.getCompletionPercentage();
-              monedasConseguidas += r.getCurrentCoins();
-              tiempoRestante += r.getRemainingTime();
-              //printResults(r);
-              
-            } catch (InterruptedException ie) {
-              Thread.currentThread().interrupt();
-              System.err.println("Hilo interrumpido mientras esperaba resultados");
-              // quizá quieras salir del ciclo
-              break;
-            } catch (ExecutionException ee) {
-              System.err.println("Falló nivel: " + ee.getCause());
-            }
-          }
-          a_devolver.niveles_superados = pasa;
-          a_devolver.porcentaje_superado = (float)sumaCompletion;
-          a_devolver.tiempo_restante = (float)tiempoRestante;
-          a_devolver.monedas_conseguidas = monedasConseguidas;
-          
-          //System.out.println("Suma de porcentaje pasado: " + sumaCompletion);
-          //System.out.format("Pasados %2d/15 → %.1f%%\n", pasa, sumaCompletion);
-        } catch (InterruptedException ex) {
-          Thread.currentThread().interrupt();
-          System.err.println("El hilo principal fue interrumpido durante invokeAll");
-        } finally {
-          pool.shutdown();
-          try {
-            if (!pool.awaitTermination(5, TimeUnit.MINUTES)) {
-              pool.shutdownNow();
-              System.err.println("Pool no terminó en tiempo — apagado forzado");
-            }
-          } catch (InterruptedException ie) {
-            Thread.currentThread().interrupt();
-            System.err.println("Interrupción mientras cerraba el pool");
-          }
-        }
-        
-        return a_devolver;
-    }
-    */
 }
