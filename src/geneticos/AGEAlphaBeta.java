@@ -118,8 +118,8 @@ public class AGEAlphaBeta {
 	
 	// algoritmo genetico estacionario
 	public static IndividuoAlphaBeta AGE() {
-		final int NUM_INDIVIDUOS = 10; // tamaño de la poblacion
-		final int MAX_EVAL = 15; // maximo de soluciones a evaluar
+		final int NUM_INDIVIDUOS = 50; // tamaño de la poblacion
+		final int MAX_EVAL = 1000; // maximo de soluciones a evaluar
 		final int NUM_HIJOS = 2; // numero de hijos que devolvera el operador de seleccion (al ser estacionario solo 2)
 		final float PROB_CRUCE = 1.0f;
 		final float PROB_MUTA = 0.08f;

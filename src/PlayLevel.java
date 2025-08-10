@@ -120,7 +120,7 @@ public class PlayLevel {
         
         // mi agente alphaBeta optimizado (todos los niveles)
         
-        
+        /*
         level_pass = 0;
         perc_pass = 0; 
         
@@ -132,14 +132,14 @@ public class PlayLevel {
         }
         System.out.println("Niveles pasados: " + level_pass);
         System.out.println("Porcentaje pasado: " + perc_pass);
-        
+        */
         
         /*
         level_pass = 0;
         perc_pass = 0;
         
         for (int i = 1; i <= 15; i++) {
-        	MarioResult result = game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+        	MarioResult result = game.runGame(new agents.mctsOptimized.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
             printResults(result);
             level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
             perc_pass += result.getCompletionPercentage();
@@ -169,7 +169,7 @@ public class PlayLevel {
           List<Callable<MarioResult>> tareas = IntStream.rangeClosed(1, 15)
             .mapToObj(i -> (Callable<MarioResult>) () -> {
               MarioGame mg = new MarioGame();	
-              MarioAgent agent = new agents.mctsOptimized.Agent();
+              MarioAgent agent = new agents.mcts.Agent();
               String level = getLevel("./levels/original/lvl-" + i + ".txt");
               return mg.runGame(agent, level, 20, 0, false);
             })

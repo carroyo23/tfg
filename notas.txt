@@ -244,3 +244,9 @@ Voy a empezar con un modelo estacionario
 
 Refactorizo el codigo y hago una clase abstracta para que el genetico pueda trabajar
 con el alphaBeta y con el MCTS
+
+Al final habra que revisar todos los codigos para quitar los comentarios y debugs
+
+Para el genetico del MCTS dare tambien que acciones coger. Para ello creare
+un array binario en el que si una posicion esta a true esa accion sera seleccionable
+y si no no. Para cruzarlos usare el cruce en 2 puntos.

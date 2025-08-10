@@ -1,4 +1,4 @@
-package agents.mctsOptimized;
+package agents.mctsGenetico;
 
 import engine.helper.GameStatus;
 import engine.helper.MarioActions;
@@ -10,6 +10,9 @@ import java.util.Random;
 import engine.core.MarioAgent;
 import engine.core.MarioForwardModel;
 import engine.core.MarioTimer;
+
+import agents.mcts.Acciones;
+import agents.mcts.NodoMCTS;
 
 public class Agent implements MarioAgent {
 	
@@ -28,25 +31,33 @@ public class Agent implements MarioAgent {
 	private float VALOR_HORIZONTAL = 700;
 	private float VALOR_VERTICAL = 30;
 	private float VALOR_KILL = 10;
-	private float VALOR_MONEDAS = 50;
+	private float VALOR_MONEDA = 50;
 	private final float VALOR_TIME_OUT = 300;
 	private final float VALOR_WIN = Float.POSITIVE_INFINITY;
 	private final float VALOR_LOSE = -10000000;
 	
 	private final float MAX_TIEMPO = 5;
 	
-	private float CONST_UCT = (float) 1.25;
+	private float CONST_UCT = 1.25f;
 	
 	int cont;
 	
 	Random random;
 	
+	public Agent() {
+		
+	}
+	
 	public Agent(float uct) {
 		CONST_UCT = uct;
 	}
 	
-	public Agent() {
-		
+	public Agent(float uct, float nuevo_horizontal, float nuevo_vertical, float nuevo_kill, float nuevo_moneda) {
+		CONST_UCT = uct;
+		VALOR_HORIZONTAL = nuevo_horizontal;
+		VALOR_VERTICAL = nuevo_vertical;
+		VALOR_KILL = nuevo_kill;
+		VALOR_MONEDA = nuevo_moneda;
 	}
 
 	@Override
@@ -116,17 +127,6 @@ public class Agent implements MarioAgent {
 					
 				}
 				
-				/*
-				// hago backpropagation con la recompensa
-				nodo_backpropagation = actual;
-				while (nodo_backpropagation.padre != null) {
-					nodo_backpropagation = nodo_backpropagation.padre;
-					nodo_backpropagation.visitas += 1;
-					nodo_backpropagation.recompensa += a_simular.recompensa / (float) actual.hijos.size();
-					
-				}
-				*/
-				
 				fin = timer.getRemainingTime() <= MAX_TIEMPO;
 			}
 			else {
@@ -152,7 +152,6 @@ public class Agent implements MarioAgent {
 			action = mejor_accion;
 		}
 		
-		//System.out.println("iteraciones bucle: " + cont);
 		cont = 0;
 		
 		return action;
@@ -166,12 +165,7 @@ public class Agent implements MarioAgent {
 		List<NodoMCTS> hijos_a_comparar;
 		int mejor_nodo_indice = -1;
 		
-		//pintaNodo(raiz);
-		//pintaNodo(mejor_nodo);
-		
 		while (((mejor_nodo.hijos != null) && !mejor_nodo.hijos.isEmpty()) && (timer.getRemainingTime() > MAX_TIEMPO) && !esNodoFinal(mejor_nodo)) {
-			
-			//pintaNodo(mejor_nodo);
 			
 			// reinicio variables para cada nivel del arbol
 			mejor_nodo_indice = -1;
@@ -182,20 +176,14 @@ public class Agent implements MarioAgent {
 			for (int i = 0; i < hijos_a_comparar.size(); i++) {
 				nuevo_valor = getUCT(hijos_a_comparar.get(i));
 				
-				//pintaNodo(hijos_a_comparar.get(i));
-				//System.out.println(nuevo_valor);
-				
 				// actualizo el mejor nodo
 				if (nuevo_valor >= valor_mejor_nodo) {
 					valor_mejor_nodo = nuevo_valor;
-					//mejor_nodo = hijos_a_comparar.get(i);
 					mejor_nodo_indice = i;
 				}
 			}
 			
 			mejor_nodo = mejor_nodo.hijos.get(mejor_nodo_indice);
-			
-			//pintaNodo(mejor_nodo);
 		}
 		
 		return mejor_nodo;
@@ -216,13 +204,6 @@ public class Agent implements MarioAgent {
 			exploracion = (float) (CONST_UCT * Math.sqrt(Math.log(nodo.padre.visitas) / nodo.visitas));
 			
 			a_devolver = explotacion + exploracion;
-			
-			/*
-			System.out.println("-------------------------------------");
-			System.out.println(explotacion);
-			System.out.println(exploracion);
-			System.out.println("-------------------------------------");
-			*/
 		}
 		else {
 			a_devolver = Float.POSITIVE_INFINITY;
@@ -271,7 +252,7 @@ public class Agent implements MarioAgent {
 		a_devolver += model.getKillsTotal() * VALOR_KILL;
 		
 		// suma por conseguir monedas
-		a_devolver += model.getNumCollectedCoins() * VALOR_MONEDAS;
+		a_devolver += model.getNumCollectedCoins() * VALOR_MONEDA;
 		
 		// comprobacion del estado del juego si este ha terminado
 		a_devolver = (status == GameStatus.WIN) ? VALOR_WIN : a_devolver;
@@ -385,6 +366,6 @@ public class Agent implements MarioAgent {
 
 	@Override
 	public String getAgentName() {
-		return "MCTS OPTIMIZED";
+		return "MCTSGeneticoAgent";
 	}
 }
