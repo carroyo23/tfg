@@ -1,0 +1,18 @@
+**************************************************************
+MEJOR INDIVIDUO GENERACION 0:
+Horizontal: 0.6655489
+Vertical: 0.09132457
+kill: 0.9033722
+monedas: 0.45125717
+Niveles superados: 10
+Porcentaje superado: 12.882145
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 1:
+Horizontal: 0.6655489
+Vertical: 0.09132457
+kill: 0.9033722
+monedas: 0.45125717
+Niveles superados: 10
+Porcentaje superado: 12.882145
+**************************************************************

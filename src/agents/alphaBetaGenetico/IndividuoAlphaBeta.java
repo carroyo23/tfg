@@ -20,7 +20,7 @@ import engine.core.MarioGame;
 import engine.core.MarioResult;
 import engine.helper.GameStatus;
 
-public  class Individuo implements Comparable<Individuo>{
+public  class IndividuoAlphaBeta implements Comparable<IndividuoAlphaBeta>{
 	// la forma de este array sera la siguiente: [valor_horizontal, valor_vertical, valor_kill, valor_monedas]
 	public float[] genoma = null;
 	public static final int NUM_GENES = 4;
@@ -34,19 +34,19 @@ public  class Individuo implements Comparable<Individuo>{
 	public final float PESO_TIEMPO = 30f;
 	public final float PESO_MONEDAS = 5f;
 	
-	public Individuo() {
+	public IndividuoAlphaBeta() {
 		genoma = null;
 		resultados = null;
 		fitness = -1;
 	}
 	
-	public Individuo(float[] nuevo_genoma) {
+	public IndividuoAlphaBeta(float[] nuevo_genoma) {
 		genoma = nuevo_genoma.clone();
 		resultados = null;
 		fitness = -1;
 	}
 	
-	public Individuo(final Individuo otro) {
+	public IndividuoAlphaBeta(final IndividuoAlphaBeta otro) {
 		genoma = otro.genoma.clone();
 		fitness = otro.fitness;
 		resultados = new Resumen(otro.resultados);
@@ -263,7 +263,7 @@ public  class Individuo implements Comparable<Individuo>{
     }
 	
 	@Override
-    public int compareTo(Individuo otro) {
+    public int compareTo(IndividuoAlphaBeta otro) {
         return Float.compare(fitness, otro.fitness);
     }
 }
