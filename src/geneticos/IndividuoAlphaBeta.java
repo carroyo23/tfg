@@ -1,9 +1,5 @@
-package agents.alphaBetaGenetico;
+package geneticos;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -20,39 +16,35 @@ import engine.core.MarioGame;
 import engine.core.MarioResult;
 import engine.helper.GameStatus;
 
-public  class IndividuoAlphaBeta implements Comparable<IndividuoAlphaBeta>{
+public  class IndividuoAlphaBeta extends IndividuoBase{
 	// la forma de este array sera la siguiente: [valor_horizontal, valor_vertical, valor_kill, valor_monedas]
-	public float[] genoma = null;
+	//public float[] genoma = null;
 	public static final int NUM_GENES = 4;
 	public static final int [] NORMALIZER = {1000, 100, 100, 100}; // la puntuacion por avanzar es 1 orden de magnitud mayor que el resto
 	
-	public Resumen resultados = null;
-	public float fitness = -1;
+	//public Resumen resultados = null;
+	//public float fitness = -1;
 	
+	/*
 	public final float PESO_NIVEL = 100f;
 	public final float PESO_PORCENTAJE = 70f;
 	public final float PESO_TIEMPO = 30f;
 	public final float PESO_MONEDAS = 5f;
+	*/
 	
 	public IndividuoAlphaBeta() {
-		genoma = null;
-		resultados = null;
-		fitness = -1;
+		super();
 	}
 	
 	public IndividuoAlphaBeta(float[] nuevo_genoma) {
-		genoma = nuevo_genoma.clone();
-		resultados = null;
-		fitness = -1;
+		super(nuevo_genoma);
 	}
 	
 	public IndividuoAlphaBeta(final IndividuoAlphaBeta otro) {
-		genoma = otro.genoma.clone();
-		fitness = otro.fitness;
-		resultados = new Resumen(otro.resultados);
+		super(otro);
 	}
 	
-	
+	@Override
 	public float getFitness() {
 		
 		// primero normalizo todos los valores para que esten en la misma escala
@@ -67,6 +59,7 @@ public  class IndividuoAlphaBeta implements Comparable<IndividuoAlphaBeta>{
 		return fitness;
 	}
 	
+	@Override
 	public void generaRandomSol(Random generador_random) {
 		// anulo los resultados que hubiera
 		resultados = null;
@@ -83,20 +76,7 @@ public  class IndividuoAlphaBeta implements Comparable<IndividuoAlphaBeta>{
 		getFitness();
 	}
 	
-	public void actualizaFitness() {
-		resultados = evaluaIndividuo();
-		getFitness();
-	}
-	
-	public static String getLevel(String filepath) {
-        String content = "";
-        try {
-            content = new String(Files.readAllBytes(Paths.get(filepath)));
-        } catch (IOException e) {
-        }
-        return content;
-    }
-	
+	@Override
 	public Resumen evaluaIndividuo() {
     	Resumen a_devolver = new Resumen(); // [num_niveles_pasados, porcentaje_total_pasado, tiempo_restante, monedas_conseguidas]
     	
@@ -173,97 +153,5 @@ public  class IndividuoAlphaBeta implements Comparable<IndividuoAlphaBeta>{
         }
         
         return a_devolver;
-    }
-	
-	public Resumen evaluaIndividuoMCTS(final int veces) {
-    	Resumen a_devolver = new Resumen(); // [num_niveles_pasados, porcentaje_total_pasado, tiempo_restante, monedas_conseguidas]
-    	
-    	int cores = Runtime.getRuntime().availableProcessors();
-        ExecutorService pool = Executors.newFixedThreadPool(cores-1);
-
-        try {
-          List<Callable<MarioResult>> tareas = new ArrayList<>();
-          
-          // lo ejecutare veces para sacar medias de cada individuo
-          for (int rep = 0; rep < veces; rep++) {
-        	  float[] genes = genoma.clone();
-          	
-          	// denormalizo cada gen
-          	for (int i = 0; i < NUM_GENES; i++) {
-          		genes[i] = genes[i] * NORMALIZER[i];
-          	}
-          	
-          	for (int i = 1; i < 15; i++) {
-          		// los hago constantes para evitar condiciones de carrera
-          		final int NIVEL_CONST = i;
-          		final float[] GENES_CONST = genes.clone();
-          		
-          		tareas.add(() -> {
-          			MarioGame mg = new MarioGame();
-          			MarioAgent agent = new agents.alphaBetaGenetico.Agent(GENES_CONST[0], GENES_CONST[1], GENES_CONST[2], GENES_CONST[3]);
-          			String nivel = getLevel("./levels/original/lvl-" + NIVEL_CONST + ".txt");
-          			return mg.runGame(agent, nivel, 20, 0, false);
-          		});
-          	}
-          }
-
-          List<Future<MarioResult>> futuros = pool.invokeAll(tareas);
-
-          int pasa = 0;
-          double sumaCompletion = 0.0;
-          int monedasConseguidas = 0;
-          double tiempoRestante = 0.0;
-
-          for (Future<MarioResult> f : futuros) {
-            try {
-              MarioResult r = f.get();
-              if (r.getGameStatus() == GameStatus.WIN) {
-            	  pasa++;
-            	  tiempoRestante += r.getRemainingTime(); // solo sumare el tiempo si ha ganado
-              }
-              sumaCompletion += r.getCompletionPercentage();
-              monedasConseguidas += r.getCurrentCoins();
-              
-            } catch (InterruptedException ie) {
-              Thread.currentThread().interrupt();
-              System.err.println("Hilo interrumpido mientras esperaba resultados");
-              break;
-            } catch (ExecutionException ee) {
-              System.err.println("Fallo tarea: " + ee.getCause());
-            }
-          }
-          a_devolver.niveles_superados = pasa;
-          a_devolver.porcentaje_superado = (float)sumaCompletion;
-          a_devolver.tiempo_restante = (float)tiempoRestante;
-          a_devolver.monedas_conseguidas = monedasConseguidas;
-          
-        } catch (InterruptedException ex) {
-          Thread.currentThread().interrupt();
-          System.err.println("El hilo principal fue interrumpido durante invokeAll");
-        } finally {
-          pool.shutdown();
-          try {
-            if (!pool.awaitTermination(10, TimeUnit.MINUTES)) {
-              pool.shutdownNow();
-              System.err.println("Pool no terminó en tiempo — apagado forzado");
-            }
-          } catch (InterruptedException ie) {
-            Thread.currentThread().interrupt();
-            System.err.println("Interrupción mientras cerraba el pool");
-          }
-        }
-        
-        // divido los valores entre las veces que se ha ejecutado para obtener las medias
-        a_devolver.niveles_superados /= (float)veces;
-        a_devolver.porcentaje_superado /= (float)veces;
-        a_devolver.tiempo_restante /= (float)veces;
-        a_devolver.monedas_conseguidas /= (float)veces;
-        
-        return a_devolver;
-    }
-	
-	@Override
-    public int compareTo(IndividuoAlphaBeta otro) {
-        return Float.compare(fitness, otro.fitness);
     }
 }

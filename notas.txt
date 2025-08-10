@@ -241,3 +241,6 @@ de una distribución normal con media 0 y desviación estandar delta (N(0,delta^
 POSIBLE IDEA: guardar en ficheros ciertas generaciones del genetico para ver como evoluciona
 
 Voy a empezar con un modelo estacionario
+
+Refactorizo el codigo y hago una clase abstracta para que el genetico pueda trabajar
+con el alphaBeta y con el MCTS

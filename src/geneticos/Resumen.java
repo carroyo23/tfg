@@ -1,4 +1,4 @@
-package agents.alphaBetaGenetico;
+package geneticos;
 
 public class Resumen {
 	public int niveles_superados = -1;

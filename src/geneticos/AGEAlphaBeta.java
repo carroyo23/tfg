@@ -1,3 +1,5 @@
+package geneticos;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,9 +17,7 @@ import java.io.PrintWriter;
 
 import java.util.Random;
 
-import geneticos.*;
-
-public class Genetico {
+public class AGEAlphaBeta {
 	
 	public static Random generador_random = new Random(42);
 	

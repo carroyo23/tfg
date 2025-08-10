@@ -1,8 +1,9 @@
-package agents.alphaBetaGenetico;
+package geneticos;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Random;
 
 public abstract class IndividuoBase implements Comparable<IndividuoBase> {
 	public float[] genoma;
@@ -57,6 +58,6 @@ public abstract class IndividuoBase implements Comparable<IndividuoBase> {
 	
 	// los metodos que cada subclase debe implementar
 	public abstract float getFitness();
-	public abstract void generaRandomSol();
+	public abstract void generaRandomSol(Random generador_random);
 	public abstract Resumen evaluaIndividuo();
 }
