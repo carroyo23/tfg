@@ -28,10 +28,10 @@ public class Agent implements MarioAgent {
 	private static int NUM_REPS_ACTION = 1; // las veces que se repite una accion para que pueda mirar mas a futuro
 	
 	// valores para la heuristica de las recompensas
-	private float VALOR_HORIZONTAL = 700;
+	private float VALOR_HORIZONTAL = 1200;
 	private float VALOR_VERTICAL = 30;
 	private float VALOR_KILL = 10;
-	private float VALOR_MONEDA = 50;
+	private float VALOR_MONEDA = 12;
 	private final float VALOR_TIME_OUT = 300;
 	private final float VALOR_WIN = Float.POSITIVE_INFINITY;
 	private final float VALOR_LOSE = -10000000;
@@ -59,6 +59,13 @@ public class Agent implements MarioAgent {
 		VALOR_KILL = nuevo_kill;
 		VALOR_MONEDA = nuevo_moneda;
 	}
+	
+	public Agent(float nuevo_horizontal, float nuevo_vertical, float nuevo_kill, float nuevo_moneda) {
+		VALOR_HORIZONTAL = nuevo_horizontal;
+		VALOR_VERTICAL = nuevo_vertical;
+		VALOR_KILL = nuevo_kill;
+		VALOR_MONEDA = nuevo_moneda;
+	}
 
 	@Override
 	public void initialize(MarioForwardModel model, MarioTimer timer) {
@@ -69,9 +76,6 @@ public class Agent implements MarioAgent {
 
 	@Override
 	public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
-		
-		// inicializo action como andar a la derecha por si no decidiera nada
-		//action[MarioActions.RIGHT.getValue()] = true; // LO COMENTO PARA VER SI EN ALGUN MOMENTO NO DECIDE NADA VER EL ERROR
 
 		// creo un nodo inicial
 		float recompensa = -1;
@@ -108,6 +112,17 @@ public class Agent implements MarioAgent {
 					// genero el numero de acciones al azar que necesito
 					for (int i = 0; i < MAX_PROFUNDIDAD; i++) {
 						a_simular.model.advance(Acciones.ACCIONES_COMPLETE.get(random.nextInt(Acciones.ACCIONES_COMPLETE.size())));
+						
+						/*
+						// filtro si no puedo saltar exploro el resto de acciones
+				    	if (!(a_simular.model.mayMarioJump() || !a_simular.model.isMarioOnGround())) {
+				    		a_simular.model.advance(Acciones.ACCIONES_REDUCED.get(random.nextInt(Acciones.ACCIONES_REDUCED.size())));
+						}
+				    	else {
+				    		a_simular.model.advance(Acciones.ACCIONES_NO_JUMP.get(random.nextInt(Acciones.ACCIONES_NO_JUMP.size())));
+				    	}
+				    	*/
+				    	
 					}
 					
 					// calculo la nueva recompensa
