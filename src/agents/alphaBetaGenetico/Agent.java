@@ -155,12 +155,6 @@ public class Agent implements MarioAgent {
 		}
 		
 		a_devolver = mejor;
-		
-		if (a_devolver.accion == null) {
-			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
-			System.out.println(a_devolver.valor);
-			System.out.println("fallaaaaaaaaaaaaaaa");
-		}
     	
     	return a_devolver;
     }

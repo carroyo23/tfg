@@ -27,32 +27,6 @@ public class Agent implements MarioAgent {
 
     @Override
     public boolean[] getActions(MarioForwardModel model, MarioTimer timer) {
-    	/*
-        action = new boolean[MarioActions.numberOfActions()];
-        
-        // Obtener matriz de entidades (enemigos y obstáculos)
-        int[][] enemies = model.getScreenCompleteObservation(2,2);
-        
-        // Clonar el modelo y avanzar para simular el futuro
-        MarioForwardModel futureModel = model.clone();
-        futureModel.advance(action);
-        futureModel.advance(action);
-        futureModel.advance(action);
-        int[][] futureEnemies = futureModel.getScreenCompleteObservation(2,2);
-        
-        System.out.println(futureModel.getGameStatus());
-        // Verificar si Mario ha muerto en el futuro
-        if (futureModel.getGameStatus() == GameStatus.LOSE) {
-        	System.out.println("Hola");
-            action[MarioActions.LEFT.getValue()] = true; // Retroceder si se prevé la muerte
-        } else if (isEnemyClose(futureEnemies)) {
-        	System.out.println("aqui");
-            action[MarioActions.JUMP.getValue()] = true; // Saltar si hay un enemigo en la simulación
-        } else {
-        	System.out.println("adios");
-            action[MarioActions.RIGHT.getValue()] = true; // Seguir avanzando si no hay peligro
-        }
-        */
         
         NodoAB nodo = new NodoAB();
         nodo.valor = -1000;
@@ -62,37 +36,6 @@ public class Agent implements MarioAgent {
         NodoAB final_nodo = alphaBeta(nodo, MAX_PROFUNDIDAD, timer);
         
         action = final_nodo.accion;
-        
-        /*
-        System.out.println(nodo.model.getGameStatus());
-        System.out.print(model.getMarioFloatPos()[0]);
-        
-        System.out.print(" ");
-        System.out.print(model.getLevelFloatDimensions()[0]);
-        System.out.print(" ");
-        System.out.println(model.getMarioFloatPos()[0] / model.getLevelFloatDimensions()[0]);
-        System.out.println(final_nodo.valor);
-        */
-        
-        /*
-        System.out.println("LAS ACCIONES");
-		System.out.println(action[0]);
-		System.out.println(action[1]);
-		System.out.println(action[2]);
-		System.out.println(action[3]);
-		System.out.println(action[4]);
-        
-		System.out.println("FIN ACCIONES");
-		*/
-        
-        /*
-        for (int i = 0; i < 5; i++) {
-        	System.out.print(action[i] + " ");
-        }
-        System.out.println();
-        */
-		
-        //System.out.println(timer.getRemainingTime());
         
         return action;
     }
@@ -213,16 +156,6 @@ public class Agent implements MarioAgent {
         result.add(new boolean[]{true, false, false, true, false});   // LEFT + SPEED
         result.add(new boolean[]{false, true, false, true, true});    // RIGHT + JUMP + SPEED
         result.add(new boolean[]{true, false, false, true, true});    // LEFT + JUMP + SPEED
-    	
-        /*
-    	for (int i = 0; i < total_combination; i++) {
-    		boolean[] array = new boolean[length];
-    		for (int j = 0; j < length; j++) {
-    			array[j] = (i & (1 << j)) != 0;
-    		}
-    		result.add(array);
-    	}
-    	*/
     	
     	return result;
     }
