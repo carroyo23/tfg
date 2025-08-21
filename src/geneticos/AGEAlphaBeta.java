@@ -116,6 +116,16 @@ public class AGEAlphaBeta {
 		return mutado;
 	}
 	
+	public static float getFitnessMedio(List<IndividuoAlphaBeta> poblacion) {
+		float a_devolver = 0;
+		
+		for (int i = 0; i < poblacion.size(); i++) {
+			a_devolver += poblacion.get(i).fitness;
+		}
+		
+		return a_devolver / ((float)poblacion.size());
+	}
+	
 	// algoritmo genetico estacionario
 	public static IndividuoAlphaBeta AGE() {
 		final int NUM_INDIVIDUOS = 50; // tamaño de la poblacion
@@ -135,6 +145,7 @@ public class AGEAlphaBeta {
 		PriorityQueue<IndividuoAlphaBeta> torneo = new PriorityQueue<IndividuoAlphaBeta>(Comparator.reverseOrder());
 		
 		int contador = 0;
+		float fitness_medio = 0;
 		
 		// genero la poblacion inicial de manera aleatoria
 		for (int i = 0; i < NUM_INDIVIDUOS; i++) {
@@ -146,23 +157,19 @@ public class AGEAlphaBeta {
 		}
 		
 		System.out.println("FIN INCIACION");
+		System.out.println("Fitness medio: " + getFitnessMedio(poblacion));
+		
 		
 		try {
 	      	  PrintWriter salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\prueba_refactor_otro.txt"));
 		
 			while (num_eval <= MAX_EVAL) {
 				
-				System.out.println("ENTRA");
-				
 				// selecciono 2 padres
 				nuevos = op_seleccion(poblacion, NUM_HIJOS);
 				
-				System.out.println("SELECCION");
-				
 				// los cruzo
 				nuevos = op_cruce_BLX(nuevos.get(0).genoma, nuevos.get(1).genoma, ALPHA);
-				
-				System.out.println("CRUCE");
 				
 				// los muto o no segun la probabilidad de cruce
 				for (IndividuoAlphaBeta hijo : nuevos) {
@@ -174,8 +181,6 @@ public class AGEAlphaBeta {
 					hijo.actualizaFitness();
 					num_eval++;
 				}
-				
-				System.out.println("MUTA");
 				
 				// hago un torneo con los peores de la poblacion y los hijos
 				for (int i = 0; i < NUM_HIJOS; i++) {
@@ -194,6 +199,7 @@ public class AGEAlphaBeta {
 				IndividuoAlphaBeta mejor = Collections.max(poblacion, Comparator.comparingDouble(i -> i.fitness));
 				
 				System.out.println("**************************************************************");
+				System.out.println("FITNESS MEDIO GENERACION " + contador + ":" + getFitnessMedio(poblacion));
 				System.out.println("MEJOR INDIVIDUO GENERACION " + contador + ":");
 				System.out.println("Horizontal: " + mejor.genoma[0]);
 				System.out.println("Vertical: " + mejor.genoma[1]);
@@ -205,6 +211,7 @@ public class AGEAlphaBeta {
 				System.out.println("**************************************************************");
 				
 				salida_fichero.println("**************************************************************");
+				salida_fichero.println("FITNESS MEDIO GENERACION " + contador + ":" + getFitnessMedio(poblacion));
 				salida_fichero.println("MEJOR INDIVIDUO GENERACION " + contador + ":");
 		      	salida_fichero.println("Horizontal: " + mejor.genoma[0]);
 		      	salida_fichero.println("Vertical: " + mejor.genoma[1]);

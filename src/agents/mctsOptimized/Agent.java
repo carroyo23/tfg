@@ -28,7 +28,7 @@ public class Agent implements MarioAgent {
 	private float VALOR_HORIZONTAL = 700;
 	private float VALOR_VERTICAL = 30;
 	private float VALOR_KILL = 10;
-	private float VALOR_MONEDAS = 50;
+	private float VALOR_MONEDAS = 12;
 	private final float VALOR_TIME_OUT = 300;
 	private final float VALOR_WIN = Float.POSITIVE_INFINITY;
 	private final float VALOR_LOSE = -10000000;
@@ -94,9 +94,11 @@ public class Agent implements MarioAgent {
 				// simulo sus hijos al azar un numero de acciones
 				for (NodoMCTS a_simular : actual.hijos) {
 					
-					// genero el numero de acciones al azar que necesito
-					for (int i = 0; i < MAX_PROFUNDIDAD; i++) {
-						a_simular.model.advance(Acciones.ACCIONES_COMPLETE.get(random.nextInt(Acciones.ACCIONES_COMPLETE.size())));
+					if (a_simular.model.getGameStatus() == GameStatus.RUNNING) { // simulo solo si sigue jugando
+						// genero el numero de acciones al azar que necesito
+						for (int i = 0; i < MAX_PROFUNDIDAD; i++) {
+							a_simular.model.advance(Acciones.ACCIONES_COMPLETE.get(random.nextInt(Acciones.ACCIONES_COMPLETE.size())));
+						}
 					}
 					
 					// calculo la nueva recompensa
