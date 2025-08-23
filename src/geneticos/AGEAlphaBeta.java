@@ -165,6 +165,25 @@ public class AGEAlphaBeta {
 		
 			while (num_eval <= MAX_EVAL) {
 				
+				// cada 10 evaluaciones guardo la poblacion en un fichero
+				if ((num_eval % 10) == 0) {
+					try {
+						PrintWriter fichero_poblacion = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\poblacion_" + num_eval + ".csv"));
+						
+						for (int i = 0; i < poblacion.size(); i++) {
+							for (int j = 0; j < (poblacion.get(i).genoma.length - 1); j++) {
+								fichero_poblacion.print(poblacion.get(i).genoma[j] + ",");
+							}
+							fichero_poblacion.println(poblacion.get(i).genoma[poblacion.get(i).genoma.length - 1]);
+						}
+						
+						fichero_poblacion.close();
+					}
+					catch (IOException e) {
+			        	e.printStackTrace();
+			        }
+				}
+				
 				// selecciono 2 padres
 				nuevos = op_seleccion(poblacion, NUM_HIJOS);
 				
@@ -223,13 +242,14 @@ public class AGEAlphaBeta {
 		      	salida_fichero.println("**************************************************************");
 		      	
 		      	contador++;
-		      	
+		      	/*
 		      	System.out.println("//////////////////////////////////////////////////////////////////");
 				for (int i = 0; i < poblacion.size(); i++) {
 					System.out.println("Individuo " + i + ": Pasa: " + poblacion.get(i).resultados.niveles_superados + " Porcentaje: " + poblacion.get(i).resultados.porcentaje_superado);
 					System.out.println("Genes: " + poblacion.get(i).genoma[0] + " " + poblacion.get(i).genoma[1] + poblacion.get(i).genoma[2] + " " + poblacion.get(i).genoma[3]);
 				}
 				System.out.println("//////////////////////////////////////////////////////////////////");
+				*/
 			}
 		
 			salida_fichero.close();
