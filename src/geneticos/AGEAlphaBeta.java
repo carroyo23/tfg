@@ -14,6 +14,8 @@ import engine.core.MarioResult;
 //para redirigir salida a fichero para guardar resultados
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 import java.util.Random;
 
@@ -126,6 +128,31 @@ public class AGEAlphaBeta {
 		return a_devolver / ((float)poblacion.size());
 	}
 	
+	public List<IndividuoAlphaBeta> leePoblacionFichero(String path_fichero){
+		List<IndividuoAlphaBeta> nueva_poblacion = new ArrayList();
+		IndividuoAlphaBeta nuevo;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path_fichero))) {
+            String linea;
+            float [] genoma;
+            while ((linea = br.readLine()) != null) {
+                // Separar por comas
+                String[] valores = linea.split(",");
+                genoma = new float [valores.length - 1];
+                for (int i = 0; i < (valores.length - 1); i++) {
+                    genoma[i] = Float.parseFloat(valores[i]);
+                }
+                nuevo = new IndividuoAlphaBeta(genoma);
+                nuevo.fitness = Float.parseFloat(valores[valores.length - 1]);
+                // TODO: LEER LOS RESUMENES
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return nueva_poblacion;
+	}
+	
 	// algoritmo genetico estacionario
 	public static IndividuoAlphaBeta AGE() {
 		final int NUM_INDIVIDUOS = 50; // tamaño de la poblacion
@@ -171,10 +198,11 @@ public class AGEAlphaBeta {
 						PrintWriter fichero_poblacion = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\poblacion_" + num_eval + ".csv"));
 						
 						for (int i = 0; i < poblacion.size(); i++) {
-							for (int j = 0; j < (poblacion.get(i).genoma.length - 1); j++) {
+							for (int j = 0; j < (poblacion.get(i).genoma.length); j++) {
 								fichero_poblacion.print(poblacion.get(i).genoma[j] + ",");
 							}
-							fichero_poblacion.println(poblacion.get(i).genoma[poblacion.get(i).genoma.length - 1]);
+							// TODO: GUARDAR LOS RESUMENES
+							fichero_poblacion.println(poblacion.get(i).getFitness()); // la ultima columna sera el fitness para no tener que recalcularlo luego
 						}
 						
 						fichero_poblacion.close();
