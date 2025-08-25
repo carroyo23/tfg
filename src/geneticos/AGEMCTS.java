@@ -116,6 +116,16 @@ public class AGEMCTS {
 		return mutado;
 	}
 	
+	public static float getFitnessMedio(List<IndividuoMCTS> poblacion) {
+		float a_devolver = 0;
+		
+		for (int i = 0; i < poblacion.size(); i++) {
+			a_devolver += poblacion.get(i).fitness;
+		}
+		
+		return a_devolver / ((float)poblacion.size());
+	}
+	
 	// algoritmo genetico estacionario
 	public static IndividuoMCTS AGE() {
 		final int NUM_INDIVIDUOS = 50; // tamaño de la poblacion
@@ -151,6 +161,34 @@ public class AGEMCTS {
 	      	  PrintWriter salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\mcts\\resumen_generacion_pesos.txt"));
 		
 			while (num_eval <= MAX_EVAL) {
+				
+				// cada 10 evaluaciones guardo la poblacion en un fichero
+				if ((num_eval % 10) == 0) {
+					try {
+						PrintWriter fichero_poblacion = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\mcts\\alphaBeta\\poblacion_" + num_eval + ".csv"));
+						
+						// guardo el genoma
+						for (int i = 0; i < poblacion.size(); i++) {
+							for (int j = 0; j < (poblacion.get(i).genoma.length); j++) {
+								fichero_poblacion.print(poblacion.get(i).genoma[j] + ",");
+							}
+							
+							// guardo los resumenes
+							fichero_poblacion.print(poblacion.get(i).resultados.niveles_superados + ";");
+							fichero_poblacion.print(poblacion.get(i).resultados.porcentaje_superado + ";");
+							fichero_poblacion.print(poblacion.get(i).resultados.tiempo_restante + ";");
+							fichero_poblacion.print(poblacion.get(i).resultados.monedas_conseguidas + ",");
+							
+							// guardo el fitness
+							fichero_poblacion.println(poblacion.get(i).getFitness()); // la ultima columna sera el fitness para no tener que recalcularlo luego
+						}
+						
+						fichero_poblacion.close();
+					}
+					catch (IOException e) {
+			        	e.printStackTrace();
+			        }
+				}
 				
 				// selecciono 2 padres
 				nuevos = op_seleccion(poblacion, NUM_HIJOS);

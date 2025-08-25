@@ -19,7 +19,7 @@ public  class IndividuoMCTS extends IndividuoBase{
 	// la forma del genoma sera la siguiente: [valor_uct, valor_horizontal, valor_vertical, valor_kill, valor_monedas]
 
 	public static final int NUM_GENES = 5;
-	public static final int [] NORMALIZER = {10, 1000, 100, 100, 100}; // la puntuacion por avanzar es 1 orden de magnitud mayor que el resto
+	public static final int [] NORMALIZER = {5, 1000, 100, 100, 100}; // la puntuacion por avanzar es 1 orden de magnitud mayor que el resto
 	public static final int VECES = 10; // veces que se repetira cada evaluacion para que los resultados sean consistentes a pesar de los numeros aleatorios
 	
 	public IndividuoMCTS() {
@@ -85,7 +85,7 @@ public  class IndividuoMCTS extends IndividuoBase{
           		genes[i] = genes[i] * NORMALIZER[i];
           	}
           	
-          	for (int i = 1; i < 15; i++) {
+          	for (int i = 1; i <= 15; i++) {
           		// los hago constantes para evitar condiciones de carrera
           		final int NIVEL_CONST = i;
           		final float[] GENES_CONST = genes.clone();

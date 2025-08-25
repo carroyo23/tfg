@@ -282,17 +282,17 @@ def main():
     #pinta_grafico_repeticiones(lista_porcentajes) # para mcts
 
     
-    pinta_grafico(lista_puntuacion)
-    pinta_grafico_malla(lista_puntuacion)
+    #pinta_grafico(lista_puntuacion)
+    #pinta_grafico_malla(lista_puntuacion)
 
-    pinta_grafico(lista_tiempo)
-    pinta_grafico_malla(lista_tiempo)
+    #pinta_grafico(lista_tiempo)
+    #pinta_grafico_malla(lista_tiempo)
     
     pinta_grafico(lista_porcentajes)
     pinta_grafico_malla(lista_porcentajes)
 
-    pinta_grafico(lista_monedas)
-    pinta_grafico_malla(lista_monedas)
+    #pinta_grafico(lista_monedas)
+    #pinta_grafico_malla(lista_monedas)
     
     
 
