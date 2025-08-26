@@ -50,7 +50,8 @@ public  class IndividuoAlphaBeta extends IndividuoBase{
 		// primero normalizo todos los valores para que esten en la misma escala
 		float niveles_superados_norm = Math.max(0f, Math.min(1f, resultados.niveles_superados / 15.0f)); // el maximo son 15 niveles
 		float porcentaje_superado_norm = Math.max(0f, Math.min(1f, resultados.porcentaje_superado / 15.0f)); // el maximo son 15 niveles
-		float tiempo_restante_norm = Math.max(0f, Math.min(1f, resultados.tiempo_restante / 20000.0f)); // el maximo de tiempo son 20 segundos (20 mil milisegundos)
+		// el maximo de tiempo son 20 segundos (20 mil milisegundos) por nivel por lo que entre todos son 300000
+		float tiempo_restante_norm = Math.max(0f, Math.min(1f, resultados.tiempo_restante / 300000.0f));
 		float monedas_conseguidas_norm = Math.max(0f, Math.min(1f, resultados.monedas_conseguidas / 1000.0f)); // ningun nivel tendra 1000 monedas
 		
 		// actualizo el fitness

@@ -178,27 +178,38 @@ def extraccion_puntuacion_conseguida(resumenes):
 
     return puntuacion
 
-def pinta_grafico(datos):
+def extraccion_fitness(resumenes):
+    monedas_conseguidas = np.array(extraccion_monedas_conseguidas(resumenes))
+    tiempo_restante = np.array(extraccion_tiempo_restante(resumenes))
+    progreso = np.array(extraccion_porcentaje_pasado(resumenes))
+    niveles_superados = np.array(extraccion_estadistica(resumenes, 'niveles_pasados'))
+
+    fitness = np.array(monedas_conseguidas)
+    fitness[:,2] = 30.0 * (tiempo_restante[:,2]/20000.0) + 100.0*(niveles_superados[:,2]/15.0) + 70.0*(progreso[:,2] / 15.0) + 5.0*(monedas_conseguidas[:,2]/1000.0)
+    
+    return fitness
+
+def pinta_grafico(datos, nombre_valor_principal, nombre_valor_secundario, nombre_resultado, nombre_grafico, etiqueta):
     # Separar en 3 listas
     x = [d[0] for d in datos]  # valor_principal
     y = [d[1] for d in datos]  # valor_secundario
     z = [d[2] for d in datos]  # porcentaje
 
     # Crear figura y ejes 3D
-    fig = plt.figure(figsize=(10, 7))
+    fig = plt.figure(figsize=(8,6))
     ax = fig.add_subplot(111, projection='3d')
 
     # Graficar puntos
     sc = ax.scatter(x, y, z, c=z, cmap='viridis', s=50)
 
     # Etiquetas de ejes
-    ax.set_xlabel('Valor Principal')
-    ax.set_ylabel('Valor Secundario')
-    ax.set_zlabel('Porcentaje Pasado')
-    ax.set_title('Visualización 3D de Porcentaje Pasado')
+    ax.set_xlabel(nombre_valor_principal)
+    ax.set_ylabel(nombre_valor_secundario)
+    ax.set_zlabel(nombre_resultado)
+    ax.set_title(nombre_grafico)
 
     # Barra de color
-    fig.colorbar(sc, ax=ax, label='Porcentaje')
+    fig.colorbar(sc, ax=ax, label=etiqueta)
 
     plt.tight_layout()
     plt.show()
@@ -228,7 +239,7 @@ def pinta_grafico_malla(datos):
     ax = fig.add_subplot(111, projection='3d')
 
     # Superficie
-    surf = ax.plot_surface(X, Y, Z, cmap='viridis', edgecolor='k')
+    surf = ax.plot_surface(X, Y, Z, cmap='coolwarm', edgecolor='k')
 
     # Etiquetas
     ax.set_xlabel('Valor Principal')
@@ -266,6 +277,50 @@ def pinta_grafico_repeticiones(datos):
     plt.tight_layout()
     plt.show()
 
+def pinta_tabla(datos, nombre_fil, nombre_col, nombre_val, nombre_tabla):
+
+    # Obtenemos los valores únicos de filas (v1) y columnas (v2)
+    rows = np.unique(datos[:,0])
+    cols = np.unique(datos[:,1])
+
+    # Creamos una matriz vacía para la tabla
+    table = np.full((len(rows), len(cols)), np.nan)
+
+    # Rellenamos la matriz con los valores de v3
+    for v1, v2, v3 in datos:
+        i = np.where(rows == v1)[0][0]
+        j = np.where(cols == v2)[0][0]
+        table[i, j] = v3
+
+    # Graficamos el heatmap
+    fig, ax = plt.subplots(figsize=(8,6))
+    im = ax.imshow(table, cmap="viridis")
+
+    # Etiquetas de filas y columnas
+    ax.set_xticks(np.arange(len(cols)))
+    ax.set_yticks(np.arange(len(rows)))
+    ax.set_xticklabels(cols)
+    ax.set_yticklabels(rows)
+
+    # Rotamos etiquetas de columnas para mejor legibilidad
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+
+    # Mostramos los valores dentro de cada celda
+    for i in range(len(rows)):
+        for j in range(len(cols)):
+            val = table[i, j]
+            if not np.isnan(val):
+                ax.text(j, i, f"{val:.2f}", ha="center", va="center", color="black")
+
+    # Barra de color
+    fig.colorbar(im, label=nombre_val)
+
+    plt.xlabel(nombre_col)
+    plt.ylabel(nombre_fil)
+    plt.title(nombre_tabla)
+    plt.gca().invert_yaxis()
+    plt.show()
+
 def main():
     parser = argparse.ArgumentParser(description="Procesa ficheros de puntuación con combinaciones de parámetros.")
     parser.add_argument("-dir", "-d", type=str, help="Ruta al directorio con los archivos de entrada (ej: source/carpeta_datos)")
@@ -273,11 +328,15 @@ def main():
 
     resumenes = lectura_directorio(args.dir)
     #print(resumenes)
-    lista_porcentajes = extraccion_porcentaje_pasado(resumenes)
+    lista_cantidad_superada = extraccion_porcentaje_pasado(resumenes)
     lista_monedas = extraccion_monedas_conseguidas(resumenes)
     lista_tiempo = extraccion_tiempo_restante(resumenes)
     lista_puntuacion = extraccion_puntuacion_conseguida(resumenes)
+    lista_fitness = extraccion_fitness(resumenes)
     #print(lista_monedas)
+
+    lista_porcentajes = np.array(lista_cantidad_superada)
+    lista_porcentajes[:,2] = lista_porcentajes[:,2] * 100.0 / 15.0
 
     #pinta_grafico_repeticiones(lista_porcentajes) # para mcts
 
@@ -288,8 +347,14 @@ def main():
     #pinta_grafico(lista_tiempo)
     #pinta_grafico_malla(lista_tiempo)
     
-    pinta_grafico(lista_porcentajes)
-    pinta_grafico_malla(lista_porcentajes)
+    #pinta_grafico(lista_porcentajes, 'Valor Horizontal', 'valor Vertical', 'Porcentaje superado', 'Visualizacion en 3D del porcentaje superado', 'Porcentaje superado')
+    #pinta_grafico_malla(lista_porcentajes)
+
+    #pinta_grafico(lista_fitness, 'Valor Horizontal', 'valor Vertical', 'fitness', 'Visualizacion en 3D del fitness', 'fitness')
+    #pinta_grafico_malla(lista_fitness)
+
+    pinta_tabla(lista_porcentajes, "Valor Kill", "Valor Monedas", "Porcentaje superado", "Heatmap del porcentaje superado")
+    pinta_tabla(lista_fitness, "Valor Kill", "Valor Monedas", "fitness conseguido", "Heatmap del fitness conseguido")
 
     #pinta_grafico(lista_monedas)
     #pinta_grafico_malla(lista_monedas)

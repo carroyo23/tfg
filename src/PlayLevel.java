@@ -49,6 +49,7 @@ public class PlayLevel {
         float perc_pass;
         int tiempo_restante;
         int monedas_conseguidas;
+        int t_total;
         
         // jugar como humano
         //printResults(game.playGame(getLevel("./levels/original/lvl-2.txt"), 200, 0));
@@ -122,31 +123,76 @@ public class PlayLevel {
         
         /*
         level_pass = 0;
-        perc_pass = 0; 
+        perc_pass = 0;
+        monedas_conseguidas = 0;
+        tiempo_restante = 0;
+        t_total = 0;
         
         for (int i = 1; i <= 15; i++) {
-        	MarioResult result = game.runGame(new agents.alphaBetaGenetico.Agent(906.56567f, 16.587923f, 56.484187f, 68.577754f), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+        	MarioResult result = game.runGame(new agents.alphaBetaGenetico.Agent(906.56567f, 16.587923f, 56.484187f, 68.577754f), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, false);
             printResults(result);
             level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
             perc_pass += result.getCompletionPercentage();
+            tiempo_restante += (result.getGameStatus() == GameStatus.WIN) ? result.getRemainingTime() : 0;
+            monedas_conseguidas += result.getCurrentCoins();
+            t_total += result.getRemainingTime();
         }
         System.out.println("Niveles pasados: " + level_pass);
         System.out.println("Porcentaje pasado: " + perc_pass);
+        System.out.println("Tiempo restante: " + tiempo_restante);
+        System.out.println("Monedas conseguidas: " + monedas_conseguidas);
+        System.out.println("Tiempo restante total: " + t_total);
+        System.out.println("********************************************************************");
         */
-       
+        
+        
+        level_pass = 0;
+        perc_pass = 0;
+        monedas_conseguidas = 0;
+        tiempo_restante = 0;
+        t_total = 0;
+        
+        for (int i = 1; i <= 15; i++) {
+        	MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+            printResults(result);
+            level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
+            perc_pass += result.getCompletionPercentage();
+            tiempo_restante += (result.getGameStatus() == GameStatus.WIN) ? result.getRemainingTime() : 0;
+            monedas_conseguidas += result.getCurrentCoins();
+            t_total += result.getRemainingTime();
+        }
+        System.out.println("Niveles pasados: " + level_pass);
+        System.out.println("Porcentaje pasado: " + perc_pass);
+        System.out.println("Tiempo restante: " + tiempo_restante);
+        System.out.println("Monedas conseguidas: " + monedas_conseguidas);
+        System.out.println("Tiempo restante total: " + t_total);
+        System.out.println("********************************************************************");
+        
+        
         /*
         level_pass = 0;
         perc_pass = 0;
+        monedas_conseguidas = 0;
+        tiempo_restante = 0;
+        t_total = 0;
         
         for (int i = 1; i <= 15; i++) {
-        	MarioResult result = game.runGame(new agents.trondEllingsen.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+        	MarioResult result = game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
             printResults(result);
             level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
             perc_pass += result.getCompletionPercentage();
+            tiempo_restante += (result.getGameStatus() == GameStatus.WIN) ? result.getRemainingTime() : 0;
+            monedas_conseguidas += result.getCurrentCoins();
+            t_total += result.getRemainingTime();
         }
         System.out.println("Niveles pasados: " + level_pass);
         System.out.println("Porcentaje pasado: " + perc_pass);
+        System.out.println("Tiempo restante: " + tiempo_restante);
+        System.out.println("Monedas conseguidas: " + monedas_conseguidas);
+        System.out.println("Tiempo restante total: " + t_total);
+        System.out.println("********************************************************************");
         */
+        
         
         // FIN PRUEBAS COMPLETAS AGENTES
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -169,7 +215,7 @@ public class PlayLevel {
           List<Callable<MarioResult>> tareas = IntStream.rangeClosed(1, 15)
             .mapToObj(i -> (Callable<MarioResult>) () -> {
               MarioGame mg = new MarioGame();	
-              MarioAgent agent = new agents.alphaBeta.Agent();
+              MarioAgent agent = new agents.alphaBetaOptimized.Agent();
               String level = getLevel("./levels/original/lvl-" + i + ".txt");
               return mg.runGame(agent, level, 20, 0, false);
             })

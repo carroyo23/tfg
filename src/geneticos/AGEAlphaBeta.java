@@ -188,20 +188,26 @@ public class AGEAlphaBeta {
 		
 		
 		try {
-	      	  PrintWriter salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\prueba_refactor_otro.txt"));
+	      	  PrintWriter salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\resumenes_generacionv3.txt"));
 		
 			while (num_eval <= MAX_EVAL) {
 				
 				// cada 10 evaluaciones guardo la poblacion en un fichero
 				if ((num_eval % 10) == 0) {
 					try {
-						PrintWriter fichero_poblacion = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\poblacion_" + num_eval + ".csv"));
+						PrintWriter fichero_poblacion = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\poblacion\\poblacion_" + num_eval + ".csv"));
 						
 						for (int i = 0; i < poblacion.size(); i++) {
 							for (int j = 0; j < (poblacion.get(i).genoma.length); j++) {
 								fichero_poblacion.print(poblacion.get(i).genoma[j] + ",");
 							}
-							// TODO: GUARDAR LOS RESUMENES
+							
+							// guardo los resumenes
+							fichero_poblacion.print(poblacion.get(i).resultados.niveles_superados + ";");
+							fichero_poblacion.print(poblacion.get(i).resultados.porcentaje_superado + ";");
+							fichero_poblacion.print(poblacion.get(i).resultados.tiempo_restante + ";");
+							fichero_poblacion.print(poblacion.get(i).resultados.monedas_conseguidas + ",");
+							
 							fichero_poblacion.println(poblacion.get(i).getFitness()); // la ultima columna sera el fitness para no tener que recalcularlo luego
 						}
 						
@@ -270,14 +276,6 @@ public class AGEAlphaBeta {
 		      	salida_fichero.println("**************************************************************");
 		      	
 		      	contador++;
-		      	/*
-		      	System.out.println("//////////////////////////////////////////////////////////////////");
-				for (int i = 0; i < poblacion.size(); i++) {
-					System.out.println("Individuo " + i + ": Pasa: " + poblacion.get(i).resultados.niveles_superados + " Porcentaje: " + poblacion.get(i).resultados.porcentaje_superado);
-					System.out.println("Genes: " + poblacion.get(i).genoma[0] + " " + poblacion.get(i).genoma[1] + poblacion.get(i).genoma[2] + " " + poblacion.get(i).genoma[3]);
-				}
-				System.out.println("//////////////////////////////////////////////////////////////////");
-				*/
 			}
 		
 			salida_fichero.close();
@@ -326,7 +324,7 @@ public class AGEAlphaBeta {
 		System.out.println("Porcentaje superado: " + mejor.resultados.porcentaje_superado);
 		
 		try {
-	      	  PrintWriter salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\prueba_refactor2.txt"));
+	      	  PrintWriter salida_fichero = new PrintWriter(new FileWriter("C:\\Users\\Usuario\\Desktop\\uni\\TFG\\tfg\\resultados\\genetico\\alphaBeta\\mejor_individuov3.txt"));
 	      	  
 	      	salida_fichero.println("Horizontal: " + mejor.genoma[0]);
 	      	salida_fichero.println("Vertical: " + mejor.genoma[1]);

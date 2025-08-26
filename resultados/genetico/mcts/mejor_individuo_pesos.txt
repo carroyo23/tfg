@@ -1,7 +1,0 @@
-Valor UCT: 9.033722
-Horizontal: 451.25717
-Vertical: 36.87829
-kill: 38.164307
-monedas: 27.574802
-Niveles superados: 0
-Porcentaje superado: 0.35741466

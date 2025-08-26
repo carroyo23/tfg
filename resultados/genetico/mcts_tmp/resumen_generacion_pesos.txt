@@ -1,0 +1,2720 @@
+**************************************************************
+MEJOR INDIVIDUO GENERACION 0:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 1:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 2:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 3:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 4:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 5:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 6:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 7:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 8:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 9:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 10:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 11:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 12:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 13:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 14:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 15:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 16:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 17:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 18:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 19:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 20:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 21:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 22:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 23:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 24:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 25:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 26:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 27:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 28:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 29:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 30:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 31:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 32:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 33:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 34:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 35:
+Valor UCT: 2.316996
+Horizontal: 657.1403
+Vertical: 30.557913
+kill: 99.892166
+monedas: 53.990944
+Niveles superados: 1
+Porcentaje superado: 6.664757
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 36:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 37:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 38:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 39:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 40:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 41:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 42:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 43:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 44:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 45:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 46:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 47:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 48:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 49:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 50:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 51:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 52:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 53:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 54:
+Valor UCT: 3.2174017
+Horizontal: 602.963
+Vertical: 31.351051
+kill: 93.171074
+monedas: 40.020046
+Niveles superados: 1
+Porcentaje superado: 6.5362215
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 55:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 56:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 57:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 58:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 59:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 60:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 61:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 62:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 63:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 64:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 65:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 66:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 67:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 68:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 69:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 70:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 71:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.665652
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 72:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 73:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 74:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 75:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 76:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 77:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 78:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 79:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 80:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 81:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 82:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 83:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 84:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 85:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 86:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 87:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 88:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 89:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 90:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 91:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 92:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 93:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 94:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 95:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 96:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 97:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 98:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 99:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 100:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 101:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 102:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 103:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 104:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 105:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 106:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 107:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 108:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 109:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 110:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 111:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 112:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 113:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 114:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 115:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 116:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 117:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 118:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 119:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 120:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 121:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 122:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 123:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 124:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 125:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 126:
+Valor UCT: 3.150186
+Horizontal: 661.6322
+Vertical: 25.20644
+kill: 79.92833
+monedas: 40.966103
+Niveles superados: 1
+Porcentaje superado: 6.984404
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 127:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 128:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 129:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 130:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 131:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 132:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 133:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 134:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 135:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 136:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 137:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 138:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 139:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 140:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 141:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 142:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 143:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 144:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 145:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 146:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 147:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 148:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 149:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 150:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 151:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 152:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 153:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 154:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 155:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 156:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 157:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 158:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 159:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 160:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 161:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 162:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 163:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 164:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 165:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 166:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 167:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 168:
+Valor UCT: 1.9471915
+Horizontal: 632.39594
+Vertical: 26.816193
+kill: 86.98841
+monedas: 38.605858
+Niveles superados: 1
+Porcentaje superado: 6.821542
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 169:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 170:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 171:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 172:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 173:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 174:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 175:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 176:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 177:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 178:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 179:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 180:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 181:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 182:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 183:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 184:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 185:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 186:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 187:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 188:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 189:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 190:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 191:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 192:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 193:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 194:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 195:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 196:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 197:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 198:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 199:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 200:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 201:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 202:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 203:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 204:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 205:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 206:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 207:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 208:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 209:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 210:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 211:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 212:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 213:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 214:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 215:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 216:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 217:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 218:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 219:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 220:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 221:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 222:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 223:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 224:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 225:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 226:
+Valor UCT: 2.0419078
+Horizontal: 601.5006
+Vertical: 27.154001
+kill: 59.196205
+monedas: 38.027905
+Niveles superados: 1
+Porcentaje superado: 7.059882
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 227:
+Valor UCT: 2.309963
+Horizontal: 615.79803
+Vertical: 28.527224
+kill: 72.14447
+monedas: 38.757412
+Niveles superados: 1
+Porcentaje superado: 6.814475
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 228:
+Valor UCT: 2.309963
+Horizontal: 615.79803
+Vertical: 28.527224
+kill: 72.14447
+monedas: 38.757412
+Niveles superados: 1
+Porcentaje superado: 6.814475
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 229:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 230:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 231:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 232:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 233:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 234:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 235:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 236:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 237:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 238:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 239:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 240:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 241:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 242:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 243:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 244:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 245:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 246:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 247:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 248:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 249:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 250:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 251:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 252:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 253:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 254:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 255:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 256:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 257:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 258:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 259:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 260:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 261:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 262:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 263:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 264:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 265:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 266:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 267:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 268:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 269:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 270:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+**************************************************************
+**************************************************************
+MEJOR INDIVIDUO GENERACION 271:
+Valor UCT: 3.1337345
+Horizontal: 605.3317
+Vertical: 29.029448
+kill: 62.90706
+monedas: 38.094868
+Niveles superados: 2
+Porcentaje superado: 6.70747
+***************

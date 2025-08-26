@@ -155,6 +155,7 @@ public class AGEMCTS {
 			num_eval++;
 		}
 		
+		System.out.println("Fitness medio: " + getFitnessMedio(poblacion));
 		System.out.println("FIN INCIACION");
 		
 		try {
@@ -225,6 +226,7 @@ public class AGEMCTS {
 				
 				System.out.println("**************************************************************");
 				System.out.println("MEJOR INDIVIDUO GENERACION " + contador + ":");
+				System.out.println("FITNESS MEDIO GENERACION " + contador + ":" + getFitnessMedio(poblacion));
 				System.out.println("Valor UCT: " + mejor.genoma[0] * IndividuoMCTS.NORMALIZER[0]);
 				System.out.println("Horizontal: " + mejor.genoma[1] * IndividuoMCTS.NORMALIZER[1]);
 				System.out.println("Vertical: " + mejor.genoma[2] * IndividuoMCTS.NORMALIZER[2]);
@@ -237,6 +239,7 @@ public class AGEMCTS {
 				
 				salida_fichero.println("**************************************************************");
 				salida_fichero.println("MEJOR INDIVIDUO GENERACION " + contador + ":");
+				salida_fichero.println("FITNESS MEDIO GENERACION " + contador + ":" + getFitnessMedio(poblacion));
 				salida_fichero.println("Valor UCT: " + mejor.genoma[0] * IndividuoMCTS.NORMALIZER[0]);
 		      	salida_fichero.println("Horizontal: " + mejor.genoma[1] * IndividuoMCTS.NORMALIZER[1]);
 		      	salida_fichero.println("Vertical: " + mejor.genoma[2] * IndividuoMCTS.NORMALIZER[2]);
