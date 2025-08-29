@@ -34,7 +34,7 @@ public class Agent implements MarioAgent {
 	
 	private static float MAX_TIEMPO = 5;
 	
-	private static float CONST_UCT = (float) 1.3; // TODO: AJUSTAR ESTE VALOR
+	private static float CONST_UCT = (float) 1.3;
 	
 	int cont;
 	

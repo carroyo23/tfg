@@ -185,7 +185,7 @@ def extraccion_fitness(resumenes):
     niveles_superados = np.array(extraccion_estadistica(resumenes, 'niveles_pasados'))
 
     fitness = np.array(monedas_conseguidas)
-    fitness[:,2] = 30.0 * (tiempo_restante[:,2]/20000.0) + 100.0*(niveles_superados[:,2]/15.0) + 70.0*(progreso[:,2] / 15.0) + 5.0*(monedas_conseguidas[:,2]/1000.0)
+    fitness[:,2] = 30.0 * (tiempo_restante[:,2]/300000.0) + 100.0*(niveles_superados[:,2]/15.0) + 70.0*(progreso[:,2] / 15.0) + 5.0*(monedas_conseguidas[:,2]/1000.0)
     
     return fitness
 
@@ -270,11 +270,12 @@ def pinta_grafico_repeticiones(datos):
     # Graficar
     plt.figure(figsize=(10, 6))
     plt.plot(x, y, marker='o', linestyle='-', color='purple')
-    plt.xlabel('Valor Principal')
-    plt.ylabel('Porcentaje Promedio')
-    plt.title('Porcentaje Promedio por Valor Principal')
+    plt.xlabel('Cp')
+    plt.ylabel('Media fitness conseguido')
+    plt.title('Media de fitness conseguido por Cp')
     plt.grid(True)
     plt.tight_layout()
+    plt.ylim(0)
     plt.show()
 
 def pinta_tabla(datos, nombre_fil, nombre_col, nombre_val, nombre_tabla):
@@ -332,13 +333,20 @@ def main():
     lista_monedas = extraccion_monedas_conseguidas(resumenes)
     lista_tiempo = extraccion_tiempo_restante(resumenes)
     lista_puntuacion = extraccion_puntuacion_conseguida(resumenes)
-    lista_fitness = extraccion_fitness(resumenes)
+    lista_fitness = np.array(extraccion_fitness(resumenes))
     #print(lista_monedas)
 
     lista_porcentajes = np.array(lista_cantidad_superada)
     lista_porcentajes[:,2] = lista_porcentajes[:,2] * 100.0 / 15.0
 
+    #print(lista_porcentajes)
+    print("Porcentaje: ", np.mean(lista_porcentajes[:,2]))
+    print("Fitness: ", np.mean(lista_fitness[:,2]))
+    print("Niveles: ", np.mean(np.array(extraccion_estadistica(resumenes, 'niveles_pasados'))[:,2]))
+    print("********************************************")
+    #print(lista_fitness)
     #pinta_grafico_repeticiones(lista_porcentajes) # para mcts
+    #pinta_grafico_repeticiones(lista_fitness)
 
     
     #pinta_grafico(lista_puntuacion)
@@ -353,8 +361,8 @@ def main():
     #pinta_grafico(lista_fitness, 'Valor Horizontal', 'valor Vertical', 'fitness', 'Visualizacion en 3D del fitness', 'fitness')
     #pinta_grafico_malla(lista_fitness)
 
-    pinta_tabla(lista_porcentajes, "Valor Kill", "Valor Monedas", "Porcentaje superado", "Heatmap del porcentaje superado")
-    pinta_tabla(lista_fitness, "Valor Kill", "Valor Monedas", "fitness conseguido", "Heatmap del fitness conseguido")
+    #pinta_tabla(lista_porcentajes, "Valor Kill", "Valor Monedas", "Porcentaje superado", "Heatmap del porcentaje superado")
+    #pinta_tabla(lista_fitness, "Valor Kill", "Valor Monedas", "fitness conseguido", "Heatmap del fitness conseguido")
 
     #pinta_grafico(lista_monedas)
     #pinta_grafico_malla(lista_monedas)

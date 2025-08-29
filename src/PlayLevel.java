@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 
 // paralelizar codigo
 import java.util.concurrent.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.*;
 
@@ -50,6 +51,7 @@ public class PlayLevel {
         int tiempo_restante;
         int monedas_conseguidas;
         int t_total;
+        
         
         // jugar como humano
         //printResults(game.playGame(getLevel("./levels/original/lvl-2.txt"), 200, 0));
@@ -145,30 +147,6 @@ public class PlayLevel {
         System.out.println("********************************************************************");
         */
         
-        
-        level_pass = 0;
-        perc_pass = 0;
-        monedas_conseguidas = 0;
-        tiempo_restante = 0;
-        t_total = 0;
-        
-        for (int i = 1; i <= 15; i++) {
-        	MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
-            printResults(result);
-            level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
-            perc_pass += result.getCompletionPercentage();
-            tiempo_restante += (result.getGameStatus() == GameStatus.WIN) ? result.getRemainingTime() : 0;
-            monedas_conseguidas += result.getCurrentCoins();
-            t_total += result.getRemainingTime();
-        }
-        System.out.println("Niveles pasados: " + level_pass);
-        System.out.println("Porcentaje pasado: " + perc_pass);
-        System.out.println("Tiempo restante: " + tiempo_restante);
-        System.out.println("Monedas conseguidas: " + monedas_conseguidas);
-        System.out.println("Tiempo restante total: " + t_total);
-        System.out.println("********************************************************************");
-        
-        
         /*
         level_pass = 0;
         perc_pass = 0;
@@ -177,7 +155,7 @@ public class PlayLevel {
         t_total = 0;
         
         for (int i = 1; i <= 15; i++) {
-        	MarioResult result = game.runGame(new agents.alphaBeta.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+        	MarioResult result = game.runGame(new agents.alphaBetaGenetico.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
             printResults(result);
             level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
             perc_pass += result.getCompletionPercentage();
@@ -193,6 +171,34 @@ public class PlayLevel {
         System.out.println("********************************************************************");
         */
         
+        /*
+        level_pass = 0;
+        perc_pass = 0;
+        monedas_conseguidas = 0;
+        tiempo_restante = 0;
+        t_total = 0;
+        
+        for (int i = 1; i <= 15; i++) {
+        	MarioResult result = game.runGame(new agents.trondEllingsen.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+            printResults(result);
+            level_pass += (result.getGameStatus() == GameStatus.WIN) ? 1 : 0;
+            perc_pass += result.getCompletionPercentage();
+            tiempo_restante += (result.getGameStatus() == GameStatus.WIN) ? result.getRemainingTime() : 0;
+            monedas_conseguidas += result.getCurrentCoins();
+            t_total += result.getRemainingTime();
+        }
+        System.out.println("Niveles pasados: " + level_pass);
+        System.out.println("Porcentaje pasado: " + perc_pass);
+        System.out.println("Tiempo restante: " + tiempo_restante);
+        System.out.println("Monedas conseguidas: " + monedas_conseguidas);
+        System.out.println("Tiempo restante total: " + t_total);
+        System.out.println("********************************************************************");
+        
+        float [] resultados = {level_pass, perc_pass, tiempo_restante, monedas_conseguidas};
+        System.out.println("Niveles superados: " + level_pass);
+        System.out.println("Porcentaje pasado: " + (perc_pass * 100.0) / 15.0);
+        System.out.println("Puntuacion: " + getFitness(resultados));
+        */
         
         // FIN PRUEBAS COMPLETAS AGENTES
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -204,18 +210,21 @@ public class PlayLevel {
         // INICIO PRUEBAS PARALELAS
         
         //pruebaAlphaBetaOptimizedTodosNivelesParalelo(700, 30, 10, 10);
-        
-        
         /*
+        level_pass = 0;
+        perc_pass = 0;
+        monedas_conseguidas = 0;
+        tiempo_restante = 0;
+        
         int cores = Runtime.getRuntime().availableProcessors();
         ExecutorService pool = Executors.newFixedThreadPool(7);
-        System.out.println(cores);
+        //System.out.println(cores);
 
         try {
           List<Callable<MarioResult>> tareas = IntStream.rangeClosed(1, 15)
             .mapToObj(i -> (Callable<MarioResult>) () -> {
               MarioGame mg = new MarioGame();	
-              MarioAgent agent = new agents.alphaBetaOptimized.Agent();
+              MarioAgent agent = new agents.robinBaumgarten.Agent();
               String level = getLevel("./levels/original/lvl-" + i + ".txt");
               return mg.runGame(agent, level, 20, 0, false);
             })
@@ -232,9 +241,13 @@ public class PlayLevel {
               MarioResult r = f.get(); // también arroja InterruptedException
               if (r.getGameStatus() == GameStatus.WIN) {
             	  pasa++;
+            	  level_pass++;
+            	  tiempo_restante = r.getRemainingTime();
               }
               sumaCompletion += r.getCompletionPercentage();
-              printResults(r);
+              perc_pass += r.getCompletionPercentage();
+              monedas_conseguidas += r.getCurrentCoins();
+              //printResults(r);
             } catch (InterruptedException ie) {
               Thread.currentThread().interrupt();
               System.err.println("Hilo interrumpido mientras esperaba resultados");
@@ -261,8 +274,12 @@ public class PlayLevel {
             System.err.println("Interrupción mientras cerraba el pool");
           }
         }
+        
+        float [] resultados = {level_pass, perc_pass, tiempo_restante, monedas_conseguidas};
+        System.out.println("Niveles superados: " + level_pass);
+        System.out.println("Porcentaje pasado: " + (perc_pass * 100.0) / 15.0);
+        System.out.println("Puntuacion: " + getFitness(resultados));
 		*/
-
         
         // FIN PRUEBAS PARALELAS
  		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -374,4 +391,21 @@ public class PlayLevel {
         
         return a_devolver;
     }
+    
+public static float getFitness(float [] resultados) {
+		
+		float fitness;
+	
+		// primero normalizo todos los valores para que esten en la misma escala
+		float niveles_superados_norm = Math.max(0f, Math.min(1f, resultados[0] / 15.0f)); // el maximo son 15 niveles
+		float porcentaje_superado_norm = Math.max(0f, Math.min(1f, resultados[1] / 15.0f)); // el maximo son 15 niveles
+		// el maximo de tiempo son 20 segundos (20 mil milisegundos) por nivel por lo que entre todos son 300000
+		float tiempo_restante_norm = Math.max(0f, Math.min(1f, resultados[2] / 300000.0f));
+		float monedas_conseguidas_norm = Math.max(0f, Math.min(1f, resultados[3] / 1000.0f)); // ningun nivel tendra 1000 monedas
+		
+		// actualizo el fitness
+		fitness = (niveles_superados_norm * 100) + (porcentaje_superado_norm * 70) + (tiempo_restante_norm * 30) + (monedas_conseguidas_norm * 5);
+		
+		return fitness;
+	}
 }
