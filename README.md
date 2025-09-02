@@ -1,5 +1,5 @@
 <p align="center">
-<a href="#features">Features</a> &mdash; <a href="#use">How To Use</a> &mdash; <a href="#papers">Related Papers</a> &mdash; <a href="#missing">Missing Features</a> &mdash; <a href="#copyrights">Copyrights</a>
+<a href="#use">How To Use</a> &mdash; <a href="#papers">Related Papers</a> &mdash; <a href="#missing">Missing Features</a> &mdash; <a href="#copyrights">Copyrights</a>
 </p>
 <p align="center">
 <img width="300" height="300" alt="Robin Baumgarten A* agent" src="https://raw.githubusercontent.com/amidos2006/Mario-AI-Framework/master/img/frameworkAD.gif">
@@ -13,23 +13,6 @@ The Mario AI framework is a framework for using AI methods with a version of Sup
 This is an updated version for the Mario AI Framework. As the first version was released in 2009, this is the tenth anniversary edition, integrating features from all previous versions and adding several new features. This new code includes a better interface for playing the game with planning algorithms (the planning track of the competition), generating levels (the level generation track), and possibly will support the learning track in the future . The framework comes with multiple different planning agents, level generators and thousands of levels including generated levels from diffeent generators as well as the original Mario levels. Also, the framework is compatible with [Video Game Level Corpus (VGLC)](https://github.com/TheVGLC/TheVGLC) processed notations.
 
 If you want to access the old framework, feel free to check out the old websites for the previous competitions ([2015](https://sites.google.com/site/platformersai/platformer-ai-competition) - [2012](https://sites.google.com/site/noormario/home?pli=1) - [2011](https://sites.google.com/a/marioai.com/www/home) - [2009](http://julian.togelius.com/mariocompetition2009/)).
-
-<h3 id="features">Features</h3>
-
-------
-- Better Interface for the framework
-- Faster framework
-- Using the original mario art
-- Eleven different playing agents
-- Agents now have a forward model, no more hacks for that
-- Observation grids can be centered around mario or can reflect the current screen.
-- Helper classes to check the observation grid instead of comparing integers
-- Five different level generators
-- Level generator have a forward model to test the levels
-- Thousands of generated levels from winners of the level generation track
-- Fifteen levels from the original mario bros
-- Support event history for major game events
-- A human readable level files
 
 <h3 id="use">How To Use</h3>
 
