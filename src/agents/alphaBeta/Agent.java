@@ -66,7 +66,6 @@ public class Agent implements MarioAgent {
     		a_devolver.valor = (a_devolver.model.getMarioFloatPos()[0] / a_devolver.model.getLevelFloatDimensions()[0]) * 500;
     		a_devolver.valor -= (a_devolver.model.getMarioFloatPos()[1] / a_devolver.model.getLevelFloatDimensions()[1]) * 10;
     		a_devolver.valor += a_devolver.model.getKillsTotal() * 100;
-    		//System.out.println(a_devolver.valor);
     		
     		if (status == GameStatus.WIN) {
     			a_devolver.valor = Float.POSITIVE_INFINITY;
@@ -91,9 +90,6 @@ public class Agent implements MarioAgent {
 		}
     	else {
     		hijos = generaNodosReduced();
-    		
-    		// si puedo saltar que salte
-    		//hijos = generaNodosJump();
     	}
 		
 		NodoAB mejor = new NodoAB();
@@ -125,12 +121,6 @@ public class Agent implements MarioAgent {
 		}
 		
 		a_devolver = mejor;
-		
-		if (a_devolver.accion == null) {
-			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
-			System.out.println(a_devolver.valor);
-			System.out.println("fallaaaaaaaaaaaaaaa");
-		}
     	
     	return a_devolver;
     }
@@ -138,11 +128,7 @@ public class Agent implements MarioAgent {
     public List<boolean[]> generaNodos() {
     	// heuristica: left y right no se pulsan a la vez ni saltar y down
     	
-    	
-    	
     	List<boolean[]> result = new ArrayList<>();
-    	int length = 5;
-    	int total_combination = 32;
     	
     	//result.add(new boolean[]{false, false, false, false, false}); // Ninguna tecla presionada
         result.add(new boolean[]{true, false, false, false, false});  // Solo LEFT

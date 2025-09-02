@@ -122,8 +122,6 @@ public class Agent implements MarioAgent {
     	else {
     		hijos = generaNodosReduced();
     		
-    		// si puedo saltar que salte
-    		//hijos = generaNodosJump();
     	}
 		
 		NodoAB mejor = new NodoAB();
@@ -162,11 +160,7 @@ public class Agent implements MarioAgent {
     public List<boolean[]> generaNodos() {
     	// heuristica: left y right no se pulsan a la vez ni saltar y down
     	
-    	
-    	
     	List<boolean[]> result = new ArrayList<>();
-    	int length = 5;
-    	int total_combination = 32;
     	
     	//result.add(new boolean[]{false, false, false, false, false}); // Ninguna tecla presionada
         result.add(new boolean[]{true, false, false, false, false});  // Solo LEFT
@@ -180,16 +174,6 @@ public class Agent implements MarioAgent {
         result.add(new boolean[]{true, false, false, true, false});   // LEFT + SPEED
         result.add(new boolean[]{false, true, false, true, true});    // RIGHT + JUMP + SPEED
         result.add(new boolean[]{true, false, false, true, true});    // LEFT + JUMP + SPEED
-    	
-        /*
-    	for (int i = 0; i < total_combination; i++) {
-    		boolean[] array = new boolean[length];
-    		for (int j = 0; j < length; j++) {
-    			array[j] = (i & (1 << j)) != 0;
-    		}
-    		result.add(array);
-    	}
-    	*/
     	
     	return result;
     }

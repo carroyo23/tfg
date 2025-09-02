@@ -29,7 +29,7 @@ public class Agent implements MarioAgent {
 	private float VALOR_HORIZONTAL = 700;
 	private float VALOR_VERTICAL = 30;
 	private float VALOR_KILL = 10;
-	private float VALOR_MONEDA = 12;
+	private float VALOR_MONEDA = 10;
 	private final float VALOR_TIME_OUT = -300;
 	private final float VALOR_WIN = Float.POSITIVE_INFINITY;
 	private final float VALOR_LOSE = Float.NEGATIVE_INFINITY;
@@ -122,8 +122,6 @@ public class Agent implements MarioAgent {
     	else {
     		hijos = generaNodosReduced();
     		
-    		// si puedo saltar que salte
-    		//hijos = generaNodosJump();
     	}
 		
 		NodoAB mejor = new NodoAB();
@@ -155,12 +153,6 @@ public class Agent implements MarioAgent {
 		}
 		
 		a_devolver = mejor;
-		
-		if (a_devolver.accion == null) {
-			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
-			System.out.println(a_devolver.valor);
-			System.out.println("fallaaaaaaaaaaaaaaa");
-		}
     	
     	return a_devolver;
     }
@@ -171,8 +163,6 @@ public class Agent implements MarioAgent {
     	
     	
     	List<boolean[]> result = new ArrayList<>();
-    	int length = 5;
-    	int total_combination = 32;
     	
     	//result.add(new boolean[]{false, false, false, false, false}); // Ninguna tecla presionada
         result.add(new boolean[]{true, false, false, false, false});  // Solo LEFT
@@ -186,16 +176,6 @@ public class Agent implements MarioAgent {
         result.add(new boolean[]{true, false, false, true, false});   // LEFT + SPEED
         result.add(new boolean[]{false, true, false, true, true});    // RIGHT + JUMP + SPEED
         result.add(new boolean[]{true, false, false, true, true});    // LEFT + JUMP + SPEED
-    	
-        /*
-    	for (int i = 0; i < total_combination; i++) {
-    		boolean[] array = new boolean[length];
-    		for (int j = 0; j < length; j++) {
-    			array[j] = (i & (1 << j)) != 0;
-    		}
-    		result.add(array);
-    	}
-    	*/
     	
     	return result;
     }
