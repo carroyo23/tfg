@@ -1,4 +1,4 @@
-Este proyecto usa el framework [Mario-AI-Framework](https://github.com/amidos2006/Mario-AI-Framework). Para más información se puede consultar su repositorio en github.
+Este proyecto usa el framework [Mario-AI-Framework](https://github.com/amidos2006/Mario-AI-Framework). A partir de este se han creado nuevos agentes y un algoritmo genético para poder crear agentes mediante aprendizaje por refuerzo.
 
 Este proyecto se centra en en crear agentes y observar su rendimiento dentro de la versión del juego Super Mario Bros implementada por el framework.
 
@@ -21,3 +21,8 @@ También puedes jugar cualquier nivel descomentando la linea:
 Se puede cambiar el nivel por cualquiera de los que hay implementados en la carpera levels en cualquiera de las subcarpetas simplemente cambiando la ruta.
 
 Para entrenar los agentes AlphaBeta o MCTS mediante un algoritmo genético ejecuta [`AGEAlphaBeta.java`](https://github.com/carroyo23/tfg/blob/master/src/geneticos/AGEAlphaBeta.java) o [`AGEMCTS.java`](https://github.com/carroyo23/tfg/blob/master/src/geneticos/AGEMCTS.java) respectivamente.
+
+<h3 id="copyrights">Copyrights</h3>
+
+------
+Este proyecto no está avalado por Nintendo y tiene como único fin la investigación. Mario es un personaje de Nintendosobre el cual no se posee ningún derecho. Nintendo es también el único propietario de todos los recursos gráficos del juego. Se espera que cualquier uso de este proyecto sea de caracter no comercil. Este proyecto se basa en el framework creado por [Ahmed Khalifa](https://scholar.google.com/citations?user=DRcyg5kAAAAJ&hl=en), basado a su vez en el Mario AI Framework creado por [Sergey Karakovskiy](https://scholar.google.se/citations?user=6cEAqn8AAAAJ&hl=en), [Noor Shaker](https://scholar.google.com/citations?user=OK9tw1AAAAAJ&hl=en), y [Julian Togelius](https://scholar.google.com/citations?user=lr4I9BwAAAAJ&hl=en), que se basaba en [Infinite Mario Bros](https://fantendo.fandom.com/wiki/Infinite_Mario_Bros.) por Markus Persson.
