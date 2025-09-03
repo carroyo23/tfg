@@ -20,4 +20,4 @@ También puedes jugar cualquier nivel descomentando la linea:
 
 Se puede cambiar el nivel por cualquiera de los que hay implementados en la carpera levels en cualquiera de las subcarpetas simplemente cambiando la ruta.
 
-Para entrenar los agentes AlphaBeta o MCTS mediante un algoritmo genético ejecuta AGEAlphaBeta.java o AGEMCTS respectivamente. Estos ficheros se encuentran dentro del paquete geneticos.
+Para entrenar los agentes AlphaBeta o MCTS mediante un algoritmo genético ejecuta [`AGEAlphaBeta.java`](https://github.com/carroyo23/tfg/blob/master/src/geneticos/AGEAlphaBeta.java) o [`AGEMCTS.java`](https://github.com/carroyo23/tfg/blob/master/src/geneticos/AGEMCTS.java) respectivamente.
