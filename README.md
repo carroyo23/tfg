@@ -2,7 +2,7 @@ Este proyecto usa el framework [Mario-AI-Framework](https://github.com/amidos200
 
 Este proyecto se centra en en crear agentes y observar su rendimiento dentro de la versión del juego Super Mario Bros implementada por el framework.
 
-Para probar el juego ejecuta PlayLevel.java ejecutará los 15 niveles originales usando el agente AlphaBetaGenetico con los mejores parámetros encontrados.
+Para probar el juego ejecuta [`PlayLevel.java`](https://github.com/carroyo23/tfg/blob/master/src/PlayLevel.java) esto ejecutará los 15 niveles originales usando el agente [`AlphaBetaGenetico`](https://github.com/carroyo23/tfg/blob/master/src/agents/alphaBetaGenetico/Agent.java) con los mejores parámetros encontrados.
 Para cambiar el agente en el que probarlo simplemente cambia el agente por cualquiera de los que hay en el paquete agents en la siguiente linea:
 ```
 MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
@@ -15,7 +15,7 @@ Para probar un agente en un solo nivel comenta el código actual y descomenta la
 
 También puedes jugar cualquier nivel descomentando la linea:
 ```
-printResults(game.playGame(getLevel("./levels/original/lvl-2.txt"), 200, 0));
+//printResults(game.playGame(getLevel("./levels/original/lvl-2.txt"), 200, 0));
 ```
 
 Se puede cambiar el nivel por cualquiera de los que hay implementados en la carpera levels en cualquiera de las subcarpetas simplemente cambiando la ruta.
