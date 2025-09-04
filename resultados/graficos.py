@@ -340,10 +340,10 @@ def main():
     lista_porcentajes[:,2] = lista_porcentajes[:,2] * 100.0 / 15.0
 
     #print(lista_porcentajes)
-    print("Porcentaje: ", np.mean(lista_porcentajes[:,2]))
-    print("Fitness: ", np.mean(lista_fitness[:,2]))
-    print("Niveles: ", np.mean(np.array(extraccion_estadistica(resumenes, 'niveles_pasados'))[:,2]))
-    print("********************************************")
+    #print("Porcentaje: ", np.mean(lista_porcentajes[:,2]))
+    #print("Fitness: ", np.mean(lista_fitness[:,2]))
+    #print("Niveles: ", np.mean(np.array(extraccion_estadistica(resumenes, 'niveles_pasados'))[:,2]))
+    #print("********************************************")
     #print(lista_fitness)
     #pinta_grafico_repeticiones(lista_porcentajes) # para mcts
     #pinta_grafico_repeticiones(lista_fitness)
@@ -358,11 +358,13 @@ def main():
     #pinta_grafico(lista_porcentajes, 'Valor Horizontal', 'valor Vertical', 'Porcentaje superado', 'Visualizacion en 3D del porcentaje superado', 'Porcentaje superado')
     #pinta_grafico_malla(lista_porcentajes)
 
-    #pinta_grafico(lista_fitness, 'Valor Horizontal', 'valor Vertical', 'fitness', 'Visualizacion en 3D del fitness', 'fitness')
+    #pinta_grafico(lista_fitness, 'Valor Horizontal', 'valor Vertical', 'puntuacion', 'Visualizacion en 3D de la puntuacion', 'puntuacion')
     #pinta_grafico_malla(lista_fitness)
 
     #pinta_tabla(lista_porcentajes, "Valor Kill", "Valor Monedas", "Porcentaje superado", "Heatmap del porcentaje superado")
-    #pinta_tabla(lista_fitness, "Valor Kill", "Valor Monedas", "fitness conseguido", "Heatmap del fitness conseguido")
+    pinta_tabla(lista_fitness, "Valor Kill", "Valor Monedas", "puntuación conseguida", "Heatmap de la puntuación conseguida")
+
+    #pinta_tabla(lista_fitness, "Valor Horizontal", "Valor Vertical", "puntuación conseguida", "Heatmap de la puntuación conseguida")
 
     #pinta_grafico(lista_monedas)
     #pinta_grafico_malla(lista_monedas)
