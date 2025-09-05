@@ -5,7 +5,7 @@ Este proyecto se centra en en crear agentes y observar su rendimiento dentro de 
 Para probar el juego ejecuta [`PlayLevel.java`](https://github.com/carroyo23/tfg/blob/master/src/PlayLevel.java) esto ejecutará los 15 niveles originales usando el agente [`AlphaBetaGenetico`](https://github.com/carroyo23/tfg/blob/master/src/agents/alphaBetaGenetico/Agent.java) con los mejores parámetros encontrados.
 Para cambiar el agente en el que probarlo simplemente cambia el agente por cualquiera de los que hay en el paquete agents en la siguiente linea:
 ```
-MarioResult result = game.runGame(new agents.alphaBetaOptimized.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
+MarioResult result = game.runGame(new agents.alphaBetaGenetico.Agent(), getLevel("./levels/original/lvl-" + i + ".txt"), 20, 0, true);
 ```
 
 Para probar un agente en un solo nivel comenta el código actual y descomenta la línea:
